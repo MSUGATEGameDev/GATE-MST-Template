@@ -9,8 +9,10 @@ public class Timer : Triggerable
     [Header("Settings")]
     [Tooltip("Does the timer start without activation when the scene loads?")]
     public bool activeAtStart = false;
+    
     [Tooltip("Does the timer end after one activation?")]
     public bool repeats = false;
+    
     public bool resetOnActivate = false;
 
     public enum TimerDisplayOptions {Disabled,InGame,OnScreen}

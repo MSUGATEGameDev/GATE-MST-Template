@@ -2,7 +2,7 @@ using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
 
-public class Triggerable : Actionable
+public abstract class Triggerable : Actionable
 {
     // A class made to provide a starting point for the logic of any triggers in the game.
 
