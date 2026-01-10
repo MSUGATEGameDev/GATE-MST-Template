@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemySpawner : Triggerable
+public class EnemySpawner : GameTrigger
 {
     [Header("Settings")]
     [Tooltip("-1 is Infinite")]public int enemyCount = -1;

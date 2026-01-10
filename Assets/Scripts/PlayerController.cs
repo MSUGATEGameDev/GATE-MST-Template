@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     // Hidden Variables
-    [HideInInspector]public Triggerable triggerInRange;
+    [HideInInspector]public GameTrigger triggerInRange;
 
     #region Input Functions
     void OnActionButton(InputAction.CallbackContext context)

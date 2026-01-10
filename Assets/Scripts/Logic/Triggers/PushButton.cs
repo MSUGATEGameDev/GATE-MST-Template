@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PushButton : Triggerable
+public class PushButton : GameTrigger
 {
     // A button that needs to be actively pressed by the player with the action button while in range.
     Animator animator;

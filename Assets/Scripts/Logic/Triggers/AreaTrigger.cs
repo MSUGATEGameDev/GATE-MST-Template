@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AreaTrigger : Triggerable
+public class AreaTrigger : GameTrigger
 {
     [Header("Triggered By")]
     public bool player = true;

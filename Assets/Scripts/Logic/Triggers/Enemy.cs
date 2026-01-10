@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy : Triggerable
+public class Enemy : GameTrigger
 {
     [Header("Stats")]
     public int initHealth;
