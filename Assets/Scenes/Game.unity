@@ -3317,6 +3317,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 152742003}
     m_Modifications:
     - target: {fileID: 7814453257340039, guid: 28be374228bbd0e4a87d7de07cb1284c, type: 3}
+      propertyPath: timeToStart
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7814453257340039, guid: 28be374228bbd0e4a87d7de07cb1284c, type: 3}
       propertyPath: objectsToActivate.Array.size
       value: 1
       objectReference: {fileID: 0}
