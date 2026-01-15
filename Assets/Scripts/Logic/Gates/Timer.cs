@@ -12,7 +12,8 @@ public class Timer : GameTrigger
     
     [Tooltip("Does the timer end after one activation?")]
     public bool repeats = false;
-    
+
+    [Tooltip("Does the timer start back up as soon as its finished?")]
     public bool resetOnActivate = false;
 
     public enum TimerDisplayOptions {Disabled,InGame,OnScreen}
@@ -22,24 +23,46 @@ public class Timer : GameTrigger
     public float timeToStart;
     [Tooltip("After activating, how long will the timer take to activate again (if repeating)")]
     public float timeToRepeat;
+    Coroutine timerCoroutine;
     #endregion
 
     #region Components
     [Header("Visual Components")]
     TextMeshPro timerDisplay;
-    Renderer placeholder;
     #endregion
 
     private void Start()
     {
-        placeholder= GetComponent<Renderer>();
         timerDisplay = GetComponentInChildren<TextMeshPro>();
+        if (activeAtStart)
+        {
+            switch (displayCountdown)
+            {
+                case TimerDisplayOptions.Disabled:
+                    timerCoroutine = StartCoroutine(silentCountdown());
+                    break;
+                case TimerDisplayOptions.InGame:
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     Coroutine countdown;
     IEnumerator silentCountdown()
     {
-        yield return null;
+        yield return new WaitForSeconds(timeToStart);
+        Activate();
+        if (repeats && resetOnActivate)
+        {
+            while (isActiveAndEnabled)
+            {
+                yield return new WaitForSeconds(timeToRepeat);
+                Activate();
+            }
+        }
+        
     }
     IEnumerator visualCountdown()
     {
