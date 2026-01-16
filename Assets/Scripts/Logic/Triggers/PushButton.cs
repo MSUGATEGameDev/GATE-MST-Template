@@ -2,30 +2,47 @@ using UnityEngine;
 
 public class PushButton : GameTrigger
 {
+    // --- Push Button --- //
     // A button that needs to be actively pressed by the player with the action button while in range.
-    Animator animator;
-    private void Start()
+    // Many instances can be called at once.
+
+    Animator animator; // Used to handle visual animations.
+    [SerializeField]GameObject toolTip; // Tells players to push action button to activate.
+    void Awake() // Called before everything else as soon as this object is created.
     {
         try
         {
             animator = GetComponent<Animator>();
         }
         catch { }
-        
     }
 
-    private void OnTriggerEnter(Collider other)
+    public override void Activate() 
+    {
+        base.Activate();
+        animator.Play("ButtonPush");
+    }
+
+    private void OnTriggerEnter(Collider other) // When player enters vicinity, this assigns itself to the Action Button.
     {
         if (other.CompareTag("Player"))
         {
+            if (PlayerController.singleton.triggerInRange != null) // Override the old object that was going to use the action button.
+                PlayerController.singleton.triggerInRange.Overridden();
             PlayerController.singleton.triggerInRange = this;
+            toolTip.SetActive(true);
         }
     }
-    private void OnTriggerExit(Collider other)
+    public override void Overridden() // When another button or trigger has overridden this for assignment of the Action Button.
+    {
+        toolTip.SetActive(false);
+    }
+    private void OnTriggerExit(Collider other) // When it leaves the vicinity, this unassigns itself from the Action Button.
     {
         if(other.CompareTag("Player") && PlayerController.singleton.triggerInRange != null && PlayerController.singleton.triggerInRange == this)
         {
             PlayerController.singleton.triggerInRange = null;
+            toolTip.SetActive(false);
         }
     }
 }

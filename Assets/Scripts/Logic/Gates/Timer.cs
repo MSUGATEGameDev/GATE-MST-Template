@@ -52,24 +52,17 @@ public class Timer : GameTrigger
     {
         StopCoroutine(timerCoroutine);
     }
-    void ActivateChildren() // Activation Starts a Timer, so this is how timer activates its children.
-    {
-        foreach (var actionable in objectsToActivate)
-        {
-            actionable.Activate();
-        }
-    }
     Coroutine countdown;
     IEnumerator SilentCountdown() // This just waits the appropriate amount of time and starts the timer.
     {
         yield return new WaitForSeconds(timeToStart);
-        ActivateChildren();
+        ActivateItems();
         if (repeats && resetOnActivate)
         {
             while (isActiveAndEnabled)
             {
                 yield return new WaitForSeconds(timeToRepeat);
-                ActivateChildren();
+                ActivateItems();
             }
         } 
     }
@@ -87,7 +80,7 @@ public class Timer : GameTrigger
             runTime--;
             yield return new WaitForSeconds(1);
         }
-        ActivateChildren();
+        ActivateItems();
         if (repeats && resetOnActivate)
         {
             while (isActiveAndEnabled)
@@ -104,7 +97,7 @@ public class Timer : GameTrigger
                     runTime--;
                     yield return new WaitForSeconds(1);
                 }
-                ActivateChildren();
+                ActivateItems();
             }
         }
     }

@@ -20,9 +20,9 @@ public class Counter : GameTrigger
         {
             currentCount++;
             if (currentCount == activateAt)
-                foreach (GameAction actionable in objectsToActivate)
+                foreach (GameAction gameAction in objectsToActivate)
                 {
-                    actionable.Activate();
+                    gameAction.Activate();
                     if (singleActivation) flipped = true;
                     if (resets) currentCount = 0;
                 }

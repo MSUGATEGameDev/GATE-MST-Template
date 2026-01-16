@@ -16,7 +16,7 @@ public class AreaTrigger : GameTrigger
             // If it wasn't already being activated, activate and play animation if it has one.
             if (presentCount == 0)
             {
-                Activate();
+                ActivateItems();
                 if (animator != null)
                 {
                     animator.Play("AreaActivate");
@@ -33,7 +33,7 @@ public class AreaTrigger : GameTrigger
             // If it wasn't already inactive, deactivate and play animation if it has one.
             if (presentCount != 0)
             {
-                Deactivate();
+                DeactivateItems();
                 if (animator != null)
                 {
                     animator.Play("AreaDeactivate");
