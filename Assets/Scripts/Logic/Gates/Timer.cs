@@ -20,52 +20,92 @@ public class Timer : GameTrigger
     [Tooltip("Should a countdown be displayed? If so, should it be displayed in a corner of the screen, or on the timer?")]
     public TimerDisplayOptions displayCountdown = TimerDisplayOptions.Disabled;
     [Tooltip("How long will the timer wait after activation to activate the objects assigned to it?")]
-    public float timeToStart;
+    public int timeToStart;
     [Tooltip("After activating, how long will the timer take to activate again (if repeating)")]
-    public float timeToRepeat;
-    Coroutine timerCoroutine;
+    public int timeToRepeat;
     #endregion
 
     #region Components
     [Header("Visual Components")]
-    TextMeshPro timerDisplay;
+    [SerializeField]TextMeshPro timerDisplay;
+    Coroutine timerCoroutine;
     #endregion
 
-    private void Start()
+    private void Start() // This code runs right when the game starts.
     {
-        timerDisplay = GetComponentInChildren<TextMeshPro>();
-        if (activeAtStart)
+        timerDisplay = GetComponentInChildren<TextMeshPro>(); // Find the timer display.
+        if (activeAtStart) Activate(); // Start the timer if it's set to do so. 
+        if(displayCountdown == TimerDisplayOptions.InGame) GetComponent<LookAtPlayer>().enabled = true; // Enable the component to look at player if selected.
+    }
+    public override void Activate() // Activating a timer starts the countdown.
+    {
+        if (timerCoroutine == null) // If the timer is already running, the timer doesn't need to be started.
         {
-            switch (displayCountdown)
-            {
-                case TimerDisplayOptions.Disabled:
-                    timerCoroutine = StartCoroutine(silentCountdown());
-                    break;
-                case TimerDisplayOptions.InGame:
-                    break;
-                default:
-                    break;
-            }
+            if (displayCountdown == TimerDisplayOptions.Disabled)
+                timerCoroutine = StartCoroutine(SilentCountdown());
+            else
+                timerCoroutine = StartCoroutine(VisualCountdown());
+        }
+
+    }
+    public override void Deactivate() // Deactivating a timer stops it from going, it doesn't deactivate its children.
+    {
+        StopCoroutine(timerCoroutine);
+    }
+    void ActivateChildren() // Activation Starts a Timer, so this is how timer activates its children.
+    {
+        foreach (var actionable in objectsToActivate)
+        {
+            actionable.Activate();
         }
     }
-
     Coroutine countdown;
-    IEnumerator silentCountdown()
+    IEnumerator SilentCountdown() // This just waits the appropriate amount of time and starts the timer.
     {
         yield return new WaitForSeconds(timeToStart);
-        Activate();
+        ActivateChildren();
         if (repeats && resetOnActivate)
         {
             while (isActiveAndEnabled)
             {
                 yield return new WaitForSeconds(timeToRepeat);
-                Activate();
+                ActivateChildren();
+            }
+        } 
+    }
+    IEnumerator VisualCountdown() // This one will display a number countdown every second (either in the determined spot in-game or on the screen)
+    {
+        int runTime = timeToStart;
+        while (runTime > 0)
+        {
+            if (displayCountdown == TimerDisplayOptions.InGame)
+                timerDisplay.text = "" + runTime;
+            else
+            {
+                PlayerController.singleton.DisplayOnScreenText("" + runTime);
+            }
+            runTime--;
+            yield return new WaitForSeconds(1);
+        }
+        ActivateChildren();
+        if (repeats && resetOnActivate)
+        {
+            while (isActiveAndEnabled)
+            {
+                runTime = timeToRepeat;
+                while (runTime > 0)
+                {
+                    if (displayCountdown == TimerDisplayOptions.InGame)
+                        timerDisplay.text = "" + runTime;
+                    else
+                    {
+                        PlayerController.singleton.DisplayOnScreenText("" + runTime);
+                    }
+                    runTime--;
+                    yield return new WaitForSeconds(1);
+                }
+                ActivateChildren();
             }
         }
-        
-    }
-    IEnumerator visualCountdown()
-    {
-        yield return null;
     }
 }

@@ -29,6 +29,9 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
+    [Header("Player Parts")]
+    public Transform playerHead; // The exact position of the main camera, for the sake of things looking at the player.
+
     // Hidden Variables
     [HideInInspector]public GameTrigger triggerInRange;
 
@@ -39,6 +42,12 @@ public class PlayerController : MonoBehaviour
         {
             triggerInRange.Activate();
         }
+    }
+    #endregion
+    #region Output Functions
+    public void DisplayOnScreenText(string text) 
+    {
+
     }
     #endregion
 }

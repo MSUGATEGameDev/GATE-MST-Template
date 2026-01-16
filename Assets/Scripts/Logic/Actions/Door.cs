@@ -17,7 +17,6 @@ public class Door : GameAction
         if (animator != null) 
         {
             animator.Play("DoorOpen");
-            Debug.Log("Opening Door");
         }
     }
     public override void Deactivate()
@@ -25,7 +24,6 @@ public class Door : GameAction
         if (animator != null)
         {
             animator.Play("DoorClose");
-            Debug.Log("Closing Door");
         }
     }
 }
