@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2006395933650077057}
   - component: {fileID: 1171466458252433214}
   - component: {fileID: 2655669596804919354}
+  - component: {fileID: 3394874837902302517}
   m_Layer: 0
   m_Name: Floor Button
   m_TagString: Untagged
@@ -71,6 +72,28 @@ MonoBehaviour:
   player: 1
   enemies: 0
   objects: 1
+--- !u!95 &3394874837902302517
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2477915770413781964}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 99b206639a2ea18488e333c407b34dfb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &6704616508684914561
 PrefabInstance:
   m_ObjectHideFlags: 0

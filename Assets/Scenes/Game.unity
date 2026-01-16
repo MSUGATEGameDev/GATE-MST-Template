@@ -527,7 +527,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1669827766}
     m_Modifications:
     - target: {fileID: 2006395933650077057, guid: 07a2aec904435754b9f6e28931371444, type: 3}
       propertyPath: m_LocalPosition.x
@@ -547,15 +547,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2006395933650077057, guid: 07a2aec904435754b9f6e28931371444, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2006395933650077057, guid: 07a2aec904435754b9f6e28931371444, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2006395933650077057, guid: 07a2aec904435754b9f6e28931371444, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2006395933650077057, guid: 07a2aec904435754b9f6e28931371444, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2509,6 +2509,7 @@ Transform:
   - {fileID: 620969993}
   - {fileID: 1818314377}
   - {fileID: 344863405}
+  - {fileID: 1775572011}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1726632548
@@ -2638,6 +2639,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4266109842747353032, guid: cc038f1ce75730d44bd4e1116b3489b7, type: 3}
   m_PrefabInstance: {fileID: 1768221170}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1775572011 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2006395933650077057, guid: 07a2aec904435754b9f6e28931371444, type: 3}
+  m_PrefabInstance: {fileID: 346100048}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1818314376
 GameObject:
@@ -3405,7 +3411,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6142188786653653185, guid: 28be374228bbd0e4a87d7de07cb1284c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 28be374228bbd0e4a87d7de07cb1284c, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -3415,4 +3424,3 @@ SceneRoots:
   - {fileID: 330585546}
   - {fileID: 152742003}
   - {fileID: 1669827766}
-  - {fileID: 346100048}
