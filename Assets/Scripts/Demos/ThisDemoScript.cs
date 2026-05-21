@@ -1,44 +1,50 @@
-// Everything to the right of a double slash on any given line is a COMMENT, which helps explain the code.
+// Everything to the right of a double slash on any given line is a -COMMENT-, which helps explain the code.
 
+// -"USING" STATEMENTS- allow you to link to shared code libraries and use existing code instead of building everything yourself.
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-// USING statements connect this script to other scripts and are usually auto-generated.
 
-// CLASSES are collections of VARIABLES (which store data) and FUNCTIONS (which make things happen).
-public class ThisDemoScript : MonoBehaviour // ThisDemoScript is DERIVED from Unity's MonoBehavior class, which allows us to attach it to game objects in unity.
+
+// -CLASSES- are collections of -VARIABLES- (which store data) and -FUNCTIONS- (which make things happen).
+public class ThisDemoScript : MonoBehaviour // ThisDemoScript class is -DERIVED- from Unity's MonoBehavior class,
+                                            // which allows us to take advantage of scripts and variables that were written for MonoBehaviour while still writing our own unique code.
+                                            // In particular, MonoBehaviors can be attached to Unity GameObjects and manipulate their placement and visibility in the game.
 {
-    // REGIONS allow you to organize and minimize code.
+    // REGIONS allow you to organize code and minimize it when you're not actively working on it.
     #region Variables
     #region Variable Types
     // Variables need a TYPE, a NAME, and usually a VALUE. Here are some variable types.
-    bool aBool = false;                 // BOOLEANS are either true or false;
-    string aString = "Hello Everyone";  // STRINGS are text;
-    int anInt = 1;                      // INTEGERS are whole numbers.
-    float aFloat = 1.59f;               // FLOATING POINTs can have decimals.
+    bool aBool = false;                 // -BOOLEANS- are either true or false;
+    string aString = "Hello Everyone";  // -STRINGS- are text;
+    int anInt = 1;                      // -INTEGERS- are whole numbers.
+    float aFloat = 1.59f;               // -FLOATING POINTS- can have decimals.
     
-    double aDouble = 1.59;              // Doubles are big floats (more storage, more precision).
-    long aLong = 5L;                    // LONGS are big ints (more storage, bigger numbers)
+    double aDouble = 1.59;              // -DOUBLES- are big floats (more precision, but taking up more space).
+    long aLong = 5L;                    // -LONGS- are big ints (capable of bigger numbers, but taking up more space).
 
-    List<string> aList = new List<string>(); // LISTS contain multiple values in one variable.
-    Dictionary<string,int> aDict;            // DICTIONARIES are lists where values have lookup codes.
+    List<string> aList = new List<string>(); // -LISTS- contain multiple values in one variable.
+    Dictionary<string,int> aDict;            // -DICTIONARIES- are lists where values have lookup codes.
 
-    Door aDoor; // Any class can be a variable within an existing class.
-    ThisDemoScript babyScript; // You can even reference a class within itself.
-    DateTime aDate; // There are lots of pre-existing classes to pull from.
+    Door aDoor; // Any class can become a variable within an another class.
+    ThisDemoScript babyScript; // You can even reference a class within itself to have a nested variable.
+    DateTime aDate; // There are lots of pre-existing classes to pull from that will make life easier.
+                    // For example, datetime has functions that make it easier to work with time.
     #endregion
 
     #region Visibility
-    // Variables are PRIVATE by default. They can't be seen outside of the class. This is a good way to keep things from getting messy.
-    public string visibleString; // PUBLIC variables can be seen outside the class, including in the Unity Inspector.
-    [HideInInspector] public int invisibleInt; // [HideInInspector] hides public variables from the inspector.
-    [SerializeField]private float visibleFloat; // [SerializeField] makes private variables visible in the inspector.
+    string hiddenString; // Variables are -PRIVATE- by default. They can't be seen or manipulated outside of the class.
+                         // This is a good way to keep things from getting messy as you start to connect classes.
+    public string visibleString; // -PUBLIC- variables can be seen outside the class, including in the Unity Inspector (which appears on the right when you click on a GameObject in Unity).
+    [HideInInspector] public int invisibleInt; // [HideInInspector] hides public variables from the Inspector.
+    [SerializeField]private float visibleFloat; // [SerializeField] makes private variables visible in the Inspector.
     
-    public static int globalInt; // STATIC variables are shared by all instances of the same class.
+    public static int globalInt; // -STATIC- variables are shared by all instances of the same class.
+                                 // Imagine, for example, a 
     #endregion
     #endregion
     #region Functions
-    // FUNCTIONS need an OUTPUT type, a NAME, and INPUTS.
+    // -FUNCTIONS- need an -OUTPUT- type, a -NAME-, and -INPUTS-.
     float AddThenDivide(float firstNum, float secondNum, float divisor) 
     {                                 // Everything within the BRACKETS {} after a function will run in sequential order when the function is run unless otherwise stated.
         float added;                  // Variables declared inside of functions only exist until the function ends.
