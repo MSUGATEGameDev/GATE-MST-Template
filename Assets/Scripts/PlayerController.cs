@@ -34,7 +34,8 @@ public class PlayerController : MonoBehaviour
 
     #region Player Parts
     [Header("Player Parts")]
-    public Transform playerHead; // The exact position of the main camera, which can be referenced by other classes to make things look at the player.
+    public Transform playerCamera;  // The transform that controls the position of the main camera, which can be referenced by other classes to make things look at the player.
+    public Transform playerBody;    // The transform that controls the player. Used for moving the player around.
     #endregion
 
     #region Input & Controls
@@ -76,6 +77,13 @@ public class PlayerController : MonoBehaviour
         if (messageCoroutine != null)
             StopCoroutine(messageCoroutine);
         messageArea.text = "";
+    }
+    #endregion
+
+    #region Events
+    public void Respawn()
+    {
+        playerBody.transform.position = SpawnPoint.currentSpawn.transform.position;
     }
     #endregion
 }
