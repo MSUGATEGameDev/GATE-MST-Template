@@ -32,6 +32,124 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
+    InputAction moveAction;
+    InputAction lookAction;
+    InputAction jumpAction;
+    InputAction attackAction;
+    InputAction sprintAction;
+
+    public float moveSpeed = 3.0f;
+    public float runSpeed = 5.0f;
+    public float jumpSpeed = 5.0f;
+    public float lookXSpeed = 30.0f;
+    public float lookYSpeed = 30.0f;
+
+    public float minAngle = -45;
+    public float maxAngle = 45;
+
+    public Transform groundCheck;
+
+    private Rigidbody rigid;
+    private Camera mainCam;
+    private Animator anim;
+
+    private void Start()
+    {
+        moveAction = InputSystem.actions.FindAction("Move");
+        lookAction = InputSystem.actions.FindAction("Look");
+        jumpAction = InputSystem.actions.FindAction("Jump");
+        attackAction = InputSystem.actions.FindAction("Attack");
+        sprintAction = InputSystem.actions.FindAction("Sprint");
+
+
+        rigid = GetComponent<Rigidbody>();
+        mainCam = GetComponentInChildren<Camera>();
+        anim = GetComponentInChildren<Animator>();
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+    
+    private void Update()
+    {
+        Move();
+        Look();
+
+        if (attackAction.WasPerformedThisFrame())
+        {
+            anim.Play("TutBotPunch");
+        }
+    }
+
+    private void Look()
+    {
+        Vector2 lookValue = lookAction.ReadValue<Vector2>();
+
+        transform.localEulerAngles += new Vector3(
+            0,
+            lookValue.x * lookXSpeed * Time.deltaTime,
+            0
+        );
+
+        float deltaY = -1 * lookValue.y * lookYSpeed * Time.deltaTime;
+        float newY = mainCam.transform.localEulerAngles.x + deltaY;
+
+        newY = AngleWithin180(newY);
+
+        newY = Mathf.Clamp(newY, minAngle, maxAngle);
+
+        mainCam.transform.localEulerAngles = new Vector3(
+            newY,
+            mainCam.transform.localEulerAngles.y,
+            mainCam.transform.localEulerAngles.z
+        );
+    }
+
+    private void Move()
+    {
+        Vector2 moveValue = moveAction.ReadValue<Vector2>();
+
+        Vector3 vel = Vector3.zero;
+        vel += transform.right * moveValue.x;
+        vel += transform.forward * moveValue.y;
+
+        if (sprintAction.IsPressed())
+        {
+            vel *= runSpeed;
+        }
+        else
+        {
+            vel *= moveSpeed;
+        }
+
+        vel.y = rigid.linearVelocity.y;
+
+        //Jump Conditional
+        if (jumpAction.WasPerformedThisFrame() &&
+           Physics.Raycast(groundCheck.position, -1 * transform.up, .1f))
+        {
+            vel += transform.up * jumpSpeed;
+        }
+
+        rigid.linearVelocity = vel;
+
+        float forwardVal = Vector3.Dot(vel, transform.forward);
+        anim.SetFloat("move", forwardVal);
+    }
+
+    private float AngleWithin180(float angle)
+    {
+        if (angle > 180)
+        {
+            return angle - 360;
+        }
+        else
+        {
+            return angle;
+        }
+    }
+
+
     #region Player Parts
     [Header("Player Parts")]
     public Transform playerCamera;  // The transform that controls the position of the main camera, which can be referenced by other classes to make things look at the player.
@@ -83,7 +201,7 @@ public class PlayerController : MonoBehaviour
     #region Events
     public void Respawn()
     {
-        playerBody.transform.position = SpawnPoint.currentSpawn.transform.position;
+        transform.position = SpawnPoint.currentSpawn.transform.position;
     }
     #endregion
 }
