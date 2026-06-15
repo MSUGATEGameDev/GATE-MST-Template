@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Demo4_Classes // CLASSES allow you to build complex objects with their own internal variables and functions.

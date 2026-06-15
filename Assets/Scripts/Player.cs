@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour
+public class Player : MonoBehaviour
 {
     // --- PlayerController --- //
     // Handles device input, the HUD, and stores a couple of more broadly-used shared variables.
@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
 
     #region Singleton Setup
     // Creating a unique singleton of the PlayerController on Awake.
-    public static PlayerController singleton;
+    public static Player singleton;
     private void Awake()
     {
         // Check if an instance already exists.
@@ -132,14 +132,14 @@ public class PlayerController : MonoBehaviour
             if (sprintAction.IsPressed())
             {
                 vel *= runSpeed;
-                anim.SetBool("walking", false);
-                anim.SetBool("running", true);
+                //anim.SetBool("walking", false);
+                //anim.SetBool("running", true);
             }
             else
             {
                 vel *= moveSpeed;
-                anim.SetBool("running", false);
-                anim.SetBool("walking", true);
+                //anim.SetBool("running", false);
+                //anim.SetBool("walking", true);
             }
 
             vel.y = rigid.linearVelocity.y;
