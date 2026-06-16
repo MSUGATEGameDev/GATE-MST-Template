@@ -72,14 +72,19 @@ public class Player : Entity
     }
     public void OnRunButton(InputAction.CallbackContext context)
     {
+
         running = context.ReadValueAsButton();
     }
     public void OnActionButton(InputAction.CallbackContext context)
     {
-        if (triggerInRange != null)
+        if (context.started)
         {
-            triggerInRange.Activate();
+            if (triggerInRange != null)
+            {
+                triggerInRange.Activate();
+            }
         }
+
     }
     #endregion
 

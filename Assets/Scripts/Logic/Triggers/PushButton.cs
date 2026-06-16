@@ -6,8 +6,15 @@ public class PushButton : GameTrigger
     // A button that needs to be actively pressed by the player with the action button while in range.
     // Many instances can be called at once.
 
+    [Header("Settings")]
+    [Tooltip("When checked, button will deactivate on second push.")] public bool toggle = true;
+    bool toggleOn = true;
+
+    [Header("Components")]
     Animator animator; // Used to handle visual animations.
     [SerializeField]GameObject toolTip; // Tells players to push action button to activate.
+    
+
     void Awake() // Called before everything else as soon as this object is created.
     {
         try
@@ -19,7 +26,21 @@ public class PushButton : GameTrigger
 
     public override void Activate() 
     {
-        base.Activate();
+        if (toggle)
+        {
+            Debug.Log(toggle + " - " + toggleOn);
+            if (toggleOn)
+            {
+                base.Activate();
+            }
+            else
+            {
+                base.Deactivate();
+            }
+            toggleOn = !toggleOn;
+        }
+
+        
         animator.Play("ButtonPush");
     }
 
