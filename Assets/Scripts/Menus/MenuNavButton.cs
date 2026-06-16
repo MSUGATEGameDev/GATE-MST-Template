@@ -24,7 +24,7 @@ public class MenuNavButton : MonoBehaviour
         switch (buttonType)
         {
             case MenuButtonType.Page:
-                MenuPage.OpenPage(pageToOpen);
+                MenuManager.OpenPage(pageToOpen);
                 
                 break;
             case MenuButtonType.Scene:
