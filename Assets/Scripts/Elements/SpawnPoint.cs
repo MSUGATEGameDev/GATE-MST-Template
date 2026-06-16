@@ -11,7 +11,7 @@ public class SpawnPoint : GameAction // Used for bringing the player back into t
         if (startPoint) // For the start point.
         {
             currentSpawn = this; // Set this as the initial spawn.
-            PlayerController.singleton.Respawn(); // Spawn in the player to the start point.
+            Player.singleton.Respawn(); // Spawn in the player to the start point.
         }
     }
 

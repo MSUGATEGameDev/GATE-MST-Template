@@ -27,9 +27,9 @@ public class PushButton : GameTrigger
     {
         if (other.CompareTag("Player"))
         {
-            if (PlayerController.singleton.triggerInRange != null) // Override the old object that was going to use the action button.
-                PlayerController.singleton.triggerInRange.Overridden();
-            PlayerController.singleton.triggerInRange = this;
+            if (Player.singleton.triggerInRange != null) // Override the old object that was going to use the action button.
+                Player.singleton.triggerInRange.Overridden();
+            Player.singleton.triggerInRange = this;
             toolTip.SetActive(true);
         }
     }
@@ -39,9 +39,9 @@ public class PushButton : GameTrigger
     }
     private void OnTriggerExit(Collider other) // When it leaves the vicinity, this unassigns itself from the Action Button.
     {
-        if(other.CompareTag("Player") && PlayerController.singleton.triggerInRange != null && PlayerController.singleton.triggerInRange == this)
+        if(other.CompareTag("Player") && Player.singleton.triggerInRange != null && Player.singleton.triggerInRange == this)
         {
-            PlayerController.singleton.triggerInRange = null;
+            Player.singleton.triggerInRange = null;
             toolTip.SetActive(false);
         }
     }

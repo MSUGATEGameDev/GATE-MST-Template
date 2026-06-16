@@ -74,7 +74,7 @@ public class Timer : GameTrigger
                 timerDisplay.text = "" + runTime;
             else
             {
-                PlayerController.singleton.DisplayOnScreenText("" + runTime);
+                Player.singleton.DisplayOnScreenText("" + runTime);
             }
             runTime--;
             yield return new WaitForSeconds(1);
@@ -91,7 +91,7 @@ public class Timer : GameTrigger
                         timerDisplay.text = "" + runTime;
                     else
                     {
-                        PlayerController.singleton.DisplayOnScreenText("" + runTime);
+                        Player.singleton.DisplayOnScreenText("" + runTime);
                     }
                     runTime--;
                     yield return new WaitForSeconds(1);

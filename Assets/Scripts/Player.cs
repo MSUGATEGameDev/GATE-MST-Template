@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 
-public class Player : MonoBehaviour
+public class Player : Entity
 {
     // --- PlayerController --- //
     // Handles device input, the HUD, and stores a couple of more broadly-used shared variables.
@@ -32,162 +32,50 @@ public class Player : MonoBehaviour
     }
     #endregion
 
-    InputAction moveAction;
-    InputAction lookAction;
-    InputAction jumpAction;
-    InputAction attackAction;
-    InputAction sprintAction;
+    #region Player Parts
+    [Header("Player Parts")]
+    [HideInInspector] public Transform playerCamTransform; // The transform that controls the position of the main camera, which can be referenced by other classes to make things look at the player.
+    private Camera playerCamera;
+    private Vector2 moveValue;
+    private bool running;
+    #endregion
 
-    public float moveSpeed = 3.0f;
-    public float runSpeed = 5.0f;
-    public float jumpSpeed = 5.0f;
-    private float turnTime = 0.1f;
-    public float lookXSpeed = 30.0f;
-    public float lookYSpeed = 30.0f;
-
-    private float turnVel;
-
-    public float minAngle = -45;
-    public float maxAngle = 45;
-
-    public Transform groundCheck;
-
-    private Rigidbody rigid;
-    private Camera mainCam;
-    private Animator anim;
-
-    private void Start()
+    protected override void Start()
     {
-        moveAction = InputSystem.actions.FindAction("Move");
-        lookAction = InputSystem.actions.FindAction("Look");
-        jumpAction = InputSystem.actions.FindAction("Jump");
-        attackAction = InputSystem.actions.FindAction("Attack");
-        sprintAction = InputSystem.actions.FindAction("Sprint");
+        base.Start();
 
-
-        rigid = GetComponent<Rigidbody>();
-        mainCam = GetComponentInChildren<Camera>();
-        anim = GetComponentInChildren<Animator>();
+        playerCamera = GetComponentInChildren<Camera>();
+        playerCamTransform = playerCamera.transform;
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
-    
-    private void Update()
+
+    protected override void Update()
     {
-        Move();
-        //Look();
-
-        if (attackAction.WasPerformedThisFrame())
-        {
-            anim.Play("TutBotPunch");
-        }
+        base.Update();
+        Move(moveValue, playerCamera.transform.eulerAngles.y, running);
     }
-
-    //private void Look()
-    //{
-    //    Vector2 lookValue = lookAction.ReadValue<Vector2>();
-
-    //    transform.localEulerAngles += new Vector3(
-    //        0,
-    //        lookValue.x * lookXSpeed * Time.deltaTime,
-    //        0
-    //    );
-
-    //    float deltaY = -1 * lookValue.y * lookYSpeed * Time.deltaTime;
-    //    float newY = mainCam.transform.localEulerAngles.x + deltaY;
-
-    //    newY = AngleWithin180(newY);
-
-    //    newY = Mathf.Clamp(newY, minAngle, maxAngle);
-
-    //    mainCam.transform.localEulerAngles = new Vector3(
-    //        newY,
-    //        mainCam.transform.localEulerAngles.y,
-    //        mainCam.transform.localEulerAngles.z
-    //    );
-    //}
-
-    private void Move()
-    {
-        Vector2 moveValue = moveAction.ReadValue<Vector2>();
-
-        Vector3 dir = new Vector3(moveValue.x, 0f, moveValue.y).normalized;
-
-        //Jump Conditional
-        if (jumpAction.WasPerformedThisFrame() &&
-           Physics.Raycast(groundCheck.position, -1 * transform.up, .1f))
-        {
-            Jump();
-        }
-
-        if (dir.magnitude >= 0.1f)
-        {
-            float targetAngle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg + mainCam.transform.eulerAngles.y;
-            float angle = Mathf.SmoothDampAngle(transform.localEulerAngles.y, targetAngle, ref turnVel, turnTime);
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
-
-            Vector3 vel = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-
-            if (sprintAction.IsPressed())
-            {
-                vel *= runSpeed;
-                //anim.SetBool("walking", false);
-                //anim.SetBool("running", true);
-            }
-            else
-            {
-                vel *= moveSpeed;
-                //anim.SetBool("running", false);
-                //anim.SetBool("walking", true);
-            }
-
-            vel.y = rigid.linearVelocity.y;
-
-            rigid.linearVelocity = vel;
-        }
-        else
-        {
-            anim.SetBool("walking", false);
-            anim.SetBool("running", false);
-        }
-    }
-
-    public void Jump()
-    {
-        Vector3 vel = rigid.linearVelocity;
-
-        //Check if Jump is Possible
-        if (Physics.Raycast(groundCheck.position, -1 * transform.up, .1f))
-        {
-            vel += transform.up * jumpSpeed;
-        }
-
-        rigid.linearVelocity = vel;
-    }
-
-    private float AngleWithin180(float angle)
-    {
-        if (angle > 180)
-        {
-            return angle - 360;
-        }
-        else
-        {
-            return angle;
-        }
-    }
-
-
-    #region Player Parts
-    [Header("Player Parts")]
-    public Transform playerCamera;  // The transform that controls the position of the main camera, which can be referenced by other classes to make things look at the player.
-    public Transform playerBody;    // The transform that controls the player. Used for moving the player around.
-    #endregion
 
     #region Input & Controls
     [HideInInspector] public GameTrigger triggerInRange;
-    void OnActionButton(InputAction.CallbackContext context)
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        moveValue = context.ReadValue<Vector2>();
+    }
+    public void OnJumpButton(InputAction.CallbackContext context)
+    {
+        Jump();
+    }
+    public void OnAttackButton(InputAction.CallbackContext context)
+    {
+        Attack();
+    }
+    public void OnRunButton(InputAction.CallbackContext context)
+    {
+        running = context.ReadValueAsButton();
+    }
+    public void OnActionButton(InputAction.CallbackContext context)
     {
         if (triggerInRange != null)
         {
@@ -210,7 +98,7 @@ public class Player : MonoBehaviour
     }
     IEnumerator MessageTimer(string message) // Leaves text up for the indicated time before swapping to the next thing.
     {
-        while(upcomingMessages.Count != 0)
+        while (upcomingMessages.Count != 0)
         {
             messageArea.text = upcomingMessages[0];
             upcomingMessages.RemoveAt(0);
