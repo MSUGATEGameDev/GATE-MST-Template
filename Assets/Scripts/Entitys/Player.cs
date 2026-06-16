@@ -36,8 +36,6 @@ public class Player : Entity
     [Header("Player Parts")]
     [HideInInspector] public Transform playerCamTransform; // The transform that controls the position of the main camera, which can be referenced by other classes to make things look at the player.
     private Camera playerCamera;
-    private Vector2 moveValue;
-    private bool running;
     #endregion
 
     protected override void Start()
@@ -54,14 +52,15 @@ public class Player : Entity
     protected override void Update()
     {
         base.Update();
-        Move(moveValue, playerCamera.transform.eulerAngles.y, running);
+        InfluenceMove(playerCamera.transform.eulerAngles.y);
     }
 
     #region Input & Controls
     [HideInInspector] public GameTrigger triggerInRange;
     public void OnMove(InputAction.CallbackContext context)
     {
-        moveValue = context.ReadValue<Vector2>();
+        Vector2 moveValue = context.ReadValue<Vector2>();
+        Move(moveValue);
     }
     public void OnJumpButton(InputAction.CallbackContext context)
     {

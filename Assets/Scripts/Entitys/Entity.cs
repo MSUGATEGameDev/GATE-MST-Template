@@ -16,6 +16,10 @@ public class Entity : MonoBehaviour
     private float turnTime = 0.1f;
     private float turnVel;
 
+    private Vector2 curDir = Vector2.zero;
+    private float dirInfluence = 0f;
+    public bool running = false;
+
     public EStates curState = EStates.idle;
     public bool disabled = false;
 
@@ -37,22 +41,33 @@ public class Entity : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
+        handleMove();
         DetermineState();
     }
 
-    public void Move(Vector2 dir, float influnce = 0f, bool run = false)
+    public void Move(Vector2 dir)
     {
-        Vector3 normalDir = new Vector3(dir.x, 0f, dir.y).normalized;
+        curDir = dir;
+    }
+
+    public void InfluenceMove(float influence)
+    {
+        dirInfluence = influence;
+    }
+
+    private void handleMove()
+    {
+        Vector3 normalDir = new Vector3(curDir.x, 0f, curDir.y).normalized;
 
         if (normalDir.magnitude >= 0.1f)
         {
-            float targetAngle = Mathf.Atan2(normalDir.x, normalDir.z) * Mathf.Rad2Deg + influnce;
+            float targetAngle = Mathf.Atan2(normalDir.x, normalDir.z) * Mathf.Rad2Deg + dirInfluence;
             float angle = Mathf.SmoothDampAngle(transform.localEulerAngles.y, targetAngle, ref turnVel, turnTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
             Vector3 vel = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
-            if (run)
+            if (running)
             {
                 vel *= runSpeed;
                 anim.SetBool("walking", false);
