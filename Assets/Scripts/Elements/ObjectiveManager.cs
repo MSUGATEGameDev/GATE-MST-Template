@@ -4,7 +4,46 @@ using UnityEngine;
 
 public class ObjectiveManager : MonoBehaviour
 {
-    public List<bool> collectedKeys = new() { false, false, false, false, false, false };
+    #region Keys
+    // Processes that allow a keycard door system to be utilized.
+    static List<bool> collectedKeys = new() { false, false, false, false, false, false };
     public enum CollecibleKey { Red, Orange, Yellow, Green, Blue, Violet };
+    public static void KeyCollected(CollecibleKey key)
+    {
+        collectedKeys[(int)key] = true;
+        HUD.DisplayKey(key);
+        HUD.DisplayNotice(key.ToString() + " Key Collected!");
+    }
+    public static bool CheckKey(CollecibleKey key) 
+    {
+        return collectedKeys[(int)key];
+    }
+    #endregion
+    #region Counters
+    public static List<string> counterInstructions; // e.g. Kill 10 enemies.
+    public static List<int> counterCounts;          // Current count.
+    public static List<int> counterGoals;           // e.g. 10
+    public static List<string> counterDescriptions; // e.g. enemies killed.
+    public static List<GameAction> counterActions;  // What happens when objective is complete?
 
+    public static void CreateObjective(string instructions, int goal, string description, GameAction onCompletion)
+    {
+        counterInstructions.Add(instructions);
+        counterCounts.Add(0);
+        counterGoals.Add(goal);
+        counterDescriptions.Add(description);
+
+    }
+    public static void CompleteObjectiveTask(string description)
+    {
+        int indx = counterDescriptions.IndexOf(description);
+        counterCounts[indx]++;
+        if (counterCounts[indx] == counterGoals[indx])
+        {
+            HUD.DisplayAnnouncement(counterDescriptions[indx], "Objective Complete!");
+            counterActions[indx].Activate();
+        }
+
+    }
+    #endregion
 }

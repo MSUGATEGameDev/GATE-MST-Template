@@ -21,8 +21,10 @@ public class HUD : MonoBehaviour
     [SerializeField] TextMeshPro subtitleText;
     [SerializeField] TextMeshPro noticeText;
     [SerializeField] Transform healthBar;
-    [SerializeField] TextMeshPro pointsField;
+    [SerializeField] TextMeshPro objectivesField;
     [SerializeField] List<GameObject> keysCollected;
+
+    #region Notices & Announcements
     List<string> upcomingNotices = new();
     List<string> upcomingAnnouncements = new();
     List<string> upcomingSubtitles = new();
@@ -127,9 +129,27 @@ public class HUD : MonoBehaviour
         announcementText.text = "";
         noticeText.text = "";
     }
+    #endregion
+
+    #region Health & Objectives
     public static void DisplayHealth(float percentage)
     {
         // Displays the health bar in 
         current.healthBar.localScale = new Vector3(percentage / 100,1,1);
     }
+    public static void DisplayKey(ObjectiveManager.CollecibleKey key)
+    {
+        current.keysCollected[(int)key].SetActive(true);
+    }
+    public static void DisplayObjectives()
+    {
+        string toDisplay = "";
+        for (int i = 0; i < ObjectiveManager.counterCounts.Count; i++)
+        {
+            if (i != 0) toDisplay += "\n";
+            toDisplay += ObjectiveManager.counterCounts[i] + "/" + ObjectiveManager.counterGoals[i] + " " + ObjectiveManager.counterDescriptions[i];
+        }
+        current.objectivesField.text = toDisplay;
+    }
+    #endregion
 }
