@@ -10,6 +10,10 @@ public class HUD : MonoBehaviour
     public static HUD current;
     private void Start()
     {
+        if(current != null)
+        {
+            Destroy(this);
+        }
         current = this;
     }
     #endregion
@@ -175,7 +179,7 @@ public class HUD : MonoBehaviour
         // Displays the health bar in 
         current.healthBar.localScale = new Vector3(percentage / 100,1,1);
     }
-    public static void DisplayKey(ObjectivesManager.KeyColor key)
+    public static void DisplayKey(ColorManager.StandardColor key)
     {
         current.keysCollected[(int)key].SetActive(true);
     }

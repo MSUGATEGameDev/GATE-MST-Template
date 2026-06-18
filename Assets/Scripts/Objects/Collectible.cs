@@ -2,19 +2,24 @@ using UnityEngine;
 
 public class Collectible : GameTrigger
 {
-    public string objectName = "";
-    public bool announceCollection = true;
+    [Header("Collectible Settings")]
+    public string collectibleName = "";
+    [Tooltip("Announce to the player when they've collected the object.")]public bool announceCollection = true;
     private void OnTriggerEnter(Collider other)
     {
-        
-        OnCollection();
-        if (announceCollection)
+        if (other.CompareTag("Player"))
         {
-            HUD.DisplayAnnouncement(objectName + " Collected!");
+            if (announceCollection)
+            {
+                HUD.DisplayAnnouncement(collectibleName + " Collected!");
+            }
+            OnCollection();
         }
+        
     }
     public virtual void OnCollection() 
     { 
-        ActivateItems(); 
+        ActivateItems();
+        transform.GetChild(0).gameObject.SetActive(false);
     }
 }

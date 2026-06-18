@@ -7,7 +7,7 @@ public abstract class GameTrigger : GameAction
     // --- GameTrigger --- //
     // A class made to provide a starting point for the logic of any triggers in the game.
     // This abstract class is only a base to be used with all types of triggers in-game.
-
+    [Header("Trigger Settings")]
     [Tooltip("These objects will be triggered when this trigger is activated.")]
     public List<GameAction> objectsToActivate = new();
     [Tooltip("If selected, only activate the first time.")]public bool singleActivation = false;

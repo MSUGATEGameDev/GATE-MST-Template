@@ -2,7 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class DisplayNotice : GameAction
+public class DisplayText : GameAction
 {
     [Header("Settings")]
     public TextDisplayType textDisplayType;
@@ -12,10 +12,12 @@ public class DisplayNotice : GameAction
     [Tooltip("Amount of time for text to display (in seconds). Negative values indicate indefinite display. (Indefinite applies to in-game only.)")]public int durationIfNotDefault = 5;
     [Tooltip("If this receives a deactivate signal, it will hide the text (applies to in-game only)")]public bool deactivateDisablesDisplay = false;
     [Tooltip("Will pause whatever is currently in the notice area to display this message (on-screen only)")] public bool priorityMessage = false;
-    [Header("Components")]
-    public TextMeshPro inGameDisplay;
+    TextMeshPro inGameDisplay;
     Coroutine displayTimer;
-
+    private void Start()
+    {
+        inGameDisplay = GetComponentInChildren<TextMeshPro>();
+    }
     public override void Activate()
     {
         if (textDisplayType == TextDisplayType.InGame)

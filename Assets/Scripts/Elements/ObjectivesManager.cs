@@ -6,13 +6,13 @@ public class ObjectivesManager : MonoBehaviour
     #region Keys
     // Processes that allow a keycard door system to be utilized.
     static List<bool> collectedKeys = new() { false, false, false, false, false, false };
-    public enum KeyColor { Red, Orange, Yellow, Green, Blue, Violet };
-    public static void KeyCollected(KeyColor key)
+    
+    public static void KeyCollected(ColorManager.StandardColor key)
     {
         collectedKeys[(int)key] = true;
         HUD.DisplayKey(key);
     }
-    public static bool CheckKey(KeyColor key) 
+    public static bool CheckKey(ColorManager.StandardColor key) 
     {
         return collectedKeys[(int)key];
     }
@@ -34,6 +34,7 @@ public class ObjectivesManager : MonoBehaviour
             counterDescriptions.Add(description);
             counterActions.Add(onCompletion);
             HUD.DisplayAnnouncement(instructions, "New Objective!");
+            HUD.DisplayObjectives();
         }
 
 
