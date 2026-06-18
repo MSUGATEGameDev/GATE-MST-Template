@@ -20,6 +20,6 @@ public class Collectible : GameTrigger
     public virtual void OnCollection() 
     { 
         ActivateItems();
-        transform.GetChild(0).gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 }

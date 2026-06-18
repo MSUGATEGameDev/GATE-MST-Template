@@ -10,7 +10,7 @@ public class CollectibleKey : Collectible
         {
             collectibleName = keyColor.ToString() + " Key";
         }
-        transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material = ColorManager.current.standardMattes[(int)keyColor];
+        GetComponentInChildren<Renderer>().material = ColorManager.current.standardMattes[(int)keyColor];
     }
     public override void OnCollection()
     {

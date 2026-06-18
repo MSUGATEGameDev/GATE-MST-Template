@@ -9,7 +9,7 @@ public class ColorManager : MonoBehaviour
     public List<Material> standardMattes;
     public List<Material> standardHolos;
 
-    private void Start()
+    private void Awake()
     {
         if (current != null)
             Destroy(this);
