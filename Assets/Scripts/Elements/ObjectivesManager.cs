@@ -1,8 +1,9 @@
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectiveManager : MonoBehaviour
+public class ObjectivesManager : MonoBehaviour
 {
     #region Keys
     // Processes that allow a keycard door system to be utilized.
@@ -28,20 +29,32 @@ public class ObjectiveManager : MonoBehaviour
 
     public static void CreateObjective(string instructions, int goal, string description, GameAction onCompletion)
     {
-        counterInstructions.Add(instructions);
-        counterCounts.Add(0);
-        counterGoals.Add(goal);
-        counterDescriptions.Add(description);
+        if (!counterDescriptions.Contains(description))
+        {
+            counterInstructions.Add(instructions);
+            counterCounts.Add(0);
+            counterGoals.Add(goal);
+            counterDescriptions.Add(description);
+            HUD.DisplayAnnouncement(instructions, "New Objective!");
+        }
+
 
     }
     public static void CompleteObjectiveTask(string description)
     {
-        int indx = counterDescriptions.IndexOf(description);
-        counterCounts[indx]++;
-        if (counterCounts[indx] == counterGoals[indx])
-        {
-            HUD.DisplayAnnouncement(counterDescriptions[indx], "Objective Complete!");
-            counterActions[indx].Activate();
+        if (counterDescriptions.Contains(description))
+            {
+            int indx = counterDescriptions.IndexOf(description);
+            counterCounts[indx]++;
+            if (counterCounts[indx] == counterGoals[indx])
+            {
+                HUD.DisplayAnnouncement(counterInstructions[indx], "Objective Complete!");
+                counterActions[indx].Activate();
+                counterInstructions.RemoveAt(indx);
+                counterGoals.RemoveAt(indx);
+                counterDescriptions.RemoveAt(indx);
+            }
+            HUD.DisplayObjectives();
         }
 
     }

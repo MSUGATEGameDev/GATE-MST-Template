@@ -17,11 +17,11 @@ public class HUD : MonoBehaviour
     [SerializeField] int noticeDuration = 5;
     [SerializeField] int announcementDuration = 5;
     [Header("Components")]
-    [SerializeField] TextMeshPro announcementText;
-    [SerializeField] TextMeshPro subtitleText;
-    [SerializeField] TextMeshPro noticeText;
+    [SerializeField] TextMeshProUGUI announcementText;
+    [SerializeField] TextMeshProUGUI subtitleText;
+    [SerializeField] TextMeshProUGUI noticeText;
     [SerializeField] Transform healthBar;
-    [SerializeField] TextMeshPro objectivesField;
+    [SerializeField] TextMeshProUGUI objectivesField;
     [SerializeField] List<GameObject> keysCollected;
 
     #region Notices & Announcements
@@ -137,17 +137,17 @@ public class HUD : MonoBehaviour
         // Displays the health bar in 
         current.healthBar.localScale = new Vector3(percentage / 100,1,1);
     }
-    public static void DisplayKey(ObjectiveManager.CollecibleKey key)
+    public static void DisplayKey(ObjectivesManager.CollecibleKey key)
     {
         current.keysCollected[(int)key].SetActive(true);
     }
     public static void DisplayObjectives()
     {
         string toDisplay = "";
-        for (int i = 0; i < ObjectiveManager.counterCounts.Count; i++)
+        for (int i = 0; i < ObjectivesManager.counterCounts.Count; i++)
         {
             if (i != 0) toDisplay += "\n";
-            toDisplay += ObjectiveManager.counterCounts[i] + "/" + ObjectiveManager.counterGoals[i] + " " + ObjectiveManager.counterDescriptions[i];
+            toDisplay += ObjectivesManager.counterCounts[i] + "/" + ObjectivesManager.counterGoals[i] + " " + ObjectivesManager.counterDescriptions[i];
         }
         current.objectivesField.text = toDisplay;
     }
