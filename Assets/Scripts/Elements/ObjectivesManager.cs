@@ -21,11 +21,11 @@ public class ObjectivesManager : MonoBehaviour
     }
     #endregion
     #region Counters
-    public static List<string> counterInstructions; // e.g. Kill 10 enemies.
-    public static List<int> counterCounts;          // Current count.
-    public static List<int> counterGoals;           // e.g. 10
-    public static List<string> counterDescriptions; // e.g. enemies killed.
-    public static List<GameAction> counterActions;  // What happens when objective is complete?
+    public static List<string> counterInstructions = new(); // e.g. Kill 10 enemies.
+    public static List<int> counterCounts = new();          // Current count.
+    public static List<int> counterGoals = new();           // e.g. 10
+    public static List<string> counterDescriptions = new(); // e.g. enemies killed.
+    public static List<GameAction> counterActions = new();  // What happens when objective is complete?
 
     public static void CreateObjective(string instructions, int goal, string description, GameAction onCompletion)
     {
@@ -35,10 +35,23 @@ public class ObjectivesManager : MonoBehaviour
             counterCounts.Add(0);
             counterGoals.Add(goal);
             counterDescriptions.Add(description);
+            counterActions.Add(onCompletion);
             HUD.DisplayAnnouncement(instructions, "New Objective!");
         }
 
 
+    }
+    public static void CancelObjective(string description)
+    {
+        if (counterDescriptions.Contains(description))
+        {
+            int indx = counterDescriptions.IndexOf(description);
+            HUD.DisplayAnnouncement(counterInstructions[indx], "Objective Cancelled");
+            counterInstructions.RemoveAt(indx);
+            counterGoals.RemoveAt(indx);
+            counterCounts.RemoveAt(indx);
+            counterDescriptions.RemoveAt(indx);
+        }
     }
     public static void CompleteObjectiveTask(string description)
     {
@@ -46,17 +59,29 @@ public class ObjectivesManager : MonoBehaviour
             {
             int indx = counterDescriptions.IndexOf(description);
             counterCounts[indx]++;
-            if (counterCounts[indx] == counterGoals[indx])
+            if (counterCounts[indx] >= counterGoals[indx])
             {
                 HUD.DisplayAnnouncement(counterInstructions[indx], "Objective Complete!");
                 counterActions[indx].Activate();
                 counterInstructions.RemoveAt(indx);
                 counterGoals.RemoveAt(indx);
+                counterCounts.RemoveAt(indx);
                 counterDescriptions.RemoveAt(indx);
+                counterActions.RemoveAt(indx);
             }
             HUD.DisplayObjectives();
         }
 
+    }
+    
+    public static void RevertObjectiveTask(string description)
+    {
+        if (counterDescriptions.Contains(description))
+        {
+            int indx = counterDescriptions.IndexOf(description);
+            counterCounts[indx]--;
+            HUD.DisplayObjectives();
+        }
     }
     #endregion
 }

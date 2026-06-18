@@ -1,0 +1,37 @@
+using NUnit.Framework;
+using UnityEngine;
+using System.Collections.Generic;
+
+public class ShowOrHide : GameAction
+{
+    public List<GameObject> objectsToShow = new();
+    public List<GameObject> objectsToHide = new();
+    [Tooltip("When deactivated, unhide the hidden objects and hide the shown objects.")]public bool undoOnDeactivate = false;
+
+    public override void Activate()
+    {
+        foreach (GameObject go in objectsToShow)
+        {
+            go.SetActive(true);
+        }
+        foreach (GameObject go in objectsToHide)
+        {
+            go.SetActive(false);
+        }
+    }
+
+    public override void Deactivate()
+    {
+        if (undoOnDeactivate)
+        {
+            foreach (GameObject go in objectsToShow)
+            {
+                go.SetActive(false);
+            }
+            foreach (GameObject go in objectsToHide)
+            {
+                go.SetActive(true);
+            }
+        }
+    }
+}

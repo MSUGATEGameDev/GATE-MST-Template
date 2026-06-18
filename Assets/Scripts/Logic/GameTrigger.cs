@@ -10,11 +10,16 @@ public abstract class GameTrigger : GameAction
 
     [Tooltip("These objects will be triggered when this trigger is activated.")]
     public List<GameAction> objectsToActivate = new();
-    
+    [Tooltip("If selected, only activate the first time.")]public bool singleActivation = false;
+    bool activated = false;
     
     public override void Activate() // This is what happens when this object is triggered. Usually to activate down the line.
     {
-        ActivateItems();
+        if(!activated || !singleActivation)
+        {
+            activated = true;
+            ActivateItems();
+        }
     }
     public void ActivateItems() // This is what happens when this object activates down the line.
     {
@@ -35,4 +40,8 @@ public abstract class GameTrigger : GameAction
         }
     }
     public virtual void Overridden() { } // To be used (if needed) by game triggers meant to be pressed by the action button, when another object takes the action button.
+    public void ResetActivation()
+    {
+        activated = false;
+    }
 }

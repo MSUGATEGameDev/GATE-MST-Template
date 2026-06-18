@@ -21,20 +21,25 @@ public class Objective : GameAction
         if(!activated || repeatInitializations)
         {
             activated = true;
-
+            ObjectivesManager.CreateObjective(instructions,goal,description,actionOnSuccess);
         }
     }
     public void CancelObjective()
     {
-
+        ObjectivesManager.CancelObjective(description);
     }
     public override void Activate()
     {
-        throw new System.NotImplementedException();
+        if (!activated && initiateObjectiveBy == InitateObjectiveBy.AnyActivation)
+            InitializeObjective();
+        ObjectivesManager.CompleteObjectiveTask(description);
     }
 
     public override void Deactivate()
     {
-        throw new System.NotImplementedException();
+        if (deactivateDecrements)
+        {
+            ObjectivesManager.RevertObjectiveTask(description);
+        }
     }
 }
