@@ -96,6 +96,10 @@ public class HUD : MonoBehaviour
         noticeText.text = "";
         presentingNotice = false;
     }
+    public static void DisplayAnnouncement(string title)
+    {
+        DisplayAnnouncement(title, "");
+    }
     public static void DisplayAnnouncement(string title,string subtitle)
     {
         DisplayAnnouncement(title, subtitle, false, current.defaultAnnouncementDuration);
@@ -171,7 +175,7 @@ public class HUD : MonoBehaviour
         // Displays the health bar in 
         current.healthBar.localScale = new Vector3(percentage / 100,1,1);
     }
-    public static void DisplayKey(ObjectivesManager.CollecibleKey key)
+    public static void DisplayKey(ObjectivesManager.KeyColor key)
     {
         current.keysCollected[(int)key].SetActive(true);
     }

@@ -1,5 +1,3 @@
-using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,14 +6,13 @@ public class ObjectivesManager : MonoBehaviour
     #region Keys
     // Processes that allow a keycard door system to be utilized.
     static List<bool> collectedKeys = new() { false, false, false, false, false, false };
-    public enum CollecibleKey { Red, Orange, Yellow, Green, Blue, Violet };
-    public static void KeyCollected(CollecibleKey key)
+    public enum KeyColor { Red, Orange, Yellow, Green, Blue, Violet };
+    public static void KeyCollected(KeyColor key)
     {
         collectedKeys[(int)key] = true;
         HUD.DisplayKey(key);
-        HUD.DisplayNotice(key.ToString() + " Key Collected!");
     }
-    public static bool CheckKey(CollecibleKey key) 
+    public static bool CheckKey(KeyColor key) 
     {
         return collectedKeys[(int)key];
     }
