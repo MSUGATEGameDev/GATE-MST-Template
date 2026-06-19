@@ -8,6 +8,7 @@ public class ColorManager : MonoBehaviour
     public enum StandardColor { Red, Orange, Yellow, Green, Blue, Violet };
     public List<Material> standardMattes;
     public List<Material> standardHolos;
+    public Material holoBlack;
 
     private void Awake()
     {
