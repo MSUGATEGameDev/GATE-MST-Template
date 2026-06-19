@@ -6,6 +6,9 @@ public class DisplayText : GameAction
 {
     [Header("Settings")]
     public TextDisplayType textDisplayType;
+    [ReadOnly]
+    [TextArea(3,6)]
+    public string about = "This is where I would put what this is about.";
     [Tooltip("In game will appear wherever you've placed this object. On Screen will be displayed at the bottom of the screen.")]public enum TextDisplayType { InGame, OnScreen }
     public string textToDisplay="";
     [Tooltip("Set to the default message duration for the project.")]public bool defaultDuration = true;

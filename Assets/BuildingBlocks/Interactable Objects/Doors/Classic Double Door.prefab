@@ -84,7 +84,7 @@ MonoBehaviour:
   singleActivation: 0
   lockedWithKey: 1
   keyColor: 0
-  lockIcons: {fileID: 609926837986961750}
+  lockIcons: {fileID: 3557496405293639494}
 --- !u!65 &340225378870344582
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -190,11 +190,6 @@ PrefabInstance:
 --- !u!4 &233401677804270572 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a4dceb4c3e035e5428515feffee64db2, type: 3}
-  m_PrefabInstance: {fileID: 339895240540132359}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &609926837986961750 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a4dceb4c3e035e5428515feffee64db2, type: 3}
   m_PrefabInstance: {fileID: 339895240540132359}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &428344106365236314
