@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class ChestController : GameTrigger
 {
+    [ReadOnly]
+    [TextArea(1, 10)]
     public new string _ = "-- GameTrigger --\n" +
     "Allows a chest to auto-open when the player is present or be locked to color-coded keys.";
     [Header("Chest Settings")]
@@ -20,7 +22,7 @@ public class ChestController : GameTrigger
         {
             stillLocked = true;
             lockIcon.SetActive(true);
-            Material[] mat = new Material[2] { ColorManager.current.holoBlack, ColorManager.current.standardHolos[(int)keyColor] };
+            Material[] mat = new Material[2] {ColorManager.current.standardHolos[(int)keyColor], ColorManager.current.holoBlack };
             foreach (Renderer rend in lockIcon.GetComponentsInChildren<Renderer>())
             {
                 rend.materials = mat;

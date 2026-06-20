@@ -19,7 +19,7 @@ public class DoorController : GameTrigger
         {
             stillLocked = true;
             lockIcons.SetActive(true);
-            Material[] mat = new Material[2] { ColorManager.current.holoBlack, ColorManager.current.standardHolos[(int)keyColor] };
+            Material[] mat = new Material[2] { ColorManager.current.standardHolos[(int)keyColor], ColorManager.current.holoBlack };
             foreach (Renderer rend in lockIcons.GetComponentsInChildren<Renderer>())
             {
                 rend.materials = mat;

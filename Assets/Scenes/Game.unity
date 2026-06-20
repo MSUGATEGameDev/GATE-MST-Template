@@ -1736,6 +1736,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c25ccf2d1b5715b40bf58916ca91d52a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColorManager
+  _: '-- System --
+
+    Makes it easy for other classes to reference standard colors
+    programmatically.'
   standardMattes:
   - {fileID: 2100000, guid: 7a783378f6d1408468103ca4f4bb82ce, type: 2}
   - {fileID: 2100000, guid: 3c4661e494e4a304ab42daea9985bc96, type: 2}
@@ -2413,6 +2417,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dabadf042d542f419c8a353f7a7feb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectivesManager
+  _: '-- System --
+
+    Keeps track of objectives created by objective Actions and
+    interfaces with the HUD to display them.'
 --- !u!1001 &909213569
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2561,6 +2569,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae8c34c495700ec4cb274525b9afbb3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HideForGame
+  _: '-- Tool --
+
+    Attach to any visual object to allow it to be seen in the editor
+    but not the game.'
 --- !u!114 &959770220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3737,84 +3749,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1401713510}
   m_CullTransparentMesh: 1
---- !u!1001 &1410975352
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1669827766}
-    m_Modifications:
-    - target: {fileID: 2006395933650077057, guid: 07a2aec904435754b9f6e28931371444, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 8.719999
-      objectReference: {fileID: 0}
-    - target: {fileID: 2006395933650077057, guid: 07a2aec904435754b9f6e28931371444, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2006395933650077057, guid: 07a2aec904435754b9f6e28931371444, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2006395933650077057, guid: 07a2aec904435754b9f6e28931371444, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2006395933650077057, guid: 07a2aec904435754b9f6e28931371444, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2006395933650077057, guid: 07a2aec904435754b9f6e28931371444, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2006395933650077057, guid: 07a2aec904435754b9f6e28931371444, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2006395933650077057, guid: 07a2aec904435754b9f6e28931371444, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2006395933650077057, guid: 07a2aec904435754b9f6e28931371444, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2006395933650077057, guid: 07a2aec904435754b9f6e28931371444, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2477915770413781964, guid: 07a2aec904435754b9f6e28931371444, type: 3}
-      propertyPath: m_Name
-      value: Floor Button (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2655669596804919354, guid: 07a2aec904435754b9f6e28931371444, type: 3}
-      propertyPath: objectsToActivate.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2655669596804919354, guid: 07a2aec904435754b9f6e28931371444, type: 3}
-      propertyPath: 'objectsToActivate.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2133581205}
-    - target: {fileID: 2655669596804919354, guid: 07a2aec904435754b9f6e28931371444, type: 3}
-      propertyPath: 'objectsToActivate.Array.data[1]'
-      value: 
-      objectReference: {fileID: 270973163}
-    - target: {fileID: 2655669596804919354, guid: 07a2aec904435754b9f6e28931371444, type: 3}
-      propertyPath: 'objectsToActivate.Array.data[2]'
-      value: 
-      objectReference: {fileID: 1499382314}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 07a2aec904435754b9f6e28931371444, type: 3}
---- !u!4 &1410975353 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2006395933650077057, guid: 07a2aec904435754b9f6e28931371444, type: 3}
-  m_PrefabInstance: {fileID: 1410975352}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1419377968
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4324,7 +4258,6 @@ Transform:
   - {fileID: 344863405}
   - {fileID: 2074016926}
   - {fileID: 1616683598}
-  - {fileID: 1410975353}
   - {fileID: 1219467814}
   - {fileID: 1756366514}
   m_Father: {fileID: 0}
@@ -4448,6 +4381,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc0baa193ba66440ab68f88ad4712d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HUD
+  _: '-- System --
+
+    Displays text and other important info on-screen.'
   defaultNoticeDuration: 5
   defaultAnnouncementDuration: 5
   announcementText: {fileID: 56837976}
@@ -5063,6 +4999,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae8c34c495700ec4cb274525b9afbb3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HideForGame
+  _: '-- Tool --
+
+    Attach to any visual object to allow it to be seen in the editor
+    but not the game.'
 --- !u!1001 &1935027533
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5685,17 +5625,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4956545680739304330, guid: 4a7244dbb272df6419c8ba2ccdfe2b6c, type: 3}
   m_PrefabInstance: {fileID: 1790311043}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2133581205 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1748400735548485281, guid: 7a3dd2e6173557543bdd348816934153, type: 3}
-  m_PrefabInstance: {fileID: 1020776346506890482}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bc9ddec39311194d8fa309927d977e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Chest
 --- !u!1001 &2136215090
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5874,6 +5803,10 @@ PrefabInstance:
     - target: {fileID: 3177374990134212095, guid: 7a3dd2e6173557543bdd348816934153, type: 3}
       propertyPath: m_Name
       value: Chest
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133663418019085276, guid: 7a3dd2e6173557543bdd348816934153, type: 3}
+      propertyPath: lockedWithKey
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
