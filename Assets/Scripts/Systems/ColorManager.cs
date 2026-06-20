@@ -2,6 +2,9 @@ using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
 
+/// <summary>
+/// 
+/// </summary>
 public class ColorManager : MonoBehaviour
 {
     public static ColorManager current;

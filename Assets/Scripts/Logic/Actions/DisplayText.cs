@@ -2,26 +2,47 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// -- GameAction --
+/// Displays text to the player at its location or at the bottom of the screen.
+/// </summary>
 public class DisplayText : GameAction
 {
-    [Header("Settings")]
-    public TextDisplayType textDisplayType;
+    #region Description
     [ReadOnly]
-    [TextArea(3,6)]
-    public string about = "This is where I would put what this is about.";
-    [Tooltip("In game will appear wherever you've placed this object. On Screen will be displayed at the bottom of the screen.")]public enum TextDisplayType { InGame, OnScreen }
-    public string textToDisplay="";
-    [Tooltip("Set to the default message duration for the project.")]public bool defaultDuration = true;
-    [Tooltip("Amount of time for text to display (in seconds). Negative values indicate indefinite display. (Indefinite applies to in-game only.)")]public int durationIfNotDefault = 5;
-    [Tooltip("If this receives a deactivate signal, it will hide the text (applies to in-game only)")]public bool deactivateDisablesDisplay = false;
-    [Tooltip("Will pause whatever is currently in the notice area to display this message (on-screen only)")] public bool priorityMessage = false;
+    [TextArea(1, 10)]
+    public string _ = "-- GameAction --\n" +
+        "Displays text to the player at its location or at the bottom of the screen.";
+    #endregion
+
+    #region Editable Variables
+    public enum TextDisplayType { InGame, OnScreen }
+    
+    [Header("Settings")]
+    [Tooltip("In Game - Appear wherever you've placed this object.\n" +
+        "On Screen - Display at the bottom of the screen.")]                public TextDisplayType textDisplayType;
+    [Tooltip("What should this say?")]                                      public string textToDisplay="";
+    [Tooltip("Set to the default message duration for the project.")]       public bool defaultDuration = true;
+    [Tooltip("Amount of time for text to display (in seconds).\n" +
+        "Negative values indicate indefinite display.\n" +
+        "(Indefinite applies to in-game only.)")]                           public int durationIfNotDefault = 5;
+    [Tooltip("On Deactivate - Hide the text.\n" +
+        "(In-Game Only)")]                                                  public bool deactivateDisablesDisplay = false;
+    [Tooltip("Pause current notice area message to display this.\n" +
+        "(On-Screen Only)")]                                                public bool priorityMessage = false;
+    #endregion
+
+    #region Internal Variables
     TextMeshPro inGameDisplay;
     Coroutine displayTimer;
-    private void Start()
+    #endregion
+
+    private void Start() // Runs when object first loads into the scene.
     {
-        inGameDisplay = GetComponentInChildren<TextMeshPro>();
+        inGameDisplay = GetComponentInChildren<TextMeshPro>(); //
     }
-    public override void Activate()
+
+    public override void Activate() // When activated as an Action.
     {
         if (textDisplayType == TextDisplayType.InGame)
         {
@@ -40,17 +61,9 @@ public class DisplayText : GameAction
                 HUD.DisplayNotice(textToDisplay, priorityMessage, durationIfNotDefault);
         }
     }
-    IEnumerator DisplayLocal()
+    public override void Deactivate() // When deactivated as an Action.
     {
-        if (defaultDuration)
-            yield return new WaitForSeconds(HUD.current.defaultNoticeDuration);
-        else
-            yield return new WaitForSeconds(durationIfNotDefault);
-        inGameDisplay.text = "";
-    }
-    public override void Deactivate()
-    {
-        if (deactivateDisablesDisplay && textDisplayType==TextDisplayType.InGame)
+        if (deactivateDisablesDisplay && textDisplayType == TextDisplayType.InGame)
         {
             if (displayTimer != null)
             {
@@ -59,4 +72,13 @@ public class DisplayText : GameAction
             inGameDisplay.text = "";
         }
     }
+    IEnumerator DisplayLocal() // Display at the location for the indicated duration of time.
+    {
+        if (defaultDuration)
+            yield return new WaitForSeconds(HUD.current.defaultNoticeDuration);
+        else
+            yield return new WaitForSeconds(durationIfNotDefault);
+        inGameDisplay.text = "";
+    }
+
 }

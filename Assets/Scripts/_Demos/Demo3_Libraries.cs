@@ -31,23 +31,23 @@ public class Demo3_Libraries
         wordList.Add("Welded");
         wordList.Add("Test");
         
-        string testString = wordList[1];            // BRACKETS ([]) lookup the value in a certain position. (First entry is 0)
+        string testString = wordList[1];            // BRACKETS ([]) lookup the value in a certain position (index). (First entry is 0)
         wordList.Remove("Funny");                   // REMOVE looks for a value and removes from the list.
-        wordList.RemoveAt(1);                       // REMOVEAT removes the value in a certain position.
-        wordList[1] = "New Word";                   // You can update a value using brackets as well.
+        wordList.RemoveAt(1);                       // REMOVEAT removes the value in a certain index.
+        wordList[1] = "New Word";                   // You can update a value at a certain index using brackets as well.
 
-        foreach (string word in wordList)           // You can loop through all variables in a list.
+        foreach (string word in wordList)           // You can loop through all variables in a list with foreach.
         { 
-            // Do something with the words.        
+            Debug.Log(word);                        // Outputs each word in the list into the console one at a time.       
         }
 
 
-        Dictionary<string,int> scores = new(); // Dictionaries store data that can be looked up by a key.
+        Dictionary<string,int> scores = new();      // Dictionaries store data that can be looked up by a key.
         scores.Add("DeathKiller", 1);
         scores.Add("WaveHunter", 15);
         scores.Add("Paulina", 6);
 
-        int paulinasScore = scores["Paulina"]; // Brackets lookup by key instead of index.
-        scores["WaveHunter"] = 16; // You can update a value at a certain key as well.
+        int paulinasScore = scores["Paulina"];      // Brackets on a dictionary lookup by key instead of index.
+        scores["WaveHunter"] = 16;                  // You can update a value at a certain key as well.
     }
 }

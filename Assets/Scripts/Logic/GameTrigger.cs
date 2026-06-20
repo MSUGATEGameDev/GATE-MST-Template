@@ -13,7 +13,7 @@ public abstract class GameTrigger : GameAction
     [Tooltip("If selected, only activate the first time.")]public bool singleActivation = false;
     bool activated = false;
     
-    public override void Activate() // This is what happens when this object is triggered. Usually to activate down the line.
+    public override void Activate() // If this object is activated as an action. Usually to activate down the line.
     {
         if(!activated || !singleActivation)
         {
@@ -21,26 +21,32 @@ public abstract class GameTrigger : GameAction
             ActivateItems();
         }
     }
-    public void ActivateItems() // This is what happens when this object activates down the line.
+    public void ActivateItems() // Activating its assigned sub-actions.
     {
         foreach (var gameAction in objectsToActivate)
         {
-            gameAction.Activate();
+            if(gameAction != null)
+            {
+                gameAction.Activate();
+            }  
         }
     }
-    public override void Deactivate() // This is what happens when this object is untriggered. Usually to deactivate down the line.
+    public override void Deactivate() // If this object is deactivated as an action. Usually to deactivate down the line.
     {
         DeactivateItems();
     }
-    public void DeactivateItems() // This is what happens when this object deactivates down the line.
+    public void DeactivateItems() // Deactivating its assigned sub-actions.
     {
         foreach (var gameAction in objectsToActivate)
         {
-            gameAction.Deactivate();
+            if (gameAction != null)
+            {
+                gameAction.Deactivate();
+            }
         }
     }
-    public virtual void Overridden() { } // To be used (if needed) by game triggers meant to be pressed by the action button, when another object takes the action button.
-    public void ResetActivation()
+    public virtual void Overridden() { } // Some triggers have an area of effect where they can be pressed by the action button. This function is used as needed by this kind of trigger when another area of effect has take over.
+    public void ResetActivation() // If this is set to single activation, this function resets that activation, allowing it to be reset again.
     {
         activated = false;
     }
