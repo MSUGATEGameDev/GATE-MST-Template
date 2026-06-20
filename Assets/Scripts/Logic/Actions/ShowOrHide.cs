@@ -4,6 +4,10 @@ using System.Collections.Generic;
 
 public class ShowOrHide : GameAction
 {
+    [ReadOnly]
+    [TextArea(1, 10)]
+    public string _ = "-- GameAction --\n" +
+        "Makes objects appear or disappear on activation.";
     public List<GameObject> objectsToShow = new();
     public List<GameObject> objectsToHide = new();
     [Tooltip("When deactivated, unhide the hidden objects and hide the shown objects.")]public bool undoOnDeactivate = false;

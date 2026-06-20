@@ -3,7 +3,10 @@ using TMPro;
 using UnityEngine;
 
 public class Timer : GameTrigger
-{   // A trigger that delays the activation of the objects assigned to it.
+{
+    public new string _ = "-- GameTrigger --\n" +
+
+        "A trigger that delays the activation of the objects assigned to it.";
     #region Settings
     [Header("Settings")]
     [Tooltip("Does the timer start without activation when the scene loads?")]

@@ -2,9 +2,8 @@ using UnityEngine;
 
 public class PushButton : GameTrigger
 {
-    // --- Push Button --- //
-    // A button that needs to be actively pressed by the player with the action button while in range.
-    // Many instances can be called at once.
+    public new string _ = "-- GameTrigger --\n" +
+    "A button that needs to be actively pressed by the player with the action button while in range.";
 
     [Header("Settings")]
     [Tooltip("When checked, button will deactivate on second push.")] public bool toggle = true;

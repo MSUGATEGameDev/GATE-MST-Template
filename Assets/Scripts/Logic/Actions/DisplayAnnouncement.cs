@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class DisplayAnnouncement : GameAction
 {
+    [ReadOnly]
+    [TextArea(1, 10)]
+    public string _ = "-- GameAction --\n" +
+    "Displays big text on the center of the screen.";
     public string titleText = "";
     public string subtitleText = "";
     [Tooltip("Pauses any ongoing announcements to display this.")] public bool priority = false;

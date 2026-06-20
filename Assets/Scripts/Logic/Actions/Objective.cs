@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class Objective : GameAction
 {
+    [ReadOnly]
+    [TextArea(1, 10)]
+    public string _ = "-- GameAction --\n" +
+        "Tells player about (and keeps track of) tasks.";
     [Header("Initialization")]
     public InitateObjectiveBy initiateObjectiveBy;
     public enum InitateObjectiveBy { AnyActivation, InitiatorOnly }

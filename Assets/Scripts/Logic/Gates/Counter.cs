@@ -1,7 +1,9 @@
 using UnityEngine;
 
 public class Counter : GameTrigger
-{   // A trigger that only activates the objects assigned to it when it has been activated a certain number of times.
+{
+    public new string _ = "-- GameTrigger --\n" +
+        "A trigger that only activates the objects assigned to it when it has been activated a certain number of times.";
     int currentCount = 0;
     bool flipped = false;
 

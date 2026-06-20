@@ -1,7 +1,11 @@
 using UnityEngine;
 
 public class SpawnPoint : GameAction // Used for bringing the player back into the game.
-{ 
+{
+    [ReadOnly]
+    [TextArea(1, 10)]
+    public string _ = "-- GameAction --\n" +
+        "Spawns the player into the game and provides a checkpoint after dying.";
     [HideInInspector]public static SpawnPoint currentSpawn; // The next place the player will spawn on death.
 
     [Tooltip("The spawn point for the beginning of the level. Only enable for one spawn point.")] public bool startPoint = false;

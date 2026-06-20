@@ -1,10 +1,11 @@
-using System;
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
-public class Converter : GameTrigger
+public class LogicConverter : GameTrigger
 {
-    //Converts any activation or deactivation to a deactivation or activation of any other object.
+    public new string _ = "-- GameAction --\n" +
+    "Converts any activation or deactivation to a deactivation or activation of any other object.";
+
     [Tooltip("These objects will be triggered when this trigger is deactivated.")] public List<GameAction> objectsToDeactivate;
     public enum ActionOnActivate { Activate, Deactivate, Nothing }
     [Tooltip("What do you want to happen to the listed items when this gate is activated?")]
