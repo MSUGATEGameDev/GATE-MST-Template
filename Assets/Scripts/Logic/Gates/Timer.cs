@@ -34,7 +34,7 @@ public class Timer : GameTrigger
     {
         timerDisplay = GetComponentInChildren<TextMeshPro>(); // Find the timer display.
         if (activeAtStart) Activate(); // Start the timer if it's set to do so. 
-        if(displayCountdown == TimerDisplayOptions.InGame) GetComponent<LookAtPlayer>().enabled = true; // Enable the component to look at player if selected.
+        if(displayCountdown == TimerDisplayOptions.InGame) GetComponent<LookAtCamera>().enabled = true; // Enable the component to look at player if selected.
     }
     public override void Activate() // Activating a timer starts the countdown.
     {

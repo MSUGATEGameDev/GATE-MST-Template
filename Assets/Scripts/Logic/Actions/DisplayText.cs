@@ -3,12 +3,11 @@ using TMPro;
 using UnityEngine;
 
 /// <summary>
-/// -- GameAction --
-/// Displays text to the player at its location or at the bottom of the screen.
+/// -- GameAction -- Displays text to the player at its location or at the bottom of the screen.
 /// </summary>
 public class DisplayText : GameAction
 {
-    #region Description
+    #region Description For Inspector
     [ReadOnly]
     [TextArea(1, 10)]
     public string _ = "-- GameAction --\n" +
@@ -28,7 +27,7 @@ public class DisplayText : GameAction
         "(Indefinite applies to in-game only.)")]                           public int durationIfNotDefault = 5;
     [Tooltip("On Deactivate - Hide the text.\n" +
         "(In-Game Only)")]                                                  public bool deactivateDisablesDisplay = false;
-    [Tooltip("Pause current notice area message to display this.\n" +
+    [Tooltip("Display text immediately even if other text is present.\n" +
         "(On-Screen Only)")]                                                public bool priorityMessage = false;
     #endregion
 
@@ -37,7 +36,7 @@ public class DisplayText : GameAction
     Coroutine displayTimer;
     #endregion
 
-    private void Start() // Runs when object first loads into the scene.
+    private void Start() // The last function run before the object first appears in the game.
     {
         inGameDisplay = GetComponentInChildren<TextMeshPro>(); //
     }

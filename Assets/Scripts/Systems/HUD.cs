@@ -4,33 +4,47 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// -- System -- Displays text and other important info on-screen.
+/// </summary>
 public class HUD : MonoBehaviour
 {
-    #region Singleton
+    #region Description For Inspector
+    [ReadOnly]
+    [TextArea(1, 10)]
+    public string _ = "-- System --\n" +
+        "Displays text and other important info on-screen.";
+    #endregion
+
+    #region Instantiating as a Singleton
+    // Singletons are where only one instance of this class can exist at one time in the game.
+    // This allows other classes to reference it easily.
     public static HUD current;
-    private void Start()
+    private void Awake() // The very first function run by a class the instant it is created.
     {
-        if(current != null)
-        {
+        if (current != null)
             Destroy(this);
-        }
         current = this;
     }
     #endregion
-    [Header("Settings")]
-    public int defaultNoticeDuration = 5;
-    public int defaultAnnouncementDuration = 5;
-    [Header("Components")]
-    [SerializeField] TextMeshProUGUI announcementText;
-    [SerializeField] TextMeshProUGUI subtitleText;
-    [SerializeField] TextMeshProUGUI noticeText;
-    [SerializeField] Transform healthBar;
-    [SerializeField] TextMeshProUGUI objectivesField;
-    [SerializeField] List<GameObject> keysCollected;
 
+    #region Editable Variables
+    [Header("Settings")]
+    [Tooltip("How long (in seconds) to display notices if not otherwise specified.")]                                   public int defaultNoticeDuration = 5;
+    [Tooltip("How long (in seconds) to display announcements if not otherwise specified.")]                             public int defaultAnnouncementDuration = 5;
+    [Header("Components")]
+    [Tooltip("Big bold text in center of screen.")][SerializeField]                                                     TextMeshProUGUI announcementText;
+    [Tooltip("Smaller text below announcement.")][SerializeField]                                                       TextMeshProUGUI subtitleText;
+    [Tooltip("Small text at the bottom of the screen.")][SerializeField]                                                TextMeshProUGUI noticeText;
+    [Tooltip("Adjustable bar at the top of the screen indicating player's health.")][SerializeField]                    Transform healthBar;
+    [Tooltip("Text in the top left for displaying objective completion status.")][SerializeField]                       TextMeshProUGUI objectivesField;
+    [Tooltip("List of key objects in top right to allow people to see what keys they've collected.")][SerializeField]   List<GameObject> keysCollected;
+    #endregion
+
+    #region Notices & Announcements
+    // Internal Variables for Notices and Announcements
     bool presentingNotice = false;
     bool presentingAnnoucements = false;
-    #region Notices & Announcements
     List<string> upcomingNotices = new();
     List<int> upcomingNoticeDurations = new();
     List<string> upcomingAnnouncements = new();
@@ -38,26 +52,47 @@ public class HUD : MonoBehaviour
     List<int> upcomingAnnouncementDurations = new();
     Coroutine noticeCoroutine;
     Coroutine announcementCoroutine;
+
+    /// <summary>
+    /// Displays text at the bottom of the screen for the default duration.
+    /// </summary>
+    /// <param name="txt">Text to be displayed.</param>
     public static void DisplayNotice(string txt)
     {
         DisplayNotice(txt,false,current.defaultAnnouncementDuration);
     }
+    /// <summary>
+    /// Displays text at the bottom of the screen.
+    /// </summary>
+    /// <param name="txt">Text to be displayed.</param>
+    /// <param name="duration">Amount of time (in seconds) to display the text.</param>
     public static void DisplayNotice(string txt, int duration)
     {
         DisplayNotice(txt,false,duration);
     }
+    /// <summary>
+    /// Displays text at the bottom of the screen.
+    /// </summary>
+    /// <param name="txt">Text to be displayed.</param>
+    /// <param name="priority">Display text immediately even if other text is present.</param>
     public static void DisplayNotice(string txt, bool priority)
     {
         DisplayNotice(txt, priority, current.defaultNoticeDuration);
     }
+    /// <summary>
+    /// Displays text at the bottom of the screen.
+    /// </summary>
+    /// <param name="txt">Text to be displayed.</param>
+    /// <param name="priority">Display text immediately even if other text is present.</param>
+    /// <param name="duration">Amount of time (in seconds) to display the text.</param>
     public static void DisplayNotice(string txt, bool priority, int duration)
     {
-        if (priority)
+        if (priority) // Adds text and timing to the front of the line.
         {
             current.upcomingNotices.Insert(0, txt);
             current.upcomingNoticeDurations.Insert(0, duration);
         }
-        else
+        else // Adds text and timing to the back of the line.
         {
             current.upcomingNotices.Add(txt);
             current.upcomingNoticeDurations.Add(duration);
@@ -65,7 +100,7 @@ public class HUD : MonoBehaviour
         current.StartNoticeCycle(priority);
 
     }
-    void StartNoticeCycle(bool priority)
+    void StartNoticeCycle(bool priority) // Sets up text to display for indicated amount of time.
     {
         if (priority)
         {
@@ -87,7 +122,7 @@ public class HUD : MonoBehaviour
         }
 
     }
-    IEnumerator NoticeCycle()
+    IEnumerator NoticeCycle() // Displays text for indicated amount of time.
     {
         presentingNotice = true;
         while (upcomingNotices.Count > 0)
@@ -100,22 +135,51 @@ public class HUD : MonoBehaviour
         noticeText.text = "";
         presentingNotice = false;
     }
+
+    /// <summary>
+    /// Displays big text in the center of the screen.
+    /// </summary>
+    /// <param name="title">Text to display.</param>
     public static void DisplayAnnouncement(string title)
     {
         DisplayAnnouncement(title, "");
     }
+    /// <summary>
+    /// Displays big text in the center of the screen.
+    /// </summary>
+    /// <param name="title">Biggest text to display.</param>
+    /// <param name="subtitle">Smaller text right below it.</param>
     public static void DisplayAnnouncement(string title,string subtitle)
     {
         DisplayAnnouncement(title, subtitle, false, current.defaultAnnouncementDuration);
     }
+    /// <summary>
+    /// Displays big text in the center of the screen.
+    /// </summary>
+    /// <param name="title">Biggest text to display.</param>
+    /// <param name="subtitle">Smaller text right below it.</param>
+    /// <param name="duration">Amount of time (in seconds) to display the text.</param>
     public static void DisplayAnnouncement(string title, string subtitle, int duration)
     {
         DisplayAnnouncement(title,subtitle,false,duration);
     }
+    /// <summary>
+    /// Displays big text in the center of the screen.
+    /// </summary>
+    /// <param name="title">Biggest text to display.</param>
+    /// <param name="subtitle">Smaller text right below it.</param>
+    /// <param name="priority">Display text immediately even if other text is present.</param>
     public static void DisplayAnnouncement(string title, string subtitle, bool priority)
     {
         DisplayAnnouncement(title, subtitle, priority, current.defaultAnnouncementDuration);
     }
+    /// <summary>
+    /// Displays big text in the center of the screen.
+    /// </summary>
+    /// <param name="title">Biggest text to display.</param>
+    /// <param name="subtitle">Smaller text right below it.</param>
+    /// <param name="priority">Display text immediately even if other text is present.</param>
+    /// <param name="duration">Amount of time (in seconds) to display the text.</param>
     public static void DisplayAnnouncement(string title, string subtitle,bool priority,int duration)
     {
         if (priority)
@@ -132,7 +196,7 @@ public class HUD : MonoBehaviour
         }
         current.StartAnnouncementCycle(priority);
     }
-    void StartAnnouncementCycle(bool priority)
+    void StartAnnouncementCycle(bool priority) // Sets up text to display for indicated amount of time.
     {
         if (priority)
         {
@@ -155,7 +219,7 @@ public class HUD : MonoBehaviour
         }
 
     }
-    IEnumerator AnnouncementCycle()
+    IEnumerator AnnouncementCycle() // Displays text for indicated amount of time.
     {
         presentingAnnoucements = true;
         while (upcomingSubtitles.Count > 0)
@@ -174,15 +238,25 @@ public class HUD : MonoBehaviour
     #endregion
 
     #region Health & Objectives
+    /// <summary>
+    /// Displays player health status on-screen. (UNFINISHED)
+    /// </summary>
+    /// <param name="percentage">Percentage (0-100) of health the player has remaining.</param>
     public static void DisplayHealth(float percentage)
     {
-        // Displays the health bar in 
-        current.healthBar.localScale = new Vector3(percentage / 100,1,1);
+        // current.healthBar.localScale = new Vector3(percentage / 100,1,1);
     }
+    /// <summary>
+    /// Display a collected key on the screen.
+    /// </summary>
+    /// <param name="key">Color of collected key.</param>
     public static void DisplayKey(ColorManager.StandardColor key)
     {
         current.keysCollected[(int)key].SetActive(true);
     }
+    /// <summary>
+    /// Looks through the objectives in the Objective Manager and displays progress.
+    /// </summary>
     public static void DisplayObjectives()
     {
         string toDisplay = "";

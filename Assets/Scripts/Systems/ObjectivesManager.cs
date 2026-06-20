@@ -1,12 +1,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// -- System -- Keeps track of objectives created by objective Actions and interfaces with the HUD to display them.
+/// </summary>
 public class ObjectivesManager : MonoBehaviour
 {
+    #region Description For Inspector
+    [ReadOnly]
+    [TextArea(1, 10)]
+    public string _ = "-- System --\n" +
+        "Keeps track of objectives created by objective Actions and interfaces with the HUD to display them.";
+    #endregion
     #region Keys
     // Processes that allow a keycard door system to be utilized.
     static List<bool> collectedKeys = new() { false, false, false, false, false, false };
     
+    /// <summary>
+    /// Lets the game know a certain key has been collected, allowing the player to open objects locked to that key color.
+    /// </summary>
+    /// <param name="key">Color of the collected key.</param>
     public static void KeyCollected(ColorManager.StandardColor key)
     {
         collectedKeys[(int)key] = true;
