@@ -70,6 +70,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PushButton
   objectsToActivate: []
+  singleActivation: 0
+  _: '-- GameTrigger --
+
+    A button that needs to be actively pressed by the player
+    with the action button while in range.'
   toggle: 1
   toolTip: {fileID: 6484970157488331603}
 --- !u!95 &3524478079462039128
@@ -103,7 +108,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1021807835162316285}
-  - component: {fileID: 7075552184064817990}
+  - component: {fileID: 2520398284420595259}
   m_Layer: 0
   m_Name: ToolTip
   m_TagString: Untagged
@@ -127,7 +132,7 @@ Transform:
   - {fileID: 260936482062827556}
   m_Father: {fileID: 4956545680739304330}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7075552184064817990
+--- !u!114 &2520398284420595259
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -136,9 +141,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6484970157488331603}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f25b14466a0fbd14fb00be7f08354245, type: 3}
+  m_Script: {fileID: 11500000, guid: 0748fd4b312582743b9553e8b378d400, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LookAtPlayer
+  m_EditorClassIdentifier: Assembly-CSharp::LookAtCamera
+  _: '-- Tool --
+
+    Attach this class to something to have it always rotate to
+    look at the camera, such that a 2D visual element is always visible from any
+    angle.'
   invert: 1
 --- !u!1 &7836347766974876288
 GameObject:

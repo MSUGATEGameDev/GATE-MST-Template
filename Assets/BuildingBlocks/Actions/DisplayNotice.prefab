@@ -190,8 +190,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3226557921849475163}
-  - component: {fileID: 4756792912542294765}
   - component: {fileID: 1924409078348421513}
+  - component: {fileID: 3255954561333100743}
   m_Layer: 0
   m_Name: DisplayNotice
   m_TagString: Untagged
@@ -215,19 +215,6 @@ Transform:
   - {fileID: 6818865964344017659}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4756792912542294765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2111228552044877267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f25b14466a0fbd14fb00be7f08354245, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LookAtPlayer
-  invert: 1
 --- !u!114 &1924409078348421513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,10 +227,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3670b7607602b974da88cf1a143f5f3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DisplayNotice
+  _: '-- GameAction --
+
+    Displays text to the player at its location or at the
+    bottom of the screen.'
   textDisplayType: 0
   textToDisplay: 
   defaultDuration: 1
   durationIfNotDefault: 5
   deactivateDisablesDisplay: 0
   priorityMessage: 0
-  inGameDisplay: {fileID: 2196187053386893459}
+--- !u!114 &3255954561333100743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111228552044877267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0748fd4b312582743b9553e8b378d400, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LookAtCamera
+  _: '-- Tool --
+
+    Attach this class to something to have it always rotate to
+    look at the camera, such that a 2D visual element is always visible from any
+    angle.'
+  invert: 1
