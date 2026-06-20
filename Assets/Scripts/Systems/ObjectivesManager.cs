@@ -25,18 +25,31 @@ public class ObjectivesManager : MonoBehaviour
         collectedKeys[(int)key] = true;
         HUD.DisplayKey(key);
     }
+    /// <summary>
+    /// Allows an object to check if a certain key has been collected and unlock accordingly.
+    /// </summary>
+    /// <param name="key">Color of the collected key.</param>
+    /// <returns>TRUE if collected, FALSE if not</returns>
     public static bool CheckKey(ColorManager.StandardColor key) 
     {
         return collectedKeys[(int)key];
     }
     #endregion
-    #region Counters
+
+    #region Objective Counters
     public static List<string> counterInstructions = new(); // e.g. Kill 10 enemies.
     public static List<int> counterCounts = new();          // Current count.
     public static List<int> counterGoals = new();           // e.g. 10
     public static List<string> counterDescriptions = new(); // e.g. enemies killed.
     public static List<GameAction> counterActions = new();  // What happens when objective is complete?
 
+    /// <summary>
+    /// Announces a new objective and adds a counter to the screen.
+    /// </summary>
+    /// <param name="instructions">Displayed in big text to the player. (e.g. Kill 10 enemies!)</param>
+    /// <param name="goal">Number of successful tasks completed to complete this objective. (e.g. 10)</param>
+    /// <param name="description">Description of each individal task. (e.g. enemies killed.) </param>
+    /// <param name="onCompletion">An action that happens when the objective is completed.</param>
     public static void CreateObjective(string instructions, int goal, string description, GameAction onCompletion)
     {
         if (!counterDescriptions.Contains(description))
@@ -52,6 +65,10 @@ public class ObjectivesManager : MonoBehaviour
 
 
     }
+    /// <summary>
+    /// Cancel an existing objective.
+    /// </summary>
+    /// <param name="description">Objective to cancel.</param>
     public static void CancelObjective(string description)
     {
         if (counterDescriptions.Contains(description))
@@ -64,6 +81,10 @@ public class ObjectivesManager : MonoBehaviour
             counterDescriptions.RemoveAt(indx);
         }
     }
+    /// <summary>
+    /// Call each time an individual task is completed for an objective. Updates the counter.
+    /// </summary>
+    /// <param name="description">Objective to make progress on.</param>
     public static void CompleteObjectiveTask(string description)
     {
         if (counterDescriptions.Contains(description))
@@ -84,7 +105,10 @@ public class ObjectivesManager : MonoBehaviour
         }
 
     }
-    
+    /// <summary>
+    /// Call each time an individual task is undone (e.g. 3 buttons need to be held down, but one was released).
+    /// </summary>
+    /// <param name="description">Objective in question</param>
     public static void RevertObjectiveTask(string description)
     {
         if (counterDescriptions.Contains(description))
