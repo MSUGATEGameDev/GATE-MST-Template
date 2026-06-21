@@ -124,7 +124,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Collectible
   objectsToActivate: []
   singleActivation: 0
-  collectibleName: 
+  _: '-- GameTrigger --
+
+    Object that can be picked up by the player. Can also
+    trigger another action.'
+  collectibleName: Credit Card
   announceCollection: 1
 --- !u!1001 &5273056219994012968
 PrefabInstance:

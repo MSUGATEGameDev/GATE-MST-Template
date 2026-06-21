@@ -13,16 +13,16 @@ public class Collectible : GameTrigger
     {
         if (other.CompareTag("Player"))
         {
-            if (announceCollection)
-            {
-                HUD.DisplayAnnouncement(collectibleName + " Collected!");
-            }
+            
             OnCollection();
-        }
-        
+        }   
     }
     public virtual void OnCollection() 
-    { 
+    {
+        if (announceCollection)
+        {
+            HUD.DisplayAnnouncement(collectibleName + " Collected!");
+        }
         ActivateItems();
         gameObject.SetActive(false);
     }

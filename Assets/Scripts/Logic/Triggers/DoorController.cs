@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 
 public class DoorController : GameTrigger
 {
@@ -9,12 +10,13 @@ public class DoorController : GameTrigger
     public ColorManager.StandardColor keyColor;
     [Header("Components")]
     public GameObject lockIcons;
+    
 
     // Internal Logic
     bool stillLocked = false;
 
     private void Start()
-    {
+    { 
         if (lockedWithKey)
         {
             stillLocked = true;
