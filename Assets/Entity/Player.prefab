@@ -293,6 +293,7 @@ GameObject:
   - component: {fileID: 370628255609688529}
   - component: {fileID: 105302128530794667}
   - component: {fileID: 4987788753349005586}
+  - component: {fileID: 5508241371933008898}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -335,9 +336,10 @@ MonoBehaviour:
   moveSpeed: 2
   runSpeed: 5
   jumpForce: 2.5
+  running: 0
   curState: 1
   disabled: 0
-  mainCam: {fileID: 0}
+  playerCamTransform: {fileID: 0}
   triggerInRange: {fileID: 0}
   messageArea: {fileID: 0}
   secondsPerMessage: 10
@@ -557,6 +559,25 @@ MonoBehaviour:
   m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &5508241371933008898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7460507922178101452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1e03ded704894640988008bcbe3e0f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  _teamID: 0
+  maxHealth: 100
+  startHealth: 100
+  invincible: 0
+  hasLives: 0
+  maxLives: 3
+  startLives: 3
 --- !u!1 &8747043521892723213
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,7 +607,7 @@ Transform:
   m_GameObject: {fileID: 8747043521892723213}
   serializedVersion: 2
   m_LocalRotation: {x: 0.07437624, y: -0.000000033227725, z: 0.0000000024782172, w: 0.9972303}
-  m_LocalPosition: {x: 0, y: 0.82000005, z: -3}
+  m_LocalPosition: {x: 0, y: 0.82, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

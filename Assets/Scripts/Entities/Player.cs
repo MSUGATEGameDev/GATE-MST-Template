@@ -87,42 +87,10 @@ public class Player : Entity
 
     }
     #endregion
-
-    #region HUD Elements
-    [Header("Hud Elements")]
-    [SerializeField] TextMeshPro messageArea; // The text mesh on the screen where we can send basic text messages to the player.
-    [SerializeField] int secondsPerMessage = 10;
-    List<string> upcomingMessages; // Messages that have been sent and haven't been displayed yet, if we need to queue up a few messages.
-    Coroutine messageCoroutine; // Where we store the process that is timing the messages, so we can stop it if needed.
-    public void DisplayOnScreenText(string text) // Displays text on the screen.
-    {
-        upcomingMessages.Add(text);
-        if (messageCoroutine == null)
-            messageCoroutine = StartCoroutine(MessageTimer(text));
-    }
-    IEnumerator MessageTimer(string message) // Leaves text up for the indicated time before swapping to the next thing.
-    {
-        while (upcomingMessages.Count != 0)
-        {
-            messageArea.text = upcomingMessages[0];
-            upcomingMessages.RemoveAt(0);
-            yield return new WaitForSeconds(secondsPerMessage);
-        }
-        messageArea.text = "";
-    }
-    public void StopOnScreenText() // Stops the message display process and clears everything.
-    {
-        upcomingMessages.Clear();
-        if (messageCoroutine != null)
-            StopCoroutine(messageCoroutine);
-        messageArea.text = "";
-    }
-    #endregion
-
     #region Events
     public void Respawn()
     {
-        transform.position = SpawnPoint.currentSpawn.transform.position;
+        transform.position = SpawnPoint.currentSpawn.transform.position + new Vector3(0, 0.824561f,0);
     }
     #endregion
 }
