@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AreaTrigger : GameTrigger
 {
-    public new string _ = "-- GameTrigger --\n" +
+    public string _ = "-- GameTrigger --\n" +
         "Activates when entered by a player or another object as determined below.";
     [Header("Triggered By")]
     public bool player = true;

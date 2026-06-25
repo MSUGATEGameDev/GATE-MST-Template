@@ -41,7 +41,7 @@ public class ObjectivesManager : MonoBehaviour
     public static List<int> counterCounts = new();          // Current count.
     public static List<int> counterGoals = new();           // e.g. 10
     public static List<string> counterDescriptions = new(); // e.g. enemies killed.
-    public static List<GameAction> counterActions = new();  // What happens when objective is complete?
+    public static List<List<GameAction>> counterActions = new();  // What happens when objective is complete?
 
     /// <summary>
     /// Announces a new objective and adds a counter to the screen.
@@ -50,7 +50,7 @@ public class ObjectivesManager : MonoBehaviour
     /// <param name="goal">Number of successful tasks completed to complete this objective. (e.g. 10)</param>
     /// <param name="description">Description of each individal task. (e.g. enemies killed.) </param>
     /// <param name="onCompletion">An action that happens when the objective is completed.</param>
-    public static void CreateObjective(string instructions, int goal, string description, GameAction onCompletion)
+    public static void CreateObjective(string instructions, int goal, string description, List<GameAction> onCompletion)
     {
         if (!counterDescriptions.Contains(description))
         {
@@ -94,7 +94,10 @@ public class ObjectivesManager : MonoBehaviour
             if (counterCounts[indx] >= counterGoals[indx])
             {
                 HUD.DisplayAnnouncement(counterInstructions[indx], "Objective Complete!");
-                counterActions[indx].Activate();
+                foreach(GameAction actn in counterActions[indx])
+                {
+                    actn.Activate();
+                }
                 counterInstructions.RemoveAt(indx);
                 counterGoals.RemoveAt(indx);
                 counterCounts.RemoveAt(indx);

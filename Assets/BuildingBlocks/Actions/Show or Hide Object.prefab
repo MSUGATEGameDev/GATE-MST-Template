@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8123527210244172795
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: cb200f156fccf744db38043d7870d7d5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 27.96025
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cb200f156fccf744db38043d7870d7d5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cb200f156fccf744db38043d7870d7d5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.874446
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cb200f156fccf744db38043d7870d7d5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cb200f156fccf744db38043d7870d7d5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cb200f156fccf744db38043d7870d7d5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cb200f156fccf744db38043d7870d7d5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cb200f156fccf744db38043d7870d7d5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cb200f156fccf744db38043d7870d7d5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cb200f156fccf744db38043d7870d7d5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: cb200f156fccf744db38043d7870d7d5, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 31d1369d5c45a5e4885c23ee360fec56, type: 2}
+    - target: {fileID: -7511558181221131132, guid: cb200f156fccf744db38043d7870d7d5, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c47d6cad3b3679d40bc46a13cdf60d15, type: 2}
+    - target: {fileID: -7511558181221131132, guid: cb200f156fccf744db38043d7870d7d5, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0d36c55fbae40f544bfbdc37589bc9e7, type: 2}
+    - target: {fileID: 919132149155446097, guid: cb200f156fccf744db38043d7870d7d5, type: 3}
+      propertyPath: m_Name
+      value: Show or Hide Object
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cb200f156fccf744db38043d7870d7d5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 843514914211379963}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cb200f156fccf744db38043d7870d7d5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1999591739975211273}
+  m_SourcePrefab: {fileID: 100100000, guid: cb200f156fccf744db38043d7870d7d5, type: 3}
+--- !u!1 &8970599970065340074 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: cb200f156fccf744db38043d7870d7d5, type: 3}
+  m_PrefabInstance: {fileID: 8123527210244172795}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &843514914211379963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8970599970065340074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce4a4c81e1cd9d14e934f78174de2e7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShowOrHide
+  _: '-- GameAction --
+
+    Makes objects appear or disappear on activation.'
+  objectsToShow: []
+  objectsToHide: []
+  undoOnDeactivate: 0
+--- !u!114 &1999591739975211273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8970599970065340074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae8c34c495700ec4cb274525b9afbb3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HideForGame
+  _: '-- Tool --
+
+    Attach to any visual object to allow it to be seen in the editor
+    but not the game.'

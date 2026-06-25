@@ -5,7 +5,7 @@ public class ChestController : GameTrigger
 {
     [ReadOnly]
     [TextArea(1, 10)]
-    public new string _ = "-- GameTrigger --\n" +
+    public string _ = "-- GameTrigger --\n" +
     "Allows a chest to auto-open when the player is present or be locked to color-coded keys.";
     [Header("Chest Settings")]
     [Tooltip("")] public bool lockedWithKey = false;

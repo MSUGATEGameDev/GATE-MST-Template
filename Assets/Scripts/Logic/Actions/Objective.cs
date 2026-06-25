@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Objective : GameAction
 {
@@ -17,7 +18,7 @@ public class Objective : GameAction
     [Tooltip("Tell the player what to do.")]public string instructions = "Defeat the enemies!";
     [Tooltip("How many steps are there to do?")] public int goal = 10;
     [Tooltip("How would you describe what they do each time they complete a step?")] public string description = "enemies defeated.";
-    [Tooltip("What happens when they complete the goal?")]public GameAction actionOnSuccess;
+    [Tooltip("What happens when they complete the goal?")]public List<GameAction> actionsOnSuccess;
 
 
     public void InitializeObjective()
@@ -25,7 +26,7 @@ public class Objective : GameAction
         if(!activated || repeatInitializations)
         {
             activated = true;
-            ObjectivesManager.CreateObjective(instructions,goal,description,actionOnSuccess);
+            ObjectivesManager.CreateObjective(instructions,goal,description,actionsOnSuccess);
         }
     }
     public void CancelObjective()

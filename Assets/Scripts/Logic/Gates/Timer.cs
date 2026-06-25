@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Timer : GameTrigger
 {
-    public new string _ = "-- GameTrigger --\n" +
+    [ReadOnly]
+    [TextArea(1, 10)]
+    public string _ = "-- GameTrigger --\n" +
 
         "A trigger that delays the activation of the objects assigned to it.";
     #region Settings

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Enemy : Entity
 {
@@ -9,6 +10,8 @@ public class Enemy : Entity
     public float randomRate = 2f;
     private float nextRandomTime = 0f;
     public AIStates curAIState = AIStates.idle;
+    [HideInInspector] public EnemySpawner spawner;
+    [Tooltip("The actions that will be carried out when the enemy dies.")]public List<GameAction> actions = new();
 
     public enum AIStates
     {
@@ -54,6 +57,18 @@ public class Enemy : Entity
         if (curState == EStates.idle)
         {
             Move(EntityUtils.HeadingToVec2(EntityUtils.GetRandomHeading()));
+        }
+    }
+
+    public void Kill()
+    {
+        if (spawner != null) 
+        {
+            spawner.ReportDeath();
+        }
+        foreach(GameAction action in actions)
+        {
+            action.Activate();
         }
     }
 }

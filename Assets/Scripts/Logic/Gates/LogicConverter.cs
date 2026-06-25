@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class LogicConverter : GameTrigger
 {
-    public new string _ = "-- GameAction --\n" +
+    [ReadOnly]
+    [TextArea(1, 10)]
+    public string _ = "-- GameAction --\n" +
     "Converts any activation or deactivation to a deactivation or activation of any other object.";
 
     [Tooltip("These objects will be triggered when this trigger is deactivated.")] public List<GameAction> objectsToDeactivate;

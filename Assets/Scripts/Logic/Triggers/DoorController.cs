@@ -3,7 +3,9 @@ using UnityEngine.Experimental.GlobalIllumination;
 
 public class DoorController : GameTrigger
 {
-    public new string _ = "-- GameTrigger --\n" +
+    [ReadOnly]
+    [TextArea(1, 10)]
+    public string _ = "-- GameTrigger --\n" +
     "Allows a door to auto-open when the player is present or be locked to color-coded keys.";
     [Header("Door Settings")]
     [Tooltip("")]public bool lockedWithKey = false;

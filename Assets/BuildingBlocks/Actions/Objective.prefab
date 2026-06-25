@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6255634995472883436
+--- !u!1 &8979134403559433782
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2332685467901855620}
-  - component: {fileID: 4202975472418947316}
+  - component: {fileID: 3037782818612627101}
+  - component: {fileID: 7956460498146233031}
   m_Layer: 0
   m_Name: Objective Initiator
   m_TagString: Untagged
@@ -17,80 +17,150 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2332685467901855620
+--- !u!4 &3037782818612627101
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6255634995472883436}
+  m_GameObject: {fileID: 8979134403559433782}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8720054604932310192}
+  m_Father: {fileID: 1323530699300128439}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4202975472418947316
+--- !u!114 &7956460498146233031
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6255634995472883436}
+  m_GameObject: {fileID: 8979134403559433782}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc63deaacb4a61d438db8042eb0f007b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectiveInitiator
-  objective: {fileID: 6165434923708571602}
+  _: '-- GameAction --
+
+    Initiates an objective within the game, providing a text
+    notice to the player and adding a counter to the corner.'
+  objective: {fileID: 6997788331789872870}
   deactivateCancels: 0
---- !u!1 &7555957454964109405
-GameObject:
+--- !u!1001 &1573050764029763932
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8720054604932310192}
-  - component: {fileID: 6165434923708571602}
-  m_Layer: 0
-  m_Name: Objective
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8720054604932310192
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7555957454964109405}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2332685467901855620}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6165434923708571602
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: a0a712d52b75fb745bae6e719f300693, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a0a712d52b75fb745bae6e719f300693, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a0a712d52b75fb745bae6e719f300693, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a0a712d52b75fb745bae6e719f300693, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a0a712d52b75fb745bae6e719f300693, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a0a712d52b75fb745bae6e719f300693, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a0a712d52b75fb745bae6e719f300693, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a0a712d52b75fb745bae6e719f300693, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a0a712d52b75fb745bae6e719f300693, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a0a712d52b75fb745bae6e719f300693, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: a0a712d52b75fb745bae6e719f300693, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 48f8811669f2dcd4eb3ac85e20e45249, type: 2}
+    - target: {fileID: 919132149155446097, guid: a0a712d52b75fb745bae6e719f300693, type: 3}
+      propertyPath: m_Name
+      value: Objective
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: a0a712d52b75fb745bae6e719f300693, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3037782818612627101}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a0a712d52b75fb745bae6e719f300693, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5772392020137266697}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a0a712d52b75fb745bae6e719f300693, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6997788331789872870}
+  m_SourcePrefab: {fileID: 100100000, guid: a0a712d52b75fb745bae6e719f300693, type: 3}
+--- !u!4 &1323530699300128439 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a0a712d52b75fb745bae6e719f300693, type: 3}
+  m_PrefabInstance: {fileID: 1573050764029763932}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1807615275314158605 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a0a712d52b75fb745bae6e719f300693, type: 3}
+  m_PrefabInstance: {fileID: 1573050764029763932}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5772392020137266697
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7555957454964109405}
+  m_GameObject: {fileID: 1807615275314158605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae8c34c495700ec4cb274525b9afbb3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HideForGame
+  _: '-- Tool --
+
+    Attach to any visual object to allow it to be seen in the editor
+    but not the game.'
+--- !u!114 &6997788331789872870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807615275314158605}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fdcd228bc72564647815f1ef9d659b9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Objective
+  _: '-- GameAction --
+
+    Tells player about (and keeps track of) tasks.'
   initiateObjectiveBy: 0
   repeatInitializations: 0
   deactivateDecrements: 0
