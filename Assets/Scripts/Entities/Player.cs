@@ -91,6 +91,7 @@ public class Player : Entity
     public void Respawn()
     {
         transform.position = SpawnPoint.currentSpawn.transform.position + new Vector3(0, 0.824561f,0);
+        transform.rotation = Quaternion.Euler(0, SpawnPoint.currentSpawn.transform.rotation.y, 0);
     }
     #endregion
 }
