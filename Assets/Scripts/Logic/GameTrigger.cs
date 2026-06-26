@@ -10,7 +10,8 @@ public abstract class GameTrigger : GameAction
     [Header("Trigger Settings")]
     [Tooltip("These objects will be triggered when this trigger is activated.")]
     public List<GameAction> objectsToActivate = new();
-    [Tooltip("If selected, only activate the first time.")]public bool singleActivation = false;
+    [Tooltip("If selected, only activate the first time.")] public bool singleActivation = false;
+    [Tooltip("Allows this trigger to deactivate items.")] public bool deactivates = true;
     bool activated = false;
     
     public override void Activate() // If this object is activated as an action. Usually to activate down the line.
@@ -33,15 +34,18 @@ public abstract class GameTrigger : GameAction
     }
     public override void Deactivate() // If this object is deactivated as an action. Usually to deactivate down the line.
     {
-        DeactivateItems();
+            DeactivateItems();
     }
     public void DeactivateItems() // Deactivating its assigned sub-actions.
     {
-        foreach (var gameAction in objectsToActivate)
+        if (deactivates)
         {
-            if (gameAction != null)
+            foreach (var gameAction in objectsToActivate)
             {
-                gameAction.Deactivate();
+                if (gameAction != null)
+                {
+                    gameAction.Deactivate();
+                }
             }
         }
     }

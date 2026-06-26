@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class AreaTrigger : GameTrigger
 {
+    [ReadOnly]
+    [TextArea(1, 10)]
     public string _ = "-- GameTrigger --\n" +
         "Activates when entered by a player or another object as determined below.";
     [Header("Triggered By")]

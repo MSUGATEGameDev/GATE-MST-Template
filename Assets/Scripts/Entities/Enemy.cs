@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class Enemy : Entity
@@ -16,7 +17,7 @@ public class Enemy : Entity
     public enum AIStates
     {
         idle,
-        wander
+        wander,
     }
 
     protected override void Start()
@@ -26,30 +27,35 @@ public class Enemy : Entity
 
     protected override void Update()
     {
-        base.Update();
+        if (curState != EStates.dead)
+            base.Update();
     }
 
     void FixedUpdate()
     {
-        if (Time.time >= nextRandomTime)
+        if (curState != EStates.dead)
         {
-            if (curAIState == AIStates.wander || curAIState == AIStates.idle)
+            if (Time.time >= nextRandomTime)
             {
-                curAIState = (AIStates)Random.Range(0, 2);
+                if (curAIState == AIStates.wander || curAIState == AIStates.idle)
+                {
+                    curAIState = (AIStates)Random.Range(0, 2);
+                }
+
+                nextRandomTime = Time.time + randomRate;
             }
 
-            nextRandomTime = Time.time + randomRate;
+            switch (curAIState)
+            {
+                case AIStates.idle:
+                    Move(Vector2.zero);
+                    break;
+                case AIStates.wander:
+                    Wander();
+                    break;
+            }
         }
-
-        switch (curAIState)
-        {
-            case AIStates.idle:
-                Move(Vector2.zero);
-                break;
-            case AIStates.wander:
-                Wander();
-                break;
-        }
+        
     }
 
     public void Wander()
@@ -62,6 +68,7 @@ public class Enemy : Entity
 
     public void Kill()
     {
+        curState = EStates.dead;
         if (spawner != null) 
         {
             spawner.ReportDeath();
@@ -70,5 +77,22 @@ public class Enemy : Entity
         {
             action.Activate();
         }
+        foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
+        {
+            try { mr.gameObject.AddComponent<BoxCollider>(); } catch { }
+            try
+            {
+                Rigidbody rb = mr.gameObject.AddComponent<Rigidbody>();
+                rb.useGravity = true;
+            }
+            catch { }
+        }
+        GetComponentInChildren<Animator>().enabled = false;
+        StartCoroutine(Despawn());
+    }
+    IEnumerator Despawn()
+    {
+        yield return new WaitForSeconds(5);
+        Destroy(gameObject);
     }
 }

@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class PushButton : GameTrigger
 {
-    public new string _ = "-- GameTrigger --\n" +
+    [ReadOnly]
+    [TextArea(1, 10)]
+    public string _ = "-- GameTrigger --\n" +
     "A button that needs to be actively pressed by the player with the action button while in range.";
 
     [Header("Settings")]
@@ -27,7 +29,6 @@ public class PushButton : GameTrigger
     {
         if (toggle)
         {
-            Debug.Log(toggle + " - " + toggleOn);
             if (toggleOn)
             {
                 base.Activate();
@@ -38,7 +39,8 @@ public class PushButton : GameTrigger
             }
             toggleOn = !toggleOn;
         }
-
+        else
+            base.Activate();
         
         animator.Play("ButtonPush");
     }

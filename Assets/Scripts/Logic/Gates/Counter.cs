@@ -14,7 +14,6 @@ public class Counter : GameTrigger
     [Tooltip("Count can go down by one with a deactivation call.")] 
     public bool countsDeactivations = true;
     [Tooltip("Only triggers once.")]
-    public bool singleActivation = false;
 
     public override void Activate()
     {
