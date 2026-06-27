@@ -126,7 +126,7 @@ public class Entity : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            GetComponent<Enemy>().Kill();
         }
     }
 

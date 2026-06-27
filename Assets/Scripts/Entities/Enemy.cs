@@ -69,11 +69,11 @@ public class Enemy : Entity
     public void Kill()
     {
         curState = EStates.dead;
-        if (spawner != null) 
+        if (spawner != null)
         {
             spawner.ReportDeath();
         }
-        foreach(GameAction action in actions)
+        foreach (GameAction action in actions)
         {
             action.Activate();
         }
