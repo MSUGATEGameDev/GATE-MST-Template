@@ -35,18 +35,19 @@ public class AreaTrigger : GameTrigger
         if ((other.CompareTag("Player") && player) || (other.CompareTag("Enemy") && enemies) || (other.CompareTag("Object") && objects))
         {
             // If it wasn't already inactive, deactivate and play animation if it has one.
-            if (presentCount != 0)
+            if (presentCount > 0)
             {
-                DeactivateItems();
-                if (animator != null)
+                presentCount--;
+                if(presentCount <= 0)
                 {
-                    animator.Play("AreaDeactivate");
+                    presentCount = 0;
+                    DeactivateItems();
+                    if (animator != null)
+                    {
+                        animator.Play("AreaDeactivate");
+                    }
                 }
-            }
-            presentCount--;
-            if (presentCount < 0)
-            {
-                presentCount = 0;
+                
             }
         }
     }
