@@ -88,10 +88,79 @@ public class Player : Entity
     }
     #endregion
     #region Events
+    List<GameObject> meshesForReassembly = new();
+    List<Transform> reassemblyPoints = new();
+
+    public override void Die()
+    {
+        if(curState != EStates.dead)
+        {
+            base.Die();
+            if (meshesForReassembly.Count == 0)
+            {
+                foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
+                {
+                    meshesForReassembly.Add(mr.gameObject);
+                    reassemblyPoints.Add(Instantiate(new GameObject("Empty"), mr.gameObject.transform.position, mr.gameObject.transform.rotation, mr.gameObject.transform.parent).transform);
+                    mr.gameObject.AddComponent<BoxCollider>();
+                    mr.gameObject.AddComponent<Rigidbody>().useGravity = true;
+                    mr.transform.parent = null;
+                }
+            }
+            else
+            {
+                foreach(GameObject go in meshesForReassembly)
+                {
+                    go.AddComponent<BoxCollider>();
+                    go.gameObject.AddComponent<Rigidbody>().useGravity = true;
+                    go.transform.parent = null;
+                }
+            }
+            StartCoroutine(RespawnAnim());
+        }
+        
+    }
+    IEnumerator RespawnAnim()
+    {
+        yield return new WaitForSeconds(3);
+        Respawn();
+        foreach (GameObject go in meshesForReassembly)
+        {
+            Destroy(go.GetComponent<Rigidbody>());
+            Destroy(go.GetComponent<BoxCollider>());
+        }
+        bool notDone = true;
+        float moveSpeed = 0f;
+        float rotateSpeed = 0f;
+
+        while (notDone)
+        {
+            moveSpeed += Time.deltaTime;
+            rotateSpeed += Time.deltaTime;
+            notDone = true;
+            for(int i = 0;i < meshesForReassembly.Count; i++)
+            {
+                meshesForReassembly[i].transform.position = Vector3.MoveTowards(meshesForReassembly[i].transform.position, reassemblyPoints[i].position,moveSpeed);
+                meshesForReassembly[i].transform.rotation = Quaternion.RotateTowards(meshesForReassembly[i].transform.rotation, reassemblyPoints[i].transform.rotation, rotateSpeed);
+                if (!(meshesForReassembly[i].transform.position == reassemblyPoints[i].transform.position && meshesForReassembly[i].transform.rotation == reassemblyPoints[i].rotation))
+                {
+                    notDone = false;
+                }
+                else
+                {
+                    meshesForReassembly[i].transform.parent = reassemblyPoints[i].parent;
+                }
+            }
+            yield return null;
+        }
+        curState = EStates.idle;
+    }
     public void Respawn()
     {
         transform.position = SpawnPoint.currentSpawn.transform.position + new Vector3(0, 0.824561f,0);
         transform.rotation = Quaternion.Euler(0, SpawnPoint.currentSpawn.transform.rotation.y, 0);
+        GetComponentInChildren<Animator>().enabled = true;
+        
     }
     #endregion
 }

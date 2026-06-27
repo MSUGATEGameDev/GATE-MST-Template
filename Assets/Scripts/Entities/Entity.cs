@@ -111,23 +111,10 @@ public class Entity : MonoBehaviour
         //Something happens when Entity is Damaged maybe an animation?
     }
 
-    public void Die()
+    public virtual void Die()
     {
         curState = EStates.dead;
-        if (gameObject.tag == "Player")
-        {
-            Player player = gameObject.GetComponent<Player>();
-            if (player != null)
-            {
-                //Maybe die differently if its a player
-                player.disabled = true;
-                Destroy(gameObject);
-            }
-        }
-        else
-        {
-            GetComponent<Enemy>().Kill();
-        }
+        GetComponentInChildren<Animator>().enabled = false;
     }
 
     public virtual void DetermineState()

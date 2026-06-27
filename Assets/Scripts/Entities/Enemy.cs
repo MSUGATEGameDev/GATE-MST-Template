@@ -66,29 +66,31 @@ public class Enemy : Entity
         }
     }
 
-    public void Kill()
+    public override void Die()
     {
-        curState = EStates.dead;
-        if (spawner != null)
+        if(curState != EStates.dead)
         {
-            spawner.ReportDeath();
-        }
-        foreach (GameAction action in actions)
-        {
-            action.Activate();
-        }
-        foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
-        {
-            try { mr.gameObject.AddComponent<BoxCollider>(); } catch { }
-            try
+            base.Die();
+            if (spawner != null)
             {
-                Rigidbody rb = mr.gameObject.AddComponent<Rigidbody>();
-                rb.useGravity = true;
+                spawner.ReportDeath();
             }
-            catch { }
+            foreach (GameAction action in actions)
+            {
+                action.Activate();
+            }
+            foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
+            {
+                try { mr.gameObject.AddComponent<BoxCollider>(); } catch { }
+                try
+                {
+                    mr.gameObject.AddComponent<Rigidbody>().useGravity = true;
+                }
+                catch { }
+            }
+            
+            StartCoroutine(Despawn());
         }
-        GetComponentInChildren<Animator>().enabled = false;
-        StartCoroutine(Despawn());
     }
     IEnumerator Despawn()
     {
