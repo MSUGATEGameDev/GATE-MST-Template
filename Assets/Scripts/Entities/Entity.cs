@@ -9,7 +9,7 @@ public class Entity : MonoBehaviour
 {
     private Rigidbody rigid;
     public Animator anim;
-    private Health health;
+    public Health health;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Transform attackPoint;
 
@@ -212,7 +212,7 @@ public class Entity : MonoBehaviour
     public virtual void Die()
     {
         curState = EStates.dead;
-        GetComponentInChildren<Animator>().enabled = false;
+        anim.enabled = false;
     }
 
     public virtual void DetermineState()

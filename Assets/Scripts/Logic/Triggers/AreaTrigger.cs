@@ -15,7 +15,7 @@ public class AreaTrigger : GameTrigger
     int presentCount = 0;
     private void OnTriggerEnter(Collider other)
     {
-        if ((other.CompareTag("Player") && player) || (other.CompareTag("Enemy") && enemies) || (other.CompareTag("Object") && objects))
+        if ((other.CompareTag("Player") && player) || (other.CompareTag("Enemy") && enemies) || (other.CompareTag("Object") && objects) || (other.CompareTag("Pushable") && objects))
         {
             // If it wasn't already being activated, activate and play animation if it has one.
             if (presentCount == 0)
@@ -32,7 +32,7 @@ public class AreaTrigger : GameTrigger
 
     private void OnTriggerExit(Collider other)
     {
-        if ((other.CompareTag("Player") && player) || (other.CompareTag("Enemy") && enemies) || (other.CompareTag("Object") && objects))
+        if ((other.CompareTag("Player") && player) || (other.CompareTag("Enemy") && enemies) || (other.CompareTag("Object") && objects) || (other.CompareTag("Pushable") && objects))
         {
             // If it wasn't already inactive, deactivate and play animation if it has one.
             if (presentCount > 0)

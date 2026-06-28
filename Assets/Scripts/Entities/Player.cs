@@ -200,7 +200,8 @@ public class Player : Entity
             }
             yield return null;
         }
-        GetComponentInChildren<Animator>().enabled = true;
+        health.FullHeal();
+        anim.enabled = true;
         curState = EStates.idle;
     }
     public void Respawn()
