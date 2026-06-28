@@ -13,7 +13,6 @@ public class Collectible : GameTrigger
     {
         if (other.CompareTag("Player"))
         {
-            
             OnCollection();
         }   
     }
