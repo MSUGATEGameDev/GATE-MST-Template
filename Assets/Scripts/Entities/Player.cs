@@ -72,7 +72,10 @@ public class Player : Entity
     }
     public void OnAttackButton(InputAction.CallbackContext context)
     {
-        Attack();
+        if (context.performed)
+        {
+            Attack();
+        }
     }
     public void OnRunButton(InputAction.CallbackContext context)
     {

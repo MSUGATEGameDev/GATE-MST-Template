@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Splines;
+using static UnityEngine.EventSystems.EventTrigger;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Health))]
@@ -7,11 +8,17 @@ public class Entity : MonoBehaviour
 {
     private Rigidbody rigid;
     private Animator anim;
+    private Health health;
     [SerializeField] private Transform groundCheck;
+    [SerializeField] private Transform attackPoint;
 
     public float moveSpeed = 2.0f;
     public float runSpeed = 5.0f;
     public float jumpForce = 2.5f;
+
+    public LayerMask attackableLayers;
+    public float attackRadius = 0.5f;
+    public int attackDamage = 5;
 
     private float turnTime = 0.1f;
     private float turnVel;
@@ -36,6 +43,7 @@ public class Entity : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody>();
         anim = GetComponentInChildren<Animator>();
+        health = GetComponent<Health>();
     }
 
     // Update is called once per frame
@@ -108,9 +116,27 @@ public class Entity : MonoBehaviour
 
     public void Attack()
     {
-        if (!(curState == EStates.dead))
+        string curAnim = anim.GetCurrentAnimatorClipInfo(0)[0].clip.name;
+        if (!(curState == EStates.dead) && !(curAnim == "TutBotPunch"))
         {
             anim.Play("TutBotPunch");
+
+            Collider[] hitEntitys = Physics.OverlapSphere(attackPoint.position, attackRadius, attackableLayers);
+
+            foreach (Collider hitEntity in hitEntitys)
+            {
+                Health eHealth = hitEntity.GetComponent<Health>();
+                if (eHealth != null)
+                {
+                    print(health.TeamID);
+                    if (health == null || eHealth.TeamID != health.TeamID)
+                    {
+                        Debug.Log($"{hitEntity.name} got hit by {this.name}, dealed {attackDamage} Damage");
+                        eHealth.Damage(attackDamage);
+                    }
+                }
+            }
+
             //Damage the health script of the Entity}
 
         }
@@ -144,5 +170,13 @@ public class Entity : MonoBehaviour
         {
             curState = EStates.disabled;
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null)
+            return;
+
+        Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
     }
 }
