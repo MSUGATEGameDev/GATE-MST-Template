@@ -124,42 +124,44 @@ public class Player : Entity
     {
         yield return new WaitForSeconds(3);
         Respawn();
+        List<float> moveSpeeds = new();
+        List<float> rotateSpeeds = new();
         foreach (GameObject go in meshesForReassembly)
         {
             Destroy(go.GetComponent<Rigidbody>());
             Destroy(go.GetComponent<BoxCollider>());
+            moveSpeeds.Add(0);
+            rotateSpeeds.Add(0);
         }
         bool notDone = true;
-        float moveSpeed = 0f;
-        float rotateSpeed = 0f;
 
         while (notDone)
         {
-            moveSpeed += Time.deltaTime;
-            rotateSpeed += Time.deltaTime;
-            notDone = true;
+            notDone = false;
             for(int i = 0;i < meshesForReassembly.Count; i++)
             {
-                meshesForReassembly[i].transform.position = Vector3.MoveTowards(meshesForReassembly[i].transform.position, reassemblyPoints[i].position,moveSpeed);
-                meshesForReassembly[i].transform.rotation = Quaternion.RotateTowards(meshesForReassembly[i].transform.rotation, reassemblyPoints[i].transform.rotation, rotateSpeed);
-                if (!(meshesForReassembly[i].transform.position == reassemblyPoints[i].transform.position && meshesForReassembly[i].transform.rotation == reassemblyPoints[i].rotation))
+                moveSpeeds[i] += Random.Range(.001f,.01f) * Time.deltaTime;
+                rotateSpeeds[i] += Random.Range(.01f,.1f) * Time.deltaTime;
+                meshesForReassembly[i].transform.position = Vector3.MoveTowards(meshesForReassembly[i].transform.position, reassemblyPoints[i].position, moveSpeeds[i]);
+                meshesForReassembly[i].transform.rotation = Quaternion.RotateTowards(meshesForReassembly[i].transform.rotation, reassemblyPoints[i].transform.rotation, rotateSpeeds[i]);
+                if ((meshesForReassembly[i].transform.position == reassemblyPoints[i].transform.position && meshesForReassembly[i].transform.rotation == reassemblyPoints[i].rotation))
                 {
-                    notDone = false;
+                    meshesForReassembly[i].transform.parent = reassemblyPoints[i].parent;
                 }
                 else
                 {
-                    meshesForReassembly[i].transform.parent = reassemblyPoints[i].parent;
+                    notDone = true;
                 }
             }
             yield return null;
         }
+        GetComponentInChildren<Animator>().enabled = true;
         curState = EStates.idle;
     }
     public void Respawn()
     {
         transform.position = SpawnPoint.currentSpawn.transform.position + new Vector3(0, 0.824561f,0);
         transform.rotation = Quaternion.Euler(0, SpawnPoint.currentSpawn.transform.rotation.y, 0);
-        GetComponentInChildren<Animator>().enabled = true;
         
     }
     #endregion
