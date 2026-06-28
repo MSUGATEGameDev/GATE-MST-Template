@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6139358818984934887}
   - component: {fileID: -274603737150103736}
+  - component: {fileID: 4672324122750783416}
   - component: {fileID: 370628255609688529}
   - component: {fileID: 105302128530794667}
   - component: {fileID: 8016308206379201931}
@@ -93,16 +94,40 @@ MonoBehaviour:
   attackableLayers:
     serializedVersion: 2
     m_Bits: 256
-  attackRadius: 0.5
+  attackRadius: 0.2
   attackDamage: 10
   running: 0
   pushing: 0
   curState: 1
   disabled: 0
+  searchRate: 0.5
   randomRate: 2
   curAIState: 0
   spawner: {fileID: 0}
   actions: []
+--- !u!114 &4672324122750783416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7460507922178101452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff594ccefb559564a862797b98426a9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Vision
+  radius: 5
+  angle: 145
+  targetObject: {fileID: 0}
+  entity: {fileID: 0}
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 256
+  obstructionMask:
+    serializedVersion: 2
+    m_Bits: 192
+  canSeeTarget: 0
 --- !u!54 &370628255609688529
 Rigidbody:
   m_ObjectHideFlags: 0
