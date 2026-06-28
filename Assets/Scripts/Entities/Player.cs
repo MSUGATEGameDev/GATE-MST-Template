@@ -79,8 +79,11 @@ public class Player : Entity
     }
     public void OnRunButton(InputAction.CallbackContext context)
     {
-
         running = context.ReadValueAsButton();
+    }
+    public void OnPushButton(InputAction.CallbackContext context)
+    {
+        pushing = context.ReadValueAsButton();
     }
     public void OnActionButton(InputAction.CallbackContext context)
     {
@@ -88,6 +91,7 @@ public class Player : Entity
         {
             if (triggerInRange != null)
             {
+                anim.Play("TutBotPushButton");
                 triggerInRange.Activate();
             }
         }

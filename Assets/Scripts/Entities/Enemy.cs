@@ -28,13 +28,9 @@ public class Enemy : Entity
     protected override void Update()
     {
         if (curState != EStates.dead)
-            base.Update();
-    }
-
-    void FixedUpdate()
-    {
-        if (curState != EStates.dead)
         {
+            base.Update();
+
             if (Time.time >= nextRandomTime)
             {
                 if (curAIState == AIStates.wander || curAIState == AIStates.idle)
@@ -55,7 +51,6 @@ public class Enemy : Entity
                     break;
             }
         }
-        
     }
 
     public void Wander()

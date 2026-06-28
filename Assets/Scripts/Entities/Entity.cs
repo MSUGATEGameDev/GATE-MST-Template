@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Splines;
+using UnityEngine.UIElements;
 using static UnityEngine.EventSystems.EventTrigger;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -7,10 +8,13 @@ using static UnityEngine.EventSystems.EventTrigger;
 public class Entity : MonoBehaviour
 {
     private Rigidbody rigid;
-    private Animator anim;
+    public Animator anim;
     private Health health;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Transform attackPoint;
+
+    public LayerMask pushableLayers;
+    private GameObject curPushable;
 
     public float moveSpeed = 2.0f;
     public float runSpeed = 5.0f;
@@ -26,6 +30,7 @@ public class Entity : MonoBehaviour
     private Vector2 curDir = Vector2.zero;
     private float dirInfluence = 0f;
     public bool running = false;
+    public bool pushing = false;
 
     public EStates curState = EStates.idle;
     public bool disabled = false;
@@ -34,7 +39,9 @@ public class Entity : MonoBehaviour
     {
         disabled,
         idle,
-        moving,
+        walking,
+        running,
+        pushing,
         dead,
     }
 
@@ -49,8 +56,12 @@ public class Entity : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        handleMove();
         DetermineState();
+    }
+
+    protected virtual void FixedUpdate()
+    {
+        HandleMove();
     }
 
     public void Move(Vector2 dir)
@@ -63,7 +74,7 @@ public class Entity : MonoBehaviour
         dirInfluence = influence;
     }
 
-    private void handleMove()
+    private void HandleMove()
     {
         if (!(curState == EStates.dead)) {
             Vector3 normalDir = new Vector3(curDir.x, 0f, curDir.y).normalized;
@@ -76,16 +87,27 @@ public class Entity : MonoBehaviour
 
                 Vector3 vel = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
-                if (running)
+                HandlePush(vel, targetAngle);
+
+                if (curState == EStates.pushing & curPushable != null)
+                {
+                    vel *= moveSpeed;
+                    anim.SetBool("pushing", true);
+                    anim.SetBool("walking", false);
+                    anim.SetBool("running", false);
+                }
+                else if (curState == EStates.running)
                 {
                     vel *= runSpeed;
                     anim.SetBool("walking", false);
+                    anim.SetBool("pushing", false);
                     anim.SetBool("running", true);
                 }
                 else
                 {
                     vel *= moveSpeed;
                     anim.SetBool("running", false);
+                    anim.SetBool("pushing", false);
                     anim.SetBool("walking", true);
                 }
 
@@ -97,9 +119,38 @@ public class Entity : MonoBehaviour
             {
                 anim.SetBool("walking", false);
                 anim.SetBool("running", false);
+                anim.SetBool("pushing", false);
             }
         }
         
+    }
+
+    private void HandlePush(Vector3 fVector, float tAngle)
+    {
+        if (curPushable == null && pushing)
+        {
+            Collider[] hitObjects = Physics.OverlapSphere(attackPoint.position, attackRadius, pushableLayers);
+
+            foreach (Collider hitObject in hitObjects)
+            {
+                if (hitObject.CompareTag("Pushable"))
+                {
+                    curPushable = hitObject.gameObject;
+                    break;
+                }
+            }
+        }
+        else if (pushing)
+        {
+            Vector3 newPos = transform.position + fVector;
+            newPos.y = curPushable.transform.position.y;
+            curPushable.transform.rotation = Quaternion.Euler(0f, tAngle, 0f);
+            curPushable.transform.position = newPos;
+        }
+        else
+        {
+            curPushable = null;
+        }
     }
 
     public void Jump()
@@ -159,12 +210,24 @@ public class Entity : MonoBehaviour
         {
             if (rigid.linearVelocity.magnitude > 0)
             {
-                curState = EStates.moving;
+                if (pushing)
+                {
+                    curState = EStates.pushing;
+                }
+                else if (running)
+                {
+                    curState = EStates.running;
+                }
+                else
+                {
+                    curState = EStates.walking;
+                }
             }
             else
             {
                 curState = EStates.idle;
             }
+
         }
         else if (disabled)
         {

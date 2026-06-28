@@ -81,8 +81,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76dbe1f0b3d232d4ca1e548268c63e67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  anim: {fileID: 0}
   groundCheck: {fileID: 3996133748178130637}
   attackPoint: {fileID: 8889695650906803473}
+  pushableLayers:
+    serializedVersion: 2
+    m_Bits: 128
   moveSpeed: 2
   runSpeed: 5
   jumpForce: 2.5
@@ -92,6 +96,7 @@ MonoBehaviour:
   attackRadius: 0.5
   attackDamage: 5
   running: 0
+  pushing: 0
   curState: 1
   disabled: 0
   randomRate: 2
