@@ -155,7 +155,7 @@ public class Entity : MonoBehaviour
 
     public void Jump()
     {
-        if(!(curState == EStates.dead)){
+        if(!(curState == EStates.dead) && !pushing){
             //Check if Jump is Possible
             if (Physics.Raycast(groundCheck.position, -1 * transform.up, .1f))
             {
