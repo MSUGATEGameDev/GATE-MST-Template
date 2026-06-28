@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Counter : GameTrigger
 {
-    public new string _ = "-- GameTrigger --\n" +
+    public string _ = "-- GameTrigger --\n" +
         "A trigger that only activates the objects assigned to it when it has been activated a certain number of times.";
     int currentCount = 0;
     bool flipped = false;

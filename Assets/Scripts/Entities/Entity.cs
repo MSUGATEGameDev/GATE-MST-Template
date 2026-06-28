@@ -57,53 +57,63 @@ public class Entity : MonoBehaviour
 
     private void handleMove()
     {
-        Vector3 normalDir = new Vector3(curDir.x, 0f, curDir.y).normalized;
+        if (!(curState == EStates.dead)) {
+            Vector3 normalDir = new Vector3(curDir.x, 0f, curDir.y).normalized;
 
-        if (normalDir.magnitude >= 0.1f)
-        {
-            float targetAngle = Mathf.Atan2(normalDir.x, normalDir.z) * Mathf.Rad2Deg + dirInfluence;
-            float angle = Mathf.SmoothDampAngle(transform.localEulerAngles.y, targetAngle, ref turnVel, turnTime);
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
-
-            Vector3 vel = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-
-            if (running)
+            if (normalDir.magnitude >= 0.1f)
             {
-                vel *= runSpeed;
-                anim.SetBool("walking", false);
-                anim.SetBool("running", true);
+                float targetAngle = Mathf.Atan2(normalDir.x, normalDir.z) * Mathf.Rad2Deg + dirInfluence;
+                float angle = Mathf.SmoothDampAngle(transform.localEulerAngles.y, targetAngle, ref turnVel, turnTime);
+                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+
+                Vector3 vel = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+
+                if (running)
+                {
+                    vel *= runSpeed;
+                    anim.SetBool("walking", false);
+                    anim.SetBool("running", true);
+                }
+                else
+                {
+                    vel *= moveSpeed;
+                    anim.SetBool("running", false);
+                    anim.SetBool("walking", true);
+                }
+
+                vel.y = rigid.linearVelocity.y;
+
+                rigid.linearVelocity = vel;
             }
             else
             {
-                vel *= moveSpeed;
+                anim.SetBool("walking", false);
                 anim.SetBool("running", false);
-                anim.SetBool("walking", true);
             }
-
-            vel.y = rigid.linearVelocity.y;
-
-            rigid.linearVelocity = vel;
         }
-        else
-        {
-            anim.SetBool("walking", false);
-            anim.SetBool("running", false);
-        }
+        
     }
 
     public void Jump()
     {
-        //Check if Jump is Possible
-        if (Physics.Raycast(groundCheck.position, -1 * transform.up, .1f))
-        {
-            rigid.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        if(!(curState == EStates.dead)){
+            //Check if Jump is Possible
+            if (Physics.Raycast(groundCheck.position, -1 * transform.up, .1f))
+            {
+                rigid.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            }
         }
+
     }
 
     public void Attack()
     {
-        anim.Play("TutBotPunch");
-        //Damage the health script of the Entity
+        if (!(curState == EStates.dead))
+        {
+            anim.Play("TutBotPunch");
+            //Damage the health script of the Entity}
+
+        }
     }
 
     public void Damaged()
