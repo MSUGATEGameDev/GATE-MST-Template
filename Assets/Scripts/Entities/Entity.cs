@@ -39,6 +39,7 @@ public class Entity : MonoBehaviour
     {
         disabled,
         idle,
+        falling,
         walking,
         running,
         pushing,
@@ -113,7 +114,17 @@ public class Entity : MonoBehaviour
 
                 vel.y = rigid.linearVelocity.y;
 
-                rigid.linearVelocity = vel;
+                if (curState == EStates.falling)
+                {
+                    anim.SetBool("walking", false);
+                    anim.SetBool("running", false);
+                    anim.SetBool("pushing", false);
+                    rigid.AddForce(vel);
+                }
+                else
+                {
+                    rigid.linearVelocity = vel;
+                }
             }
             else
             {
@@ -157,7 +168,7 @@ public class Entity : MonoBehaviour
     {
         if(!(curState == EStates.dead) && !pushing){
             //Check if Jump is Possible
-            if (Physics.Raycast(groundCheck.position, -1 * transform.up, .1f))
+            if (curState != EStates.falling)
             {
                 rigid.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             }
@@ -208,7 +219,11 @@ public class Entity : MonoBehaviour
     {
         if (curState != EStates.dead & !disabled)
         {
-            if (rigid.linearVelocity.magnitude > 0)
+            if (!Physics.Raycast(groundCheck.position, -1 * transform.up, .1f))
+            {
+                curState = EStates.falling;
+            }
+            else if (rigid.linearVelocity.magnitude > 0)
             {
                 if (pushing)
                 {
