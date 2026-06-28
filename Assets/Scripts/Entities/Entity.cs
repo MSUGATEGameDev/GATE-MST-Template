@@ -168,7 +168,7 @@ public class Entity : MonoBehaviour
     public void Attack()
     {
         string curAnim = anim.GetCurrentAnimatorClipInfo(0)[0].clip.name;
-        if (!(curState == EStates.dead) && !(curAnim == "TutBotPunch"))
+        if (!(curState == EStates.dead) && !(curAnim == "TutBotPunch") && !pushing)
         {
             anim.Play("TutBotPunch");
 
