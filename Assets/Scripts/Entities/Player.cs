@@ -61,7 +61,7 @@ public class Player : Entity
     {
         base.Update();
         InfluenceMove(playerCamera.transform.eulerAngles.y);
-        if (cinemaCamtarget)
+        if (cinemaCamActive)
         {
             FlyCam();
         }
@@ -143,6 +143,7 @@ public class Player : Entity
                     cinemaCamera.gameObject.SetActive(false);
                     cinemaCamera.transform.position = playerCamera.transform.position;
                     cinemaCamera.transform.localEulerAngles = playerCamera.transform.localEulerAngles;
+                    cinemaCamActive = false;
                     disabled = false;
                 }
             } 
