@@ -16,20 +16,21 @@ public abstract class GameTrigger : GameAction
     
     public override void Activate() // If this object is activated as an action. Usually to activate down the line.
     {
-        if(!activated || !singleActivation)
-        {
-            activated = true;
             ActivateItems();
-        }
     }
     public void ActivateItems() // Activating its assigned sub-actions.
     {
-        foreach (var gameAction in objectsToActivate)
+        if (!activated || !singleActivation)
         {
-            if(gameAction != null)
+            activated = true;
+
+            foreach (var gameAction in objectsToActivate)
             {
-                gameAction.Activate();
-            }  
+                if (gameAction != null)
+                {
+                    gameAction.Activate();
+                }
+            }
         }
     }
     public override void Deactivate() // If this object is deactivated as an action. Usually to deactivate down the line.

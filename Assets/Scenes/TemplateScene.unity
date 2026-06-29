@@ -990,16 +990,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2655669596804919354, guid: 07a2aec904435754b9f6e28931371444, type: 3}
       propertyPath: objectsToActivate.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2655669596804919354, guid: 07a2aec904435754b9f6e28931371444, type: 3}
       propertyPath: 'objectsToActivate.Array.data[0]'
       value: 
       objectReference: {fileID: 1445313375}
-    - target: {fileID: 2655669596804919354, guid: 07a2aec904435754b9f6e28931371444, type: 3}
-      propertyPath: 'objectsToActivate.Array.data[1]'
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5389120526767674117, guid: 07a2aec904435754b9f6e28931371444, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -6114,7 +6110,7 @@ PrefabInstance:
     - target: {fileID: 1748400735548485281, guid: 7a3dd2e6173557543bdd348816934153, type: 3}
       propertyPath: collectibleToPresent
       value: 
-      objectReference: {fileID: 2292764595987268538, guid: b17d80c30a6fefb4097c26c8b7dcfce9, type: 3}
+      objectReference: {fileID: 2292764595987268538, guid: 290be868a449d0f43b4a83274f6ff78e, type: 3}
     - target: {fileID: 2833781302180228933, guid: 7a3dd2e6173557543bdd348816934153, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13
@@ -8383,23 +8379,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Containment Area Unlock
       objectReference: {fileID: 0}
-    - target: {fileID: 5015779081320444745, guid: 4a7244dbb272df6419c8ba2ccdfe2b6c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5280880172097963812, guid: 4a7244dbb272df6419c8ba2ccdfe2b6c, type: 3}
       propertyPath: m_text
       value: 'Press Action Button
 
         to Unlock Containment'
-      objectReference: {fileID: 0}
-    - target: {fileID: 5280880172097963812, guid: 4a7244dbb272df6419c8ba2ccdfe2b6c, type: 3}
-      propertyPath: m_fontSize
-      value: 34
-      objectReference: {fileID: 0}
-    - target: {fileID: 5280880172097963812, guid: 4a7244dbb272df6419c8ba2ccdfe2b6c, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 6390865984970512527, guid: 4a7244dbb272df6419c8ba2ccdfe2b6c, type: 3}
       propertyPath: objectsToActivate.Array.size
@@ -8409,10 +8393,6 @@ PrefabInstance:
       propertyPath: 'objectsToActivate.Array.data[0]'
       value: 
       objectReference: {fileID: 1665792835}
-    - target: {fileID: 7836347766974876288, guid: 4a7244dbb272df6419c8ba2ccdfe2b6c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

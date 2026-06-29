@@ -185,7 +185,7 @@ public class Entity : MonoBehaviour
     public void Attack()
     {
         string curAnim = anim.GetCurrentAnimatorClipInfo(0)[0].clip.name;
-        if (curState != EStates.dead && curState != EStates.disabled && curAnim != "TutBotPunch" && !pushing)
+        if (curState != EStates.dead && curState != EStates.disabled && curAnim != "TutBotPunch" && !pushing && Player.singleton.curState != EStates.dead)
         {
             anim.Play("TutBotPunch");
 

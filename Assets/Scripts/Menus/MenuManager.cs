@@ -46,7 +46,8 @@ public class MenuManager : MonoBehaviour
         prevPages.Add(mp);
         foreach (GameObject pg in menuPages)
         {
-            pg.SetActive(false);
+            if(pg != null)
+                pg.SetActive(false);
         }
         mp.gameObject.SetActive(true);
         if (mp == title_Page)

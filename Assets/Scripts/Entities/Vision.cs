@@ -55,10 +55,10 @@ public class Vision : MonoBehaviour
             {
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
-                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
+                if ((!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))&& Player.singleton.curState != Entity.EStates.dead)
                 {
-                    targetObject = target.gameObject;
-                    canSeeTarget = true;
+                        targetObject = target.gameObject;
+                        canSeeTarget = true;
                 }
                 else
                 {

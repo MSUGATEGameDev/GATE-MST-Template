@@ -54,6 +54,7 @@ public class Enemy : Entity
             {
                 searchIndex = 0;
                 curAIState = AIStates.searching;
+                
             }
 
             if (Time.time >= nextRandomTime)

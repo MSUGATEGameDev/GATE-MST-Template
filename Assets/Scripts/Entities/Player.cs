@@ -221,6 +221,7 @@ public class Player : Entity
                     go.transform.parent = null;
                 }
             }
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
             StartCoroutine(RespawnAnim());
         }
         
@@ -295,6 +296,7 @@ public class Player : Entity
             yield return null;
         }
         health.FullHeal();
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
         anim.enabled = true;
         curState = EStates.idle;
     }

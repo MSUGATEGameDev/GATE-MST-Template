@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// -- System -- Displays text and other important info on-screen.
@@ -30,13 +31,14 @@ public class HUD : MonoBehaviour
 
     #region Editable Variables
     [Header("Settings")]
-    [Tooltip("How long (in seconds) to display notices if not otherwise specified.")]                                   public int defaultNoticeDuration = 5;
-    [Tooltip("How long (in seconds) to display announcements if not otherwise specified.")]                             public int defaultAnnouncementDuration = 5;
+    [Tooltip("How long (in seconds) to display notices if not otherwise specified.")] public int defaultNoticeDuration = 5;
+    [Tooltip("How long (in seconds) to display announcements if not otherwise specified.")] public int defaultAnnouncementDuration = 5;
     [Header("Components")]
-    [Tooltip("Big bold text in center of screen.")][SerializeField]                                                     TextMeshProUGUI announcementText;
-    [Tooltip("Smaller text below announcement.")][SerializeField]                                                       TextMeshProUGUI subtitleText;
-    [Tooltip("Small text at the bottom of the screen.")][SerializeField]                                                TextMeshProUGUI noticeText;
-    [Tooltip("Adjustable bar at the top of the screen indicating player's health.")][SerializeField]                    Transform healthBar;
+    [Tooltip("Big bold text in center of screen.")][SerializeField] TextMeshProUGUI announcementText;
+    [Tooltip("Smaller text below announcement.")][SerializeField] TextMeshProUGUI subtitleText;
+    [Tooltip("Small text at the bottom of the screen.")][SerializeField] TextMeshProUGUI noticeText;
+    [Tooltip("Adjustable bar at the top of the screen indicating player's health.")][SerializeField] Transform healthBar;
+    [Tooltip("Image representing the health bar, so we can adjust the color.")][SerializeField] Image healthBarImage;
     [Tooltip("Text in the top left for displaying objective completion status.")][SerializeField]                       TextMeshProUGUI objectivesField;
     [Tooltip("List of key objects in top right to allow people to see what keys they've collected.")][SerializeField]   List<GameObject> keysCollected;
     #endregion
@@ -244,7 +246,15 @@ public class HUD : MonoBehaviour
     /// <param name="percentage">Percentage (0-100) of health the player has remaining.</param>
     public static void DisplayHealth(float percentage)
     {
-        // current.healthBar.localScale = new Vector3(percentage / 100,1,1);
+        current.healthBar.localScale = new Vector3(percentage / 100,1,1);
+        if(percentage > 50)
+        {
+            current.healthBarImage.color = new Color((50-(percentage-50)) / 50, 1, 0);
+        }
+        else
+        {
+            current.healthBarImage.color = new Color(1, percentage / 50, 0);
+        }
     }
     /// <summary>
     /// Display a collected key on the screen.

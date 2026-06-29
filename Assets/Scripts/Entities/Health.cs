@@ -62,6 +62,8 @@ public class Health : MonoBehaviour
         if (!invincible)
         {
             CurHealth -= amount;
+            if(this.CompareTag("Player"))
+                HUD.DisplayHealth((float)CurHealth / (float)maxHealth * 100f);
             if (CurHealth < 0)
             {
                 CurHealth = 0;
@@ -80,6 +82,8 @@ public class Health : MonoBehaviour
         {
             CurHealth = maxHealth;
         }
+        if (this.CompareTag("Player"))
+            HUD.DisplayHealth((float)CurHealth / (float)maxHealth * 100f);
     }
 
     public void FullHeal(bool useStartHP = false)
@@ -92,6 +96,8 @@ public class Health : MonoBehaviour
         {
             CurHealth = maxHealth;
         }
+        if (this.CompareTag("Player"))
+            HUD.DisplayHealth((float)CurHealth / (float)maxHealth * 100f);
     }
 
     public void TakeLives(int amount)
