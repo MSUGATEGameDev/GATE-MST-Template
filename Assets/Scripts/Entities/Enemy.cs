@@ -90,6 +90,7 @@ public class Enemy : Entity
     {
         if (curState == EStates.idle)
         {
+            running = false;
             Move(EntityUtils.HeadingToVec2(EntityUtils.GetRandomHeading()));
         }
     }
@@ -118,6 +119,7 @@ public class Enemy : Entity
 
     public void Search()
     {
+        running = false;
         Move(EntityUtils.HeadingToVec2((Headings)searchIndex));
 
         if (Time.time >= nextSearchTime)
