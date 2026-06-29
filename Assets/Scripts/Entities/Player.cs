@@ -307,4 +307,128 @@ public class Player : Entity
         
     }
     #endregion
+    public void Teleport(Vector3 destination)
+    {
+        StartCoroutine(TeleportAnim(destination));
+    }
+    public IEnumerator TeleportAnim(Vector3 destination)
+    {
+        anim.enabled = false;
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
+        List<float> moveSpeeds = new();
+        List<float> rotateSpeeds = new();
+        List<Vector3> firstPosition = new();
+        List<float> finalSpeeds = new();
+        Transform spotFinder = Instantiate(new GameObject("Empty"), transform).transform;
+        Transform spot = Instantiate(new GameObject("Empty"), spotFinder).transform;
+        spot.localPosition = new Vector3(.6f, 0, 0);
+        if (meshesForReassembly.Count == 0)
+        {
+            foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
+            {
+                meshesForReassembly.Add(mr.gameObject);
+                reassemblyPoints.Add(Instantiate(new GameObject("Empty"), mr.gameObject.transform.position, mr.gameObject.transform.rotation, mr.gameObject.transform.parent).transform);
+                mr.transform.parent = null;
+                moveSpeeds.Add(0);
+                rotateSpeeds.Add(0);
+                spotFinder.rotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
+                firstPosition.Add(spot.position);
+                finalSpeeds.Add(Random.Range(6f, 10f));
+            }
+        }
+        else
+        {
+            foreach (GameObject go in meshesForReassembly)
+            {
+                go.transform.parent = null;
+                moveSpeeds.Add(0);
+                rotateSpeeds.Add(0);
+                spotFinder.rotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
+                firstPosition.Add(spot.position);
+                finalSpeeds.Add(Random.Range(6f, 10f));
+            }
+        }
+        
+        bool notDone = true;
+        while (notDone)
+        {
+            notDone = false;
+            for (int i = 0; i < meshesForReassembly.Count; i++)
+            {
+                if (moveSpeeds[i] < finalSpeeds[i])
+                {
+                    moveSpeeds[i] += Random.Range(1f, 5f) * Time.deltaTime;
+                }
+                meshesForReassembly[i].transform.position = Vector3.MoveTowards(meshesForReassembly[i].transform.position, firstPosition[i], moveSpeeds[i] * Time.deltaTime);
+                if (!(meshesForReassembly[i].transform.position == firstPosition[i]))
+                {
+                    notDone = true;
+                }
+            }
+            yield return null;
+        }
+        transform.position = destination;
+        moveSpeeds.Clear();
+        rotateSpeeds.Clear();
+        firstPosition.Clear();
+        foreach (GameObject go in meshesForReassembly)
+        {
+            moveSpeeds.Add(0);
+            rotateSpeeds.Add(0);
+            spotFinder.rotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
+            firstPosition.Add(spot.position);
+        }
+        Destroy(spotFinder.gameObject);
+        notDone = true;
+        while (notDone)
+        {
+            notDone = false;
+            for (int i = 0; i < meshesForReassembly.Count; i++)
+            {
+                if (moveSpeeds[i] < finalSpeeds[i])
+                {
+                    moveSpeeds[i] += Random.Range(1f, 5f) * Time.deltaTime;
+                }
+                meshesForReassembly[i].transform.position = Vector3.MoveTowards(meshesForReassembly[i].transform.position, firstPosition[i], moveSpeeds[i] * Time.deltaTime);
+                if (!(meshesForReassembly[i].transform.position == firstPosition[i]))
+                {
+                    notDone = true;
+                }
+            }
+            yield return null;
+        }
+        for (int i = 0; i < meshesForReassembly.Count; i++)
+        {
+            moveSpeeds[i] = 0;
+            rotateSpeeds[i] = 0;
+        }
+        notDone = true;
+        while (notDone)
+        {
+            notDone = false;
+            for (int i = 0; i < meshesForReassembly.Count; i++)
+            {
+                if (moveSpeeds[i] < finalSpeeds[i])
+                {
+                    moveSpeeds[i] += Random.Range(3f, 10f) * Time.deltaTime;
+                }
+                rotateSpeeds[i] += Random.Range(100f, 360f) * Time.deltaTime;
+                meshesForReassembly[i].transform.position = Vector3.MoveTowards(meshesForReassembly[i].transform.position, reassemblyPoints[i].position, moveSpeeds[i] * Time.deltaTime);
+                meshesForReassembly[i].transform.rotation = Quaternion.RotateTowards(meshesForReassembly[i].transform.rotation, reassemblyPoints[i].transform.rotation, rotateSpeeds[i] * Time.deltaTime);
+                if ((meshesForReassembly[i].transform.position == reassemblyPoints[i].transform.position && meshesForReassembly[i].transform.rotation == reassemblyPoints[i].rotation))
+                {
+                    meshesForReassembly[i].transform.parent = reassemblyPoints[i].parent;
+                }
+                else
+                {
+                    notDone = true;
+                }
+            }
+            yield return null;
+        }
+        health.FullHeal();
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+        anim.enabled = true;
+        curState = EStates.idle;
+    }
 }

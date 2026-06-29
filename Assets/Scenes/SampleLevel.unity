@@ -3547,7 +3547,7 @@ Light:
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
   m_ColorTemperature: 5000
-  m_UseColorTemperature: 1
+  m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
@@ -7846,12 +7846,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2655669596804919354, guid: 07a2aec904435754b9f6e28931371444, type: 3}
       propertyPath: objectsToActivate.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2655669596804919354, guid: 07a2aec904435754b9f6e28931371444, type: 3}
       propertyPath: 'objectsToActivate.Array.data[0]'
       value: 
       objectReference: {fileID: 1843301345}
+    - target: {fileID: 2655669596804919354, guid: 07a2aec904435754b9f6e28931371444, type: 3}
+      propertyPath: 'objectsToActivate.Array.data[1]'
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11113,7 +11117,7 @@ Light:
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
   m_ColorTemperature: 5000
-  m_UseColorTemperature: 1
+  m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
@@ -14450,6 +14454,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1887736469}
+  - component: {fileID: 1887736470}
   m_Layer: 0
   m_Name: Global Lighting
   m_TagString: Untagged
@@ -14474,6 +14479,20 @@ Transform:
   - {fileID: 1366424231}
   m_Father: {fileID: 800198334}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1887736470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887736468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce0d043e22b48574eaa56f58bf285ffd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LightingManager
+  light1: {fileID: 410087040}
+  light2: {fileID: 1366424233}
 --- !u!1001 &1903851380
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14587,7 +14606,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: d242e5f62eb6d27459f3fdfa95f27814, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b458cab758698ef4b824364a8fdea766, type: 2}
+      objectReference: {fileID: 2100000, guid: abcd13742c59d0a43aede3dfe38c92ea, type: 2}
     - target: {fileID: 919132149155446097, guid: d242e5f62eb6d27459f3fdfa95f27814, type: 3}
       propertyPath: m_Name
       value: Center Point
