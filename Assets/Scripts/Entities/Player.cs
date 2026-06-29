@@ -133,6 +133,7 @@ public class Player : Entity
         cinemaCamera.transform.localEulerAngles = playerCamera.transform.localEulerAngles;
 
         cinemaCamtarget = target;
+        health.invincible = true;
         cinemaCamActive = true;
     }
 
@@ -157,6 +158,7 @@ public class Player : Entity
                     cinemaCamera.transform.localEulerAngles = playerCamera.transform.localEulerAngles;
                     cinemaCamActive = false;
                     disabled = false;
+                    health.invincible = false;
                 }
             } 
             else
