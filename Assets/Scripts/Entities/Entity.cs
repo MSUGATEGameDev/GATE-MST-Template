@@ -77,7 +77,7 @@ public class Entity : MonoBehaviour
 
     private void HandleMove()
     {
-        if (!(curState == EStates.dead)) {
+        if (curState != EStates.dead && curState != EStates.disabled) {
             Vector3 normalDir = new Vector3(curDir.x, 0f, curDir.y).normalized;
 
             if (normalDir.magnitude >= 0.1f)
@@ -116,9 +116,7 @@ public class Entity : MonoBehaviour
 
                 if (curState == EStates.falling)
                 {
-                    anim.SetBool("walking", false);
-                    anim.SetBool("running", false);
-                    anim.SetBool("pushing", false);
+                    StopMoveAnims();
                     rigid.AddForce(vel);
                 }
                 else
@@ -128,12 +126,20 @@ public class Entity : MonoBehaviour
             }
             else
             {
-                anim.SetBool("walking", false);
-                anim.SetBool("running", false);
-                anim.SetBool("pushing", false);
+                StopMoveAnims();
             }
+        } else
+        {
+            StopMoveAnims();
         }
         
+    }
+
+    private void StopMoveAnims()
+    {
+        anim.SetBool("walking", false);
+        anim.SetBool("running", false);
+        anim.SetBool("pushing", false);
     }
 
     private void HandlePush(Vector3 fVector, float tAngle)
@@ -166,7 +172,7 @@ public class Entity : MonoBehaviour
 
     public void Jump()
     {
-        if(!(curState == EStates.dead) && !pushing){
+        if(curState != EStates.dead && curState != EStates.disabled && !pushing){
             //Check if Jump is Possible
             if (curState != EStates.falling)
             {
@@ -179,7 +185,7 @@ public class Entity : MonoBehaviour
     public void Attack()
     {
         string curAnim = anim.GetCurrentAnimatorClipInfo(0)[0].clip.name;
-        if (!(curState == EStates.dead) && !(curAnim == "TutBotPunch") && !pushing)
+        if (curState != EStates.dead && curState != EStates.disabled && curAnim != "TutBotPunch" && !pushing)
         {
             anim.Play("TutBotPunch");
 

@@ -10,7 +10,7 @@ public class CollectibleHealth : Collectible
     {
         base.OnCollection();
 
-        GameObject player = GameObject.FindWithTag("Player");
+        GameObject player = Player.singleton.gameObject;
 
         if (player.GetComponent<Health>() != null)
         {

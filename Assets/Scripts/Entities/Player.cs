@@ -1,9 +1,11 @@
 using NUnit.Framework;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections;
+using static Enemy;
+using static UnityEditor.Rendering.InspectorCurveEditor;
 //using UnityEngine.UIElements;
 
 public class Player : Entity
@@ -37,6 +39,11 @@ public class Player : Entity
     [Header("Player Parts")]
     [HideInInspector] public Transform playerCamTransform; // The transform that controls the position of the main camera, which can be referenced by other classes to make things look at the player.
     private Camera playerCamera;
+
+    public Camera cinemaCamera;
+    private bool cinemaCamActive = false;
+    private FocusCamera cinemaCamtarget;
+    private float nextReleaseTime = 0f;
     #endregion
 
     protected override void Start()
@@ -54,6 +61,10 @@ public class Player : Entity
     {
         base.Update();
         InfluenceMove(playerCamera.transform.eulerAngles.y);
+        if (cinemaCamtarget)
+        {
+            FlyCam();
+        }
     }
 
     #region Input & Controls
@@ -99,6 +110,49 @@ public class Player : Entity
     }
     #endregion
     #region Events
+
+    public void DeployCinemaCam(FocusCamera target)
+    {
+        playerCamera.gameObject.SetActive(false);
+        cinemaCamera.gameObject.SetActive(true);
+        disabled = true;
+
+        cinemaCamera.transform.position = playerCamera.transform.position;
+        cinemaCamera.transform.localEulerAngles = playerCamera.transform.localEulerAngles;
+
+        cinemaCamtarget = target;
+        cinemaCamActive = true;
+    }
+
+    private void FlyCam()
+    {
+        if (cinemaCamtarget != null)
+        {
+            float stepRot = cinemaCamtarget.dollySpeed / 8 * Time.deltaTime;
+            float stepPos = cinemaCamtarget.dollySpeed * Time.deltaTime;
+            Vector3 curPos = Vector3.MoveTowards(cinemaCamera.transform.position, cinemaCamtarget.transform.position, stepPos);
+            Vector3 curRot = Vector3.RotateTowards(cinemaCamera.transform.forward, cinemaCamtarget.transform.forward, stepRot, 0.0f);
+            cinemaCamera.transform.position = curPos;
+            cinemaCamera.transform.rotation = Quaternion.LookRotation(curRot);
+
+            if (curPos == cinemaCamtarget.transform.position)
+            {
+                if (Time.time >= nextReleaseTime)
+                {
+                    playerCamera.gameObject.SetActive(true);
+                    cinemaCamera.gameObject.SetActive(false);
+                    cinemaCamera.transform.position = playerCamera.transform.position;
+                    cinemaCamera.transform.localEulerAngles = playerCamera.transform.localEulerAngles;
+                    disabled = false;
+                }
+            } 
+            else
+            {
+                nextReleaseTime = Time.time + cinemaCamtarget.camHold;
+            }
+        }
+    }
+
     List<GameObject> meshesForReassembly = new();
     List<Transform> reassemblyPoints = new();
 

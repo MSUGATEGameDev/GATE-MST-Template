@@ -1,12 +1,63 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &5070900042558962578
+--- !u!1 &2930265667925383063
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8492906454280872879}
+  - component: {fileID: 5039963228424677212}
+  m_Layer: 0
+  m_Name: Cinema Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8492906454280872879
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2930265667925383063}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.66, y: 2.45, z: -21.37}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5865735623034788908}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5039963228424677212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2930265667925383063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 301081c557da60b4db9dd858b321452b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FocusCamera
+  _: '-- GameAction --
+
+    Focuses the players attention on a specific location
+    by temporarily moving the camera.'
+  camHold: 2
+  dollySpeed: 3
+--- !u!1001 &6263941957994331079
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 8492906454280872879}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 7d4b7a04cd8bcac439cf4f8e8c8adae5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7d4b7a04cd8bcac439cf4f8e8c8adae5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7d4b7a04cd8bcac439cf4f8e8c8adae5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -22,19 +73,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7d4b7a04cd8bcac439cf4f8e8c8adae5, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7d4b7a04cd8bcac439cf4f8e8c8adae5, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.000000021855694
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7d4b7a04cd8bcac439cf4f8e8c8adae5, type: 3}
-      propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7d4b7a04cd8bcac439cf4f8e8c8adae5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7d4b7a04cd8bcac439cf4f8e8c8adae5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7d4b7a04cd8bcac439cf4f8e8c8adae5, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7d4b7a04cd8bcac439cf4f8e8c8adae5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -42,23 +93,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7d4b7a04cd8bcac439cf4f8e8c8adae5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7d4b7a04cd8bcac439cf4f8e8c8adae5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 7d4b7a04cd8bcac439cf4f8e8c8adae5, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 0d36c55fbae40f544bfbdc37589bc9e7, type: 2}
-    - target: {fileID: -7511558181221131132, guid: 7d4b7a04cd8bcac439cf4f8e8c8adae5, type: 3}
-      propertyPath: 'm_Materials.Array.data[1]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 31d1369d5c45a5e4885c23ee360fec56, type: 2}
     - target: {fileID: 919132149155446097, guid: 7d4b7a04cd8bcac439cf4f8e8c8adae5, type: 3}
       propertyPath: m_Name
-      value: Camera Focus
+      value: Camera
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -66,35 +109,25 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7d4b7a04cd8bcac439cf4f8e8c8adae5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 986617802346226450}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7d4b7a04cd8bcac439cf4f8e8c8adae5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4440664456933401396}
+      addedObject: {fileID: 995911110592742358}
   m_SourcePrefab: {fileID: 100100000, guid: 7d4b7a04cd8bcac439cf4f8e8c8adae5, type: 3}
---- !u!1 &5376767342811301571 stripped
+--- !u!4 &5865735623034788908 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7d4b7a04cd8bcac439cf4f8e8c8adae5, type: 3}
+  m_PrefabInstance: {fileID: 6263941957994331079}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6497735299310257814 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7d4b7a04cd8bcac439cf4f8e8c8adae5, type: 3}
-  m_PrefabInstance: {fileID: 5070900042558962578}
+  m_PrefabInstance: {fileID: 6263941957994331079}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &986617802346226450
+--- !u!114 &995911110592742358
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5376767342811301571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 301081c557da60b4db9dd858b321452b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FocusCamera
---- !u!114 &4440664456933401396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5376767342811301571}
+  m_GameObject: {fileID: 6497735299310257814}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae8c34c495700ec4cb274525b9afbb3a, type: 3}
