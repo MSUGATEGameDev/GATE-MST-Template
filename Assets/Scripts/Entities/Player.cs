@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using static Enemy;
 using static UnityEditor.Rendering.InspectorCurveEditor;
 //using UnityEngine.UIElements;
@@ -30,7 +31,7 @@ public class Player : Entity
             // If no instance exists, set this one as the instance.
             singleton = this;
             // Optional: use DontDestroyOnLoad to persist across scene changes.
-            DontDestroyOnLoad(this.gameObject);
+            //DontDestroyOnLoad(this.gameObject);
         }
     }
     #endregion
@@ -40,6 +41,10 @@ public class Player : Entity
     [HideInInspector] public Transform playerCamTransform; // The transform that controls the position of the main camera, which can be referenced by other classes to make things look at the player.
     private Camera playerCamera;
 
+    [SerializeField]
+    private GameObject pauseMenu;
+
+    //Interal Cinema Values
     public Camera cinemaCamera;
     private bool cinemaCamActive = false;
     private FocusCamera cinemaCamtarget;
@@ -108,6 +113,13 @@ public class Player : Entity
         }
 
     }
+    public void OnPauseButton(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Pause();
+        }
+    }
     #endregion
     #region Events
 
@@ -152,6 +164,31 @@ public class Player : Entity
                 nextReleaseTime = Time.time + cinemaCamtarget.camHold;
             }
         }
+    }
+
+    public void Pause()
+    {
+        if (!pauseMenu.activeSelf)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            pauseMenu.SetActive(true);
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            pauseMenu.SetActive(false);
+            Time.timeScale = 1.0f;
+        }
+    }
+
+    public void BackToTitle()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene("Menu");
     }
 
     List<GameObject> meshesForReassembly = new();
