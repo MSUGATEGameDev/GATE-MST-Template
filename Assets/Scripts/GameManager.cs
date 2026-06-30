@@ -5,6 +5,7 @@ using UnityEngine;
 /// </summary>
 public class GameManager : MonoBehaviour
 {
+    // This is a very incomplete class. :D
     [ReadOnly]
     [TextArea(1, 10)]
     public string _ = "-- Game System --\n" +

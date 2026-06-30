@@ -15,7 +15,7 @@ public class MenuManager : MonoBehaviour
         "(NOTE: Only one menu system can exist per scene without errors.)";
     #endregion
 
-    #region Editable Variables
+    #region Inspector-Editable Variables
     [Header("Primary Menu Components")]
     [Tooltip("This is the first page to load when you menu starts.")] [SerializeField]private MenuPage titlePage;
     [Tooltip("This button will appear on any page that's not the title page, to help you get back to the title page.")][SerializeField] private GameObject backButton;

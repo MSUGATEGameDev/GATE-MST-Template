@@ -11,7 +11,7 @@ public class LookAtCamera : MonoBehaviour
         "Attach this class to something to have it always rotate to look at the camera, such that a 2D visual element is always visible from any angle.";
     #endregion
 
-    #region Editable Variables
+    #region Inspector-Editable Variables
     [Tooltip("Flip the object around if its facing the wrong way.")] public bool invert = true;
     #endregion
 

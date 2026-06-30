@@ -28,7 +28,7 @@ public class ChestController : GameTrigger
         {
             stillLocked = true;
             lockIcon.SetActive(true);
-            Material[] mat = new Material[2] {ColorManager.current.standardHolos[(int)keyColor], ColorManager.current.holoBlack };
+            Material[] mat = new Material[2] {ColorManager.singleton.standardHolos[(int)keyColor], ColorManager.singleton.holoBlack };
             foreach (Renderer rend in lockIcon.GetComponentsInChildren<Renderer>())
             {
                 rend.materials = mat;

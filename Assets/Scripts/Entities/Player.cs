@@ -226,6 +226,9 @@ public class Player : Entity
         }
         
     }
+    /// <summary>
+    /// The process of animating the visual of a respawn.
+    /// </summary>
     IEnumerator RespawnAnim()
     {
         yield return new WaitForSeconds(3);
@@ -300,17 +303,27 @@ public class Player : Entity
         anim.enabled = true;
         curState = EStates.idle;
     }
+    /// <summary>
+    /// Puts the player in the spawn point.
+    /// </summary>
     public void Respawn()
     {
         transform.position = SpawnPoint.currentSpawn.transform.position + new Vector3(0, 0.824561f,0);
         transform.rotation = Quaternion.Euler(0, SpawnPoint.currentSpawn.transform.rotation.y, 0);
-        
     }
     #endregion
+    /// <summary>
+    /// Initiates the animation of teleporting to a new location.
+    /// </summary>
+    /// <param name="destination">Destination to teleport to.</param>
     public void Teleport(Vector3 destination)
     {
         StartCoroutine(TeleportAnim(destination));
     }
+    /// <summary>
+    /// The process of animating a teleport to a new location.
+    /// </summary>
+    /// <param name="destination">Desitnation to teleport to.</param>
     public IEnumerator TeleportAnim(Vector3 destination)
     {
         anim.enabled = false;

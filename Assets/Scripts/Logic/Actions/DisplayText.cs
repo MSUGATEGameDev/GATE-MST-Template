@@ -12,7 +12,7 @@ public class DisplayText : GameAction
     public string _ = "-- GameAction --\n" +
         "Displays text to the player at its location or at the bottom of the screen.";
 
-    #region Editable Variables
+    #region Inspector-Editable Variables
     public enum TextDisplayType { InGame, OnScreen }
     
     [Header("Settings")]
@@ -72,7 +72,7 @@ public class DisplayText : GameAction
     IEnumerator DisplayLocal() // Display at the location for the indicated duration of time.
     {
         if (defaultDuration)
-            yield return new WaitForSeconds(HUD.current.defaultNoticeDuration);
+            yield return new WaitForSeconds(HUD.singleton.defaultNoticeDuration);
         else
             yield return new WaitForSeconds(durationIfNotDefault);
         inGameDisplay.text = "";

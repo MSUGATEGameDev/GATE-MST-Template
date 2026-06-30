@@ -1,19 +1,33 @@
 using UnityEngine;
 
+/// <summary>
+/// Game System - Interfaces all classes with the in-game lighting.
+/// </summary>
 public class LightingManager : MonoBehaviour
 {
+    #region Description for Inspector.
+    [ReadOnly]
+    [TextArea(1, 10)]
+    public string _ = "-- Game System --\n" +
+        "Interfaces all classes with the in-game lighting.";
+    #endregion
+
+    #region Inspector-Editable Variables
     [SerializeField]Light light1;
     [SerializeField]Light light2;
+    #endregion
+    
+    #region Singleton & Defaults
+    // A singleton is where only one of this class can exist at any given time.
+    public static LightingManager singleton;
     static Color defaultColor;
     static float defaultIntensity;
 
-    #region Singleton
-    public static LightingManager current;
     private void Awake()
     {
-        if(current == null)
+        if(singleton == null)
         {
-            current = this;
+            singleton = this;
             defaultColor = light1.color;
             defaultIntensity = light1.intensity;
         }
@@ -24,22 +38,37 @@ public class LightingManager : MonoBehaviour
     }
     #endregion
 
+    #region Functions
+
+    /// <summary>
+    /// Sets the overall lighting of the game to the indicated color with an intensity of 1.
+    /// </summary>
+    /// <param name="color">The color to set the lights to.</param>
     public static void SetLight(Color color)
     {
         SetLight(color, 1);
     }
+    /// <summary>
+    /// Sets the overall lighting of hte game to the indicated color and intensity.
+    /// </summary>
+    /// <param name="color">The color to set the lights to.</param>
+    /// <param name="intensity">The intensity to set the lights to.</param>
     public static void SetLight(Color color, float intensity)
     {
-        current.light1.color = color;
-        current.light2.color = color;
-        current.light1.intensity = intensity;
-        current.light2.intensity = intensity;
+        singleton.light1.color = color;
+        singleton.light2.color = color;
+        singleton.light1.intensity = intensity;
+        singleton.light2.intensity = intensity;
     }
+    /// <summary>
+    /// Resets the lights to their original value set in the inspector.
+    /// </summary>
     public static void ResetLight()
     {
-        current.light1.color = defaultColor;
-        current.light2.color = defaultColor;
-        current.light1.intensity = defaultIntensity;
-        current.light2.intensity = defaultIntensity;
+        singleton.light1.color = defaultColor;
+        singleton.light2.color = defaultColor;
+        singleton.light1.intensity = defaultIntensity;
+        singleton.light2.intensity = defaultIntensity;
     }
+    #endregion
 }

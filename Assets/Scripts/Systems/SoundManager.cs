@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// Game System -- Managest the dedicated game sound channels.
+/// Game System -- Manages the dedicated game sound channels.
 /// </summary>
 public class SoundManager : MonoBehaviour
 {
@@ -9,20 +9,24 @@ public class SoundManager : MonoBehaviour
     [TextArea(1, 10)]
     public string _ = "-- Game System --\n" +
         "Manages the dedicated game sound channels.";
-    static SoundManager current;
+    static SoundManager singleton;
     private void Awake()
     {
-        if(current != null)
+        if(singleton != null)
         {
             Destroy(this);
         }
-        current = this;
+        singleton = this;
     }
 
+    #region Inspector-Editable Variables
+    // Dedicated Audio Channels
     public AudioSource musicPlayer;
     public AudioSource ambiencePlayer;
     public AudioSource sfxPlayer;
+    #endregion
 
+    #region Functions
     /// <summary>
     /// Plays music in a loop on the dedicated music channel.
     /// </summary>
@@ -30,16 +34,16 @@ public class SoundManager : MonoBehaviour
     /// /// <param name="volume">Volume of clip.</param>
     public static void PlayMusic(AudioClip clip, float volume)
     {
-        current.musicPlayer.clip = clip;
-        current.musicPlayer.volume = volume;
-        current.musicPlayer.Play();
+        singleton.musicPlayer.clip = clip;
+        singleton.musicPlayer.volume = volume;
+        singleton.musicPlayer.Play();
     }
     /// <summary>
     /// Stops whatever is playing in the dedicated music channel.
     /// </summary>
     public static void StopMusic()
     {
-        current.musicPlayer.Stop();
+        singleton.musicPlayer.Stop();
     }
     /// <summary>
     /// Plays background noise on a lopp in the dedicated ambience channel.
@@ -48,15 +52,15 @@ public class SoundManager : MonoBehaviour
     /// /// <param name="volume">Volume of clip.</param>
     public static void PlayAmbience(AudioClip clip, float volume)
     {
-        current.ambiencePlayer.clip = clip;
-        current.ambiencePlayer.Play();
+        singleton.ambiencePlayer.clip = clip;
+        singleton.ambiencePlayer.Play();
     }
     /// <summary>
     /// Stops whatever is playing in the dedicated ambience channel.
     /// </summary>
     public static void StopAmbience()
     {
-        current.ambiencePlayer.Stop();
+        singleton.ambiencePlayer.Stop();
     }
     /// <summary>
     /// Plays a one-off sound effect in the dedicated SFX channel.
@@ -65,13 +69,14 @@ public class SoundManager : MonoBehaviour
     /// <param name="volume">Volume of clip.</param>
     public static void PlaySFX(AudioClip clip, float volume)
     {
-        current.sfxPlayer.clip = clip;
-        current.sfxPlayer.Play();
+        singleton.sfxPlayer.clip = clip;
+        singleton.sfxPlayer.Play();
     }
     /// <summary>
     /// Stops whatever is playing in the dedicated SFX channel. (Not needed if your clip ends at the time you want it to.)
     /// </summary>
     public static void StopSFX() {
-        current.sfxPlayer.Stop();
+        singleton.sfxPlayer.Stop();
     }
+    #endregion
 }

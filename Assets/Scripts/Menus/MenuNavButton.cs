@@ -16,7 +16,7 @@ public class MenuNavButton : MonoBehaviour
         "Opens a scene, takes you to a menu page, or opens menus on a menu page.";
     #endregion
 
-    #region Editable Variables
+    #region Inspector-Editable Variables
     public enum MenuButtonType { Page, Scene, Submenu};
     
     public MenuButtonType buttonType;

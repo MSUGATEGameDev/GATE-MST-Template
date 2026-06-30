@@ -2,9 +2,17 @@ using System;
 using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// GameAction - When activated, teleports the player to the location of this object.
+/// </summary>
 public class Teleport : GameAction
 {
-    [Tooltip("When enabled, no animation is played.")] public bool instant = true;
+    [ReadOnly]
+    [TextArea(1, 10)]
+    public string _ = "-- GameAction --\n" +
+        "When activated, teleports the player to the location of this object.";
+    [Tooltip("When checked, appear immediately at the new location with no animation.")] public bool instant = true;
+    
     public override void Activate()
     {
         if (instant)

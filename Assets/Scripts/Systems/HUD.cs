@@ -20,16 +20,16 @@ public class HUD : MonoBehaviour
     #region Instantiating as a Singleton
     // Singletons are where only one instance of this class can exist at one time in the game.
     // This allows other classes to reference it easily.
-    public static HUD current;
+    public static HUD singleton;
     private void Awake() // The very first function run by a class the instant it is created.
     {
-        if (current != null)
+        if (singleton != null)
             Destroy(this);
-        current = this;
+        singleton = this;
     }
     #endregion
 
-    #region Editable Variables
+    #region Inspector-Editable Variables
     [Header("Settings")]
     [Tooltip("How long (in seconds) to display notices if not otherwise specified.")] public int defaultNoticeDuration = 5;
     [Tooltip("How long (in seconds) to display announcements if not otherwise specified.")] public int defaultAnnouncementDuration = 5;
@@ -61,7 +61,7 @@ public class HUD : MonoBehaviour
     /// <param name="txt">Text to be displayed.</param>
     public static void DisplayNotice(string txt)
     {
-        DisplayNotice(txt,false,current.defaultAnnouncementDuration);
+        DisplayNotice(txt,false,singleton.defaultAnnouncementDuration);
     }
     /// <summary>
     /// Displays text at the bottom of the screen.
@@ -79,7 +79,7 @@ public class HUD : MonoBehaviour
     /// <param name="priority">Display text immediately even if other text is present.</param>
     public static void DisplayNotice(string txt, bool priority)
     {
-        DisplayNotice(txt, priority, current.defaultNoticeDuration);
+        DisplayNotice(txt, priority, singleton.defaultNoticeDuration);
     }
     /// <summary>
     /// Displays text at the bottom of the screen.
@@ -91,15 +91,15 @@ public class HUD : MonoBehaviour
     {
         if (priority) // Adds text and timing to the front of the line.
         {
-            current.upcomingNotices.Insert(0, txt);
-            current.upcomingNoticeDurations.Insert(0, duration);
+            singleton.upcomingNotices.Insert(0, txt);
+            singleton.upcomingNoticeDurations.Insert(0, duration);
         }
         else // Adds text and timing to the back of the line.
         {
-            current.upcomingNotices.Add(txt);
-            current.upcomingNoticeDurations.Add(duration);
+            singleton.upcomingNotices.Add(txt);
+            singleton.upcomingNoticeDurations.Add(duration);
         }
-        current.StartNoticeCycle(priority);
+        singleton.StartNoticeCycle(priority);
 
     }
     void StartNoticeCycle(bool priority) // Sets up text to display for indicated amount of time.
@@ -153,7 +153,7 @@ public class HUD : MonoBehaviour
     /// <param name="subtitle">Smaller text right below it.</param>
     public static void DisplayAnnouncement(string title,string subtitle)
     {
-        DisplayAnnouncement(title, subtitle, false, current.defaultAnnouncementDuration);
+        DisplayAnnouncement(title, subtitle, false, singleton.defaultAnnouncementDuration);
     }
     /// <summary>
     /// Displays big text in the center of the screen.
@@ -173,7 +173,7 @@ public class HUD : MonoBehaviour
     /// <param name="priority">Display text immediately even if other text is present.</param>
     public static void DisplayAnnouncement(string title, string subtitle, bool priority)
     {
-        DisplayAnnouncement(title, subtitle, priority, current.defaultAnnouncementDuration);
+        DisplayAnnouncement(title, subtitle, priority, singleton.defaultAnnouncementDuration);
     }
     /// <summary>
     /// Displays big text in the center of the screen.
@@ -186,17 +186,17 @@ public class HUD : MonoBehaviour
     {
         if (priority)
         {
-            current.upcomingAnnouncements.Insert(0, title);
-            current.upcomingSubtitles.Insert(0, subtitle);
-            current.upcomingAnnouncementDurations.Insert(0, duration);
+            singleton.upcomingAnnouncements.Insert(0, title);
+            singleton.upcomingSubtitles.Insert(0, subtitle);
+            singleton.upcomingAnnouncementDurations.Insert(0, duration);
         }
         else
         {
-            current.upcomingAnnouncements.Add(title);
-            current.upcomingSubtitles.Add(subtitle);
-            current.upcomingAnnouncementDurations.Add(duration);
+            singleton.upcomingAnnouncements.Add(title);
+            singleton.upcomingSubtitles.Add(subtitle);
+            singleton.upcomingAnnouncementDurations.Add(duration);
         }
-        current.StartAnnouncementCycle(priority);
+        singleton.StartAnnouncementCycle(priority);
     }
     void StartAnnouncementCycle(bool priority) // Sets up text to display for indicated amount of time.
     {
@@ -246,14 +246,14 @@ public class HUD : MonoBehaviour
     /// <param name="percentage">Percentage (0-100) of health the player has remaining.</param>
     public static void DisplayHealth(float percentage)
     {
-        current.healthBar.localScale = new Vector3(percentage / 100,1,1);
+        singleton.healthBar.localScale = new Vector3(percentage / 100,1,1);
         if(percentage > 50)
         {
-            current.healthBarImage.color = new Color((50-(percentage-50)) / 50, 1, 0);
+            singleton.healthBarImage.color = new Color((50-(percentage-50)) / 50, 1, 0);
         }
         else
         {
-            current.healthBarImage.color = new Color(1, percentage / 50, 0);
+            singleton.healthBarImage.color = new Color(1, percentage / 50, 0);
         }
     }
     /// <summary>
@@ -262,7 +262,7 @@ public class HUD : MonoBehaviour
     /// <param name="key">Color of collected key.</param>
     public static void DisplayKey(ColorManager.StandardColor key)
     {
-        current.keysCollected[(int)key].SetActive(true);
+        singleton.keysCollected[(int)key].SetActive(true);
     }
     /// <summary>
     /// Looks through the objectives in the Objective Manager and displays progress.
@@ -275,7 +275,7 @@ public class HUD : MonoBehaviour
             if (i != 0) toDisplay += "\n";
             toDisplay += ObjectivesManager.counterCounts[i] + "/" + ObjectivesManager.counterGoals[i] + " " + ObjectivesManager.counterDescriptions[i];
         }
-        current.objectivesField.text = toDisplay;
+        singleton.objectivesField.text = toDisplay;
     }
     #endregion
 }
