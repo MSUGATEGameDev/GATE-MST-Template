@@ -14,8 +14,8 @@ public class Enemy : Entity
     private float nextSearchTime = 0f;
     private float nextRandomTime = 0f;
 
-    private float turnTime = 0.1f;
-    private float turnVel;
+    //private float turnTime = 0.1f;
+    //private float turnVel;
 
     private Vision vision;
 
