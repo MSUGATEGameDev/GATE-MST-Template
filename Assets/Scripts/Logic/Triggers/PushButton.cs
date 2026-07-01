@@ -61,6 +61,13 @@ public class PushButton : GameTrigger
             toolTip.SetActive(true);
         }
     }
+    private void OnDisable()
+    {
+        if (Player.singleton.triggerInRange == this)
+        {
+            Player.singleton.triggerInRange = null;
+        }
+    }
     public override void Overridden() // When another button or trigger has overridden this for assignment of the Action Button.
     {
         toolTip.SetActive(false);

@@ -1312,7 +1312,7 @@ MonoBehaviour:
     a menu page.'
   buttonType: 1
   pageToOpen: {fileID: 0}
-  sceneToOpen: SampleLevel
+  sceneToOpen: ExampleLevel
   objectsToShow: []
   objectsToHide: []
 --- !u!1 &539540605
@@ -2001,10 +2001,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Created By - Your Name\nWritten By - Your Name\n\nGame Template By: \nToastid
-    Waffel & MedievalApple\n(toastidwaffel.com & medievalapple.net)\n\nModels By:\n-
-    Toastid Waffel\n- Medieval Apple\n- BenjaTheMaker (Unity Asset Store)\n- ITHappy
-    (Unity Asset Store)\n- ThePolyNestLab (Unity Asset Store)\n- DHILRUBA (Unity
-    Asset Store)\n"
+    Waffel & MedievalApple\n(toastidwaffel.com & medievalapple.net)\n\nModels By:\nToastid
+    Waffel\nMedieval Apple\nBenjaTheMaker (Unity Asset Store)\nITHappy (Unity Asset
+    Store)\nThePolyNestLab (Unity Asset Store)\nDHILRUBA (Unity Asset Store)\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

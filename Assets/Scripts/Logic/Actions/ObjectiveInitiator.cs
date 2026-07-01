@@ -10,7 +10,7 @@ public class ObjectiveInitiator : GameAction
     [SerializeField] bool deactivateCancels = false;
     public override void Activate()
     {
-        objective.InitializeObjective();
+        objective.InitializeObjective(false);
     }
 
     public override void Deactivate()

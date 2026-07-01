@@ -23,12 +23,12 @@ public class Objective : GameAction
     [Tooltip("What happens when they complete the goal?")]public List<GameAction> actionsOnSuccess;
 
 
-    public void InitializeObjective()
+    public void InitializeObjective(bool byActivate)
     {
         if(!activated || repeatInitializations)
         {
             activated = true;
-            ObjectivesManager.CreateObjective(objectiveTitle,goal,description,startNotes,endNotes,actionsOnSuccess);
+            ObjectivesManager.CreateObjective(objectiveTitle,goal,description,startNotes,endNotes,actionsOnSuccess,(byActivate && goal==1));
         }
     }
     public void CancelObjective()
@@ -38,7 +38,7 @@ public class Objective : GameAction
     public override void Activate()
     {
         if (!activated && initiateObjectiveBy == InitateObjectiveBy.AnyActivation)
-            InitializeObjective();
+            InitializeObjective(true);
         ObjectivesManager.CompleteObjectiveTask(description);
     }
 

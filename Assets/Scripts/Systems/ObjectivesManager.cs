@@ -51,7 +51,7 @@ public class ObjectivesManager : MonoBehaviour
     /// <param name="goal">Number of successful tasks completed to complete this objective. (e.g. 10)</param>
     /// <param name="description">Description of each individal task. (e.g. enemies killed.) </param>
     /// <param name="onCompletion">An action that happens when the objective is completed.</param>
-    public static void CreateObjective(string instructions, int goal, string description, string startMessage, string endMessage, List<GameAction> onCompletion)
+    public static void CreateObjective(string instructions, int goal, string description, string startMessage, string endMessage, List<GameAction> onCompletion, bool complete)
     {
         if (!counterDescriptions.Contains(description))
         {
@@ -61,13 +61,16 @@ public class ObjectivesManager : MonoBehaviour
             counterDescriptions.Add(description);
             counterActions.Add(onCompletion);
             endMessages.Add(endMessage);
-            HUD.DisplayAnnouncement(instructions, "New Objective!",true);
-            if(startMessage != "")
+            if (!complete)
             {
-                HUD.DisplayNotice(startMessage, true);
+                HUD.DisplayAnnouncement(instructions, "New Objective!", true);
+                if (startMessage != "")
+                {
+                    HUD.DisplayNotice(startMessage, true);
+                }
+
+                HUD.DisplayObjectives();
             }
-            
-            HUD.DisplayObjectives();
         }
 
 
