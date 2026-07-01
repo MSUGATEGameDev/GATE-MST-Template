@@ -210,6 +210,9 @@ public class Enemy : Entity
 
     private void OnCollisionExit(Collision collision)
     {
-        curAIState = AIStates.idle;
+        if (curAIState == AIStates.roomba)
+        {
+            curAIState = AIStates.idle;
+        }
     }
 }
