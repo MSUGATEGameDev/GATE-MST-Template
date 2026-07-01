@@ -5,9 +5,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using static Enemy;
-using static UnityEditor.Rendering.InspectorCurveEditor;
-//using UnityEngine.UIElements;
 
 public class Player : Entity
 {
