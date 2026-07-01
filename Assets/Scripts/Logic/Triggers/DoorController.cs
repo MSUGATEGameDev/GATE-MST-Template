@@ -1,23 +1,32 @@
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 
+/// <summary>
+/// GameTrigger -- Allows a door to auto-open when the player is present or be locked to color-coded keys.
+/// </summary>
 public class DoorController : GameTrigger
 {
+    #region Description for Unity Inpsector
     [ReadOnly]
     [TextArea(1, 10)]
     public string _ = "-- GameTrigger --\n" +
     "Allows a door to auto-open when the player is present or be locked to color-coded keys.";
+    #endregion
+
+    #region Insepctor-Editable Variables
     [Header("Door Settings")]
-    [Tooltip("")]public bool lockedWithKey = false;
-    public ColorManager.StandardColor keyColor;
+    [Tooltip("If true, the door will automatically open when the player enters the vecinity with the correct key selected.")] public bool lockedWithKey = false;
+    [Tooltip("The key color which unlocks the door.")]public ColorManager.StandardColor keyColor;
+    
     [Header("Components")]
     public GameObject lockIcons;
-    
+    #endregion
 
-    // Internal Logic
+    #region Internal Variables
     bool stillLocked = false;
+    #endregion
 
-    private void Start()
+    private void Start() // The last thing to run right before the object is placed in the game.
     { 
         if (lockedWithKey)
         {
@@ -32,7 +41,7 @@ public class DoorController : GameTrigger
         
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other) // When something enters the trigger collider associated with this object.
     {
         if (other.CompareTag("Player"))
         {
@@ -56,7 +65,7 @@ public class DoorController : GameTrigger
             }
         }
     }
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider other) // When something enters the trigger collider associated with this object.
     {
         if (!stillLocked)
         {

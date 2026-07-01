@@ -23,5 +23,8 @@ public class SpawnPoint : GameAction // Used for bringing the player back into t
     {
         currentSpawn = this;
     }
-    public override void Deactivate() { }
+    public override void Deactivate() // Nothing happens when deactivated.
+    {
+        
+    }
 }

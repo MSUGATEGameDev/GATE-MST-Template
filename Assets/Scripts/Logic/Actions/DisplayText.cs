@@ -7,10 +7,12 @@ using UnityEngine;
 /// </summary>
 public class DisplayText : GameAction
 {
+    #region Description For Unity Inspector
     [ReadOnly]
     [TextArea(1, 10)]
     public string _ = "-- GameAction --\n" +
         "Displays text to the player at its location or at the bottom of the screen.";
+    #endregion
 
     #region Inspector-Editable Variables
     public enum TextDisplayType { InGame, OnScreen }

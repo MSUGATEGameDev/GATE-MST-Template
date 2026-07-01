@@ -12,12 +12,21 @@ public class Tip : MonoBehaviour
     public string _ = "-- Object --\n" +
         "Displays text only when the player is present.";
     #endregion
+
+    #region Inspector-Editable Variables
     [Tooltip("The message to display.")]public GameObject tip;
     [Tooltip("How many times it will display the message before not doing it anymore.\n -1 for infinite.")]public int maxAppearances = 3;
     [Tooltip("If checked, all tips of the exact same spelling will be grouped into the same max appearances. With the biggest max being the one claimed")] public bool sharedMax;
-    static Dictionary<string, (int,int)> tipsAndCounts = new();
-    int appearances=0;
+    #endregion
+
+    #region Static Variables
+    static Dictionary<string, (int, int)> tipsAndCounts = new();
+    #endregion
+
+    #region Internal Varaiables
+    int appearances = 0;
     string txt;
+    #endregion
 
     private void Awake()
     {

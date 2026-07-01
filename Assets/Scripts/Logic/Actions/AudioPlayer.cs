@@ -6,16 +6,24 @@ using System.Collections.Generic;
 /// </summary>
 public class AudioPlayer : GameAction
 {
+    #region Description for Inspector
     [ReadOnly]
     [TextArea(1, 10)]
     public string _ = "-- GameAction --\n" +
         "Plays a sound locally where this object is placed, or in the dedicated sound channel.";
+#endregion
+    #region Inspector-Editable Variables
     [Tooltip("Sound this player will play when activated.")]public AudioClip sound;
     [Range(0,1)][Tooltip("Volume of sound to be played.")]public float volume = 1;
+    public enum SoundType { Local, Soundtrack, Ambience, SFX }
+    [Tooltip("Play a local sound with spatial sound, or send sound to the game's dedicated global channels.")] public SoundType soundType = SoundType.Local;
+    #endregion
+
+    #region Internal Variables
     int iterator = 0;
     AudioSource audioSource;
-    public enum SoundType {Local,Soundtrack,Ambience,SFX}
-    [Tooltip("Play a local sound with spatial sound, or send sound to the game's dedicated global channels.")] public SoundType soundType = SoundType.Local;
+    #endregion
+
     private void Awake()
     {
         audioSource = GetComponentInChildren<AudioSource>();

@@ -5,10 +5,14 @@ using UnityEngine;
 /// </summary>
 public class SoundManager : MonoBehaviour
 {
+    #region Description for Unity Inspector
     [ReadOnly]
     [TextArea(1, 10)]
     public string _ = "-- Game System --\n" +
         "Manages the dedicated game sound channels.";
+    #endregion
+
+    #region Instatiating as a Singleton
     static SoundManager singleton;
     private void Awake()
     {
@@ -18,7 +22,7 @@ public class SoundManager : MonoBehaviour
         }
         singleton = this;
     }
-
+    #endregion
     #region Inspector-Editable Variables
     // Dedicated Audio Channels
     public AudioSource musicPlayer;

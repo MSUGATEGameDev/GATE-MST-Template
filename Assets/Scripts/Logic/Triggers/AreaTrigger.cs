@@ -1,15 +1,23 @@
 using UnityEngine;
 
+/// <summary>
+/// GameTrigger -- Activates when entered by a player or another object as determined below.
+/// </summary>
 public class AreaTrigger : GameTrigger
 {
+    #region Description For Unity Inspector
     [ReadOnly]
     [TextArea(1, 10)]
     public string _ = "-- GameTrigger --\n" +
         "Activates when entered by a player or another object as determined below.";
+    #endregion
+
+    #region Inspector-Editable Variables
     [Header("Triggered By")]
     public bool player = true;
     public bool enemies = false;
     public bool objects = true;
+    #endregion
 
     #region Presence
     int presentCount = 0;

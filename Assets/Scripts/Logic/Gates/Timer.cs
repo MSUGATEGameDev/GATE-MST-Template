@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Timer : GameTrigger
 {
+    #region Description For Inspector
     [ReadOnly]
     [TextArea(1, 10)]
     public string _ = "-- GameTrigger --\n" +
 
         "A trigger that delays the activation of the objects assigned to it.";
+    #endregion
     #region Settings
     [Header("Settings")]
     [Tooltip("Does the timer start without activation when the scene loads?")]
@@ -35,7 +37,7 @@ public class Timer : GameTrigger
     Coroutine timerCoroutine;
     #endregion
 
-    private void Start() // This code runs right when the game starts.
+    private void Start() // The last thing that runs righ before the game starts.
     {
         timerDisplay = GetComponentInChildren<TextMeshPro>(); // Find the timer display.
         if (activeAtStart) Activate(); // Start the timer if it's set to do so. 
@@ -57,7 +59,10 @@ public class Timer : GameTrigger
         StopCoroutine(timerCoroutine);
     }
     Coroutine countdown;
-    IEnumerator SilentCountdown() // This just waits the appropriate amount of time and starts the timer.
+    /// <summary>
+    /// This just waits the appropriate amount of time and starts the timer.
+    /// </summary>
+    IEnumerator SilentCountdown() 
     {
         yield return new WaitForSeconds(timeToStart);
         ActivateItems();
@@ -70,7 +75,10 @@ public class Timer : GameTrigger
             }
         } 
     }
-    IEnumerator VisualCountdown() // This one will display a number countdown every second (either in the determined spot in-game or on the screen)
+    /// <summary>
+    /// This one will display a number countdown every second (either in the determined spot in-game or on the screen)
+    /// </summary>
+    IEnumerator VisualCountdown() 
     {
         int runTime = timeToStart;
         while (runTime > 0)

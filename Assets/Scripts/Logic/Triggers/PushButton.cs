@@ -2,19 +2,25 @@ using UnityEngine;
 
 public class PushButton : GameTrigger
 {
+    #region Description For Unity Inspector
     [ReadOnly]
     [TextArea(1, 10)]
     public string _ = "-- GameTrigger --\n" +
     "A button that needs to be actively pressed by the player with the action button while in range.";
+    #endregion
 
+    #region Inspector-Editable Variables
     [Header("Settings")]
     [Tooltip("When checked, button will deactivate on second push.")] public bool toggle = true;
     bool toggleOn = true;
 
     [Header("Components")]
-    Animator animator; // Used to handle visual animations.
     [SerializeField]GameObject toolTip; // Tells players to push action button to activate.
-    
+    #endregion
+
+    #region Internal Variables
+    Animator animator; // Used to handle visual animations.
+    #endregion
 
     void Awake() // Called before everything else as soon as this object is created.
     {
