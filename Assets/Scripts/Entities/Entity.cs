@@ -19,6 +19,7 @@ public class Entity : MonoBehaviour
     public float moveSpeed = 2.0f;
     public float runSpeed = 5.0f;
     public float jumpForce = 2.5f;
+    public float attackRate = 2f;
 
     public LayerMask attackableLayers;
     public float attackRadius = 0.5f;
@@ -34,6 +35,8 @@ public class Entity : MonoBehaviour
 
     public EStates curState = EStates.idle;
     public bool disabled = false;
+
+    private float nextAttackTime = 0f;
 
     //Damage Indcator Timers
     private bool damageLightActive = false;
@@ -211,10 +214,11 @@ public class Entity : MonoBehaviour
 
     public void Attack()
     {
-        string curAnim = anim.GetCurrentAnimatorClipInfo(0)[0].clip.name;
-        if (curState != EStates.dead && curState != EStates.disabled && curAnim != "TutBotPunch" && !pushing && Player.singleton.curState != EStates.dead)
+        //string curAnim = anim.GetCurrentAnimatorClipInfo(0)[0].clip.name;
+        //&& curAnim != "TutBotPunch"
+        if (Time.time >= nextAttackTime && curState != EStates.dead && curState != EStates.disabled && !pushing && Player.singleton.curState != EStates.dead)
         {
-            anim.Play("TutBotPunch");
+            anim.Play("TutBotPunch", 0, 0);
 
             Collider[] hitEntitys = Physics.OverlapSphere(attackPoint.position, attackRadius, attackableLayers);
 
@@ -231,9 +235,7 @@ public class Entity : MonoBehaviour
                     }
                 }
             }
-
-            //Damage the health script of the Entity}
-
+            nextAttackTime = Time.time + 1f / attackRate;
         }
     }
 

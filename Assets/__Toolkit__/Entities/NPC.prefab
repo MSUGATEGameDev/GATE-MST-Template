@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2973295310066121994}
   - component: {fileID: 4662740069585251496}
   - component: {fileID: 2614757309778848069}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: L Dash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 7509198380578210563}
   - component: {fileID: 519776835605242300}
   - component: {fileID: 7500033416372071229}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Previous Dialog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 4769606691533517652}
   - component: {fileID: 7518169527744117056}
   - component: {fileID: 8377253433353278099}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: R Dash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -450,7 +450,7 @@ GameObject:
   - component: {fileID: 6532890649618182923}
   - component: {fileID: 2744897095553248201}
   - component: {fileID: 1486385808345920432}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -532,7 +532,7 @@ GameObject:
   - component: {fileID: 7964870054330517069}
   - component: {fileID: 9043313788249152572}
   - component: {fileID: 4423134829225754238}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1064,7 +1064,7 @@ GameObject:
   - component: {fileID: 7683252395290670543}
   - component: {fileID: 6794552947762776193}
   - component: {fileID: 4870891639343931858}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: NPC Name Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1203,9 +1203,9 @@ GameObject:
   - component: {fileID: 370628255609688529}
   - component: {fileID: 105302128530794667}
   - component: {fileID: 3159726839511607613}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: NPC
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1342,7 +1342,7 @@ GameObject:
   - component: {fileID: 1926918512945173074}
   - component: {fileID: 8459867559746465619}
   - component: {fileID: 6706322658933081887}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Next Dialog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1474,7 +1474,7 @@ GameObject:
   - component: {fileID: 6041626322000429348}
   - component: {fileID: 6589471467379510803}
   - component: {fileID: 300033387102140934}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Quit Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1611,7 +1611,7 @@ GameObject:
   - component: {fileID: 2058116520973847265}
   - component: {fileID: 705929458906967544}
   - component: {fileID: 2990088647756414788}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Dialog Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1762,7 +1762,7 @@ GameObject:
   - component: {fileID: 4783742675001886514}
   - component: {fileID: 7857259689327141764}
   - component: {fileID: 777094020489705560}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Resume Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
