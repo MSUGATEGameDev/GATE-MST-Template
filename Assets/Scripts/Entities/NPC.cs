@@ -16,6 +16,7 @@ public class NPC : GameTrigger
     bool toggleOn = true;
 
     [Tooltip("The NPC Name")] public string npcName = "NPC";
+    [TextArea(1, 10)]
     [Tooltip("Dialog Messages")] public string[] dialog;
 
     [Header("Components")]
@@ -23,6 +24,7 @@ public class NPC : GameTrigger
     [SerializeField] private GameObject dialogScreen;
     [SerializeField] private TextMeshProUGUI npcNameBox;
     [SerializeField] private TextMeshProUGUI dialogBox;
+    [SerializeField] private GameObject dialogBackButton;
     #endregion
 
     #region Internal Variables
@@ -69,16 +71,17 @@ public class NPC : GameTrigger
             print(npcName + " has not had any dialog configured!");
         }
     }
-
     public void NextDialog()
     {
         if ((dialogIndex + 1) > (dialog.Length - 1))
         {
             CloseDialog();
+            dialogBackButton.SetActive(false);
             base.Activate();
         }
         else
         {
+            dialogBackButton.SetActive(true);
             dialogIndex += 1;
             dialogBox.text = dialog[dialogIndex];
         }

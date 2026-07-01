@@ -131,7 +131,7 @@ MonoBehaviour:
     trigger an action.'
   collectibleName: Hamburger
   announceCollection: 1
-  healAmount: 10
+  healAmount: 60
 --- !u!1001 &7449781139963731792
 PrefabInstance:
   m_ObjectHideFlags: 0

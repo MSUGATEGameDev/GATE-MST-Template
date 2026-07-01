@@ -69,7 +69,7 @@ PrefabInstance:
       addedObject: {fileID: 2819327921202875895}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ed1c0fbd67af50c4cb578f2607ebd400, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2725216176174183722}
+      addedObject: {fileID: 2490176829956006077}
   m_SourcePrefab: {fileID: 100100000, guid: ed1c0fbd67af50c4cb578f2607ebd400, type: 3}
 --- !u!1 &5537419447663507495 stripped
 GameObject:
@@ -90,6 +90,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Counter
   objectsToActivate: []
   singleActivation: 0
+  deactivates: 1
   _: '-- GameTrigger --
 
     A trigger that only activates the objects assigned to
@@ -97,8 +98,7 @@ MonoBehaviour:
   activateAt: 1
   resets: 0
   countsDeactivations: 1
-  singleActivation: 0
---- !u!114 &2725216176174183722
+--- !u!114 &2490176829956006077
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,12 +107,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5537419447663507495}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce4a4c81e1cd9d14e934f78174de2e7a, type: 3}
+  m_Script: {fileID: 11500000, guid: ae8c34c495700ec4cb274525b9afbb3a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShowOrHide
-  _: '-- GameAction --
+  m_EditorClassIdentifier: Assembly-CSharp::HideForGame
+  _: '-- Tool --
 
-    Makes objects appear or disappear on activation.'
-  objectsToShow: []
-  objectsToHide: []
-  undoOnDeactivate: 0
+    Attach to any visual object to allow it to be seen in the editor
+    but not the game.'
