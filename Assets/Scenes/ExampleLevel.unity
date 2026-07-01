@@ -8529,8 +8529,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1708576647234818529, guid: 6bcbd75a4bd4dba45802087238127d31, type: 3}
       propertyPath: 'dialog.Array.data[2]'
-      value: What do you mean I could have teleported you to the Pizza anytime? You
-        don't know what you're talking about!
+      value: "What do you mean I could have teleported you to the Pizza anytime?
+        \nYou don't know what you're talking about!"
       objectReference: {fileID: 0}
     - target: {fileID: 1708576647234818529, guid: 6bcbd75a4bd4dba45802087238127d31, type: 3}
       propertyPath: 'dialog.Array.data[3]'
@@ -11235,12 +11235,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1708576647234818529, guid: 6bcbd75a4bd4dba45802087238127d31, type: 3}
       propertyPath: 'dialog.Array.data[1]'
-      value: Oh yeah... guarding this door is really tough. Sorry. Otherwise, I'd
-        help you.
+      value: "Oh yeah... guarding this door is really tough. \nOtherwise, I'd help
+        you.\nSorry!"
       objectReference: {fileID: 0}
     - target: {fileID: 1708576647234818529, guid: 6bcbd75a4bd4dba45802087238127d31, type: 3}
       propertyPath: 'dialog.Array.data[2]'
-      value: You can do it! Please don't give up on your quest.
+      value: "You can do it! \nPlease don't give up on your quest."
       objectReference: {fileID: 0}
     - target: {fileID: 1708576647234818529, guid: 6bcbd75a4bd4dba45802087238127d31, type: 3}
       propertyPath: 'dialog.Array.data[3]'
@@ -17870,14 +17870,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1708576647234818529, guid: 6bcbd75a4bd4dba45802087238127d31, type: 3}
       propertyPath: 'dialog.Array.data[1]'
-      value: 'My evil roomate Lenny has stolen my most prized posession: a Pizza
-        my mother gave to me when I was going through a rough time last year. Will
-        you please help me get it back?'
+      value: "My evil roomate Lenny has stolen my most prized posession: \na Pizza
+        my mother gave to me when I was going through a rough time last year. \nWill
+        you please help me get it back?"
       objectReference: {fileID: 0}
     - target: {fileID: 1708576647234818529, guid: 6bcbd75a4bd4dba45802087238127d31, type: 3}
       propertyPath: 'dialog.Array.data[2]'
-      value: He has the location written in his lab notes, but you'll need the two
-        keys to enter our high-security lab to get to the notes.
+      value: "He has the location written in his lab notes, \nbut you'll need the
+        two keys to enter our \nhigh-security lab to get to the notes."
       objectReference: {fileID: 0}
     - target: {fileID: 1708576647234818529, guid: 6bcbd75a4bd4dba45802087238127d31, type: 3}
       propertyPath: 'dialog.Array.data[3]'
@@ -17885,8 +17885,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1708576647234818529, guid: 6bcbd75a4bd4dba45802087238127d31, type: 3}
       propertyPath: 'dialog.Array.data[4]'
-      value: Why can't I get it? I'm... uh... busy guarding this door. It's a lot
-        of hard work!
+      value: "Why can't I get it? I'm... uh... busy guarding this door. \nIt's a
+        lot of hard work!"
       objectReference: {fileID: 0}
     - target: {fileID: 1708576647234818529, guid: 6bcbd75a4bd4dba45802087238127d31, type: 3}
       propertyPath: 'dialog.Array.data[5]'

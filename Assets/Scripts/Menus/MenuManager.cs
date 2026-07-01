@@ -37,6 +37,30 @@ public class MenuManager : MonoBehaviour
         title_Page = titlePage;
         backBtn = backButton;
         backBtn.SetActive(false);
+
+        List<int> oldPages = new();
+        for (int i = 0; i < menuPages.Count; i++) 
+        {
+            if (menuPages[i] == null) { 
+                oldPages.Add(i);
+            }
+        }
+        foreach (int i in oldPages) 
+        {
+            menuPages.RemoveAt(i);
+        }
+        oldPages.Clear();
+        for (int i = 0; i < prevPages.Count; i++)
+        {
+            if (prevPages[i] == null)
+            {
+                oldPages.Add(i);
+            }
+        }
+        foreach(int i in oldPages)
+        {
+            prevPages.RemoveAt(i);
+        }
         OpenPage(title_Page);
         if (openCreditsPage)
         {
@@ -77,7 +101,8 @@ public class MenuManager : MonoBehaviour
     {
         foreach (GameObject pg in menuPages)
         {
-            pg.SetActive(false);
+            if(pg!= null)
+                pg.SetActive(false);
         }
         prevPages[prevPages.Count - 2].gameObject.SetActive(true);
         prevPages.RemoveAt(prevPages.Count - 1);

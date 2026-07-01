@@ -3343,9 +3343,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1708576647234818529, guid: 6bcbd75a4bd4dba45802087238127d31, type: 3}
       propertyPath: 'dialog.Array.data[1]'
-      value: You can find lots of 'prefab' tools to help you build your own game
-        in your Project Folder under Assets/__Toolkit__ . These are pre-made game
-        components that you don't need to code to make.
+      value: "You can find lots of 'prefab' tools to help you build your own game\nin
+        your Project Folder under Assets/__Toolkit__ . \nThese are pre-made game
+        components that you don't need to code to make."
       objectReference: {fileID: 0}
     - target: {fileID: 1708576647234818529, guid: 6bcbd75a4bd4dba45802087238127d31, type: 3}
       propertyPath: 'dialog.Array.data[2]'
@@ -3357,8 +3357,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1708576647234818529, guid: 6bcbd75a4bd4dba45802087238127d31, type: 3}
       propertyPath: 'dialog.Array.data[4]'
-      value: Logic are invisible objects that will advance the game, like revealing
-        something, playing a sound, or creating an objective.
+      value: "Logic are invisible objects that will advance the game, like \nrevealing
+        something, playing a sound, or creating an objective."
       objectReference: {fileID: 0}
     - target: {fileID: 1708576647234818529, guid: 6bcbd75a4bd4dba45802087238127d31, type: 3}
       propertyPath: 'dialog.Array.data[5]'
@@ -3370,14 +3370,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1708576647234818529, guid: 6bcbd75a4bd4dba45802087238127d31, type: 3}
       propertyPath: 'dialog.Array.data[7]'
-      value: There are also sound files that you can play in the game. We don't have
-        a lot of sounds in this game, since it was initially made for a computer
-        lab with no speakers.
+      value: "There are also sound files that you can play in the game. \nWe don't
+        have a lot of sounds in this game, since it was initially \nmade for a computer
+        lab with no speakers."
       objectReference: {fileID: 0}
     - target: {fileID: 1708576647234818529, guid: 6bcbd75a4bd4dba45802087238127d31, type: 3}
       propertyPath: 'dialog.Array.data[8]'
-      value: You can also create your own objects and logic through 3D modelling
-        and coding, or import objects and code that other people have made.
+      value: "You can also create your own objects and logic through 3D modelling
+        and coding, \nor import objects and code that other people have made."
       objectReference: {fileID: 0}
     - target: {fileID: 1708576647234818529, guid: 6bcbd75a4bd4dba45802087238127d31, type: 3}
       propertyPath: objectsToActivate.Array.size
