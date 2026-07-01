@@ -1113,6 +1113,39 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2006395933650077057, guid: 07a2aec904435754b9f6e28931371444, type: 3}
   m_PrefabInstance: {fileID: 108729697}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &123402382
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 123402383}
+  m_Layer: 0
+  m_Name: Essential - Do Not Delete
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &123402383
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123402382}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 620969993}
+  - {fileID: 1389919299}
+  m_Father: {fileID: 1669827766}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &127057546
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5955,7 +5988,7 @@ Transform:
   m_LocalScale: {x: 100, y: 1, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1669827766}
+  m_Father: {fileID: 123402383}
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
 --- !u!65 &620969994
 BoxCollider:
@@ -13290,12 +13323,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1389919298}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 1, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1669827766}
+  m_Father: {fileID: 123402383}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1389919300
 BoxCollider:
@@ -15363,8 +15396,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 620969993}
-  - {fileID: 1389919299}
+  - {fileID: 123402383}
   - {fileID: 344863405}
   - {fileID: 592141816}
   m_Father: {fileID: 0}

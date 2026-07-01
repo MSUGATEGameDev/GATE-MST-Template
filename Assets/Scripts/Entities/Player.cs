@@ -6,12 +6,13 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// --- PlayerController ---
+/// Handles device input, the HUD, and stores a couple of more broadly-used shared variables.
+/// Access via singleton: PlayerController.singleton
+/// </summary>
 public class Player : Entity
 {
-    // --- PlayerController --- //
-    // Handles device input, the HUD, and stores a couple of more broadly-used shared variables.
-    // Access via singleton: PlayerController.singleton
-
     #region Singleton Setup
     // Creating a unique singleton of the PlayerController on Awake.
     public static Player singleton;

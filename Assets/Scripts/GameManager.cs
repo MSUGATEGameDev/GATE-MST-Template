@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using UnityEngine;
+using System.Collections.Generic;
 
 /// <summary>
 /// Game System -- Manages some general game features that don't have dedicated managers.
@@ -12,11 +14,21 @@ public class GameManager : MonoBehaviour
         "Manages some general game features that don't have dedicated managers.";
 
     [Tooltip("The in-game ceiling. Hidden in editor to allow editing.")]public GameObject ceiling;
-    public bool indoors = true;
-
+    [Tooltip("If enabled, the in-game ceiling will appear at the start.")]public bool indoors = true;
+    [Tooltip("GameActions you would like to activate when the game starts.")] public List<GameAction> actions = new();
     private void Awake()
     {
         if(indoors)
             ceiling.SetActive(true);
+    }
+    private void Start()
+    {
+        foreach(GameAction action in actions)
+        {
+            if(action != null)
+            {
+                action.Activate();
+            }
+        }
     }
 }
