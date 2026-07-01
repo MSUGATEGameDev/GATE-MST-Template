@@ -6851,7 +6851,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6997788331789872870, guid: cd95bed07f9adbf42b77db5ad81423a3, type: 3}
       propertyPath: endNotes
-      value: That will surely be the last we see of them.
+      value: That will surely be the last we see of them. Collect the key and keep
+        moving.
       objectReference: {fileID: 0}
     - target: {fileID: 6997788331789872870, guid: cd95bed07f9adbf42b77db5ad81423a3, type: 3}
       propertyPath: startNotes
