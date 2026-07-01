@@ -18,6 +18,7 @@ public class MenuManager : MonoBehaviour
     #region Inspector-Editable Variables
     [Header("Primary Menu Components")]
     [Tooltip("This is the first page to load when you menu starts.")] [SerializeField]private MenuPage titlePage;
+    [Tooltip("This is the page that has the credits on it.")][SerializeField] MenuPage creditsPage;
     [Tooltip("This button will appear on any page that's not the title page, to help you get back to the title page.")][SerializeField] private GameObject backButton;
     #endregion
 
@@ -27,13 +28,21 @@ public class MenuManager : MonoBehaviour
     public static MenuPage title_Page;                  // The first page opened.
     public static List<MenuPage> prevPages = new();     // All of the previously opened pages.
     public static GameObject backBtn;                   // The back button, to return to the previous page.
+    public static bool openCreditsPage = false;         // Will open the credits page the next time the menu is opened in this instance.
     private void Awake() // The very first function run by a class the instant it is created.
     {
         // Set the default values.
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         title_Page = titlePage;
         backBtn = backButton;
         backBtn.SetActive(false);
         OpenPage(title_Page);
+        if (openCreditsPage)
+        {
+            openCreditsPage = false;
+            OpenPage(creditsPage);
+        }
     }
     #endregion
 

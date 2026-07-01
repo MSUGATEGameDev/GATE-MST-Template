@@ -14,6 +14,11 @@ public class SceneChanger : GameAction
     [Tooltip("This scene will be opened when activated.")]public string sceneToOpen;
     public override void Activate()
     {
+        if(sceneToOpen == "Menu")
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
         SceneManager.LoadScene(sceneToOpen);
     }
 

@@ -3152,6 +3152,7 @@ MonoBehaviour:
 
     (NOTE: Only one menu system can exist per scene without errors.)'
   titlePage: {fileID: 289041487}
+  creditsPage: {fileID: 627073741}
   backButton: {fileID: 539540605}
 --- !u!1 &2115100791
 GameObject:

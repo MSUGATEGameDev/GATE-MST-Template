@@ -9778,6 +9778,7 @@ MonoBehaviour:
     dedicated managers.'
   ceiling: {fileID: 620969992}
   indoors: 1
+  actions: []
 --- !u!82 &1006431941
 AudioSource:
   m_ObjectHideFlags: 0
