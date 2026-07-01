@@ -75,6 +75,10 @@ public class Health : MonoBehaviour
             {
                 HUD.DisplayHealth((float)CurHealth / (float)maxHealth * 100f);
             }
+            else if (this.CompareTag("Enemy"))
+            {
+                GetComponent<Enemy>().DisplayHealth((float)CurHealth / (float)maxHealth * 100f);
+            }
         }
     }
 

@@ -40,6 +40,7 @@ public class EnemySpawner : GameAction
         {
             thisEnemy.actions.Add(action);
         }
+        HUD.ShowHealthBar();
     }
     public override void Deactivate()
     {

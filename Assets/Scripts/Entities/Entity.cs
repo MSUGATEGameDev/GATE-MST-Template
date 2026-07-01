@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -199,7 +200,6 @@ public class Entity : MonoBehaviour
             curPushable = null;
         }
     }
-
     public void Jump()
     {
         if(curState != EStates.dead && curState != EStates.disabled && !pushing){
@@ -209,7 +209,6 @@ public class Entity : MonoBehaviour
                 rigid.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             }
         }
-
     }
 
     public void Attack()
@@ -261,7 +260,7 @@ public class Entity : MonoBehaviour
     {
         if (curState != EStates.dead & !disabled)
         {
-            if (!Physics.Raycast(groundCheck.position, -1 * transform.up, .1f))
+            if (!Physics.Raycast(groundCheck.position, -1 * transform.up, .1f) && rigid.linearVelocity.magnitude > .05f) // Treats being on top of something and no longer falling as being on the ground. If not, player will get stuck on things.
             {
                 curState = EStates.falling;
             }

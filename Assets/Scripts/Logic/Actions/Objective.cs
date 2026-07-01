@@ -15,7 +15,9 @@ public class Objective : GameAction
     [SerializeField] bool deactivateDecrements = false;
     bool activated = false;
     [Header("Details")]
-    [Tooltip("Tell the player what to do.")]public string instructions = "Defeat the enemies!";
+    [Tooltip("Tell the player what to do.")]public string objectiveTitle = "Defeat the enemies!";
+    [Tooltip("Something it will only say at the start of the challenge.")] public string startNotes = "";
+    [Tooltip("Something it will only say at the end of the challenge.")] public string endNotes = "";
     [Tooltip("How many steps are there to do?")] public int goal = 10;
     [Tooltip("How would you describe what they do each time they complete a step?")] public string description = "enemies defeated.";
     [Tooltip("What happens when they complete the goal?")]public List<GameAction> actionsOnSuccess;
@@ -26,7 +28,7 @@ public class Objective : GameAction
         if(!activated || repeatInitializations)
         {
             activated = true;
-            ObjectivesManager.CreateObjective(instructions,goal,description,actionsOnSuccess);
+            ObjectivesManager.CreateObjective(objectiveTitle,goal,description,startNotes,endNotes,actionsOnSuccess);
         }
     }
     public void CancelObjective()

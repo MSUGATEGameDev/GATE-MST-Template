@@ -1,18 +1,28 @@
+using NUnit.Framework;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Chest : GameAction
+public class Chest : GameTrigger
 {
+    #region Desription For Inspector
     [ReadOnly]
     [TextArea(1, 10)]
     public string _ = "-- GameAction --\n" +
         "Contains a reward. Openable by key or action.";
-    public Collectible collectibleToPresent;
-    Collectible instantiatedCollectible;
-    public Transform thingHolder;
+    #endregion
 
+    #region Variables
+    [Tooltip("This will be given to the player when they open the chest.")] public Collectible collectibleToPresent;
+    Collectible instantiatedCollectible;
+
+    [Header("Components")]
+    [Tooltip("Helps animate the collectible that will be given to the player.")] public Transform thingHolder;
     Animator animator;
-    private void Start()
+    #endregion
+
+    private void Awake()
     {
         animator = GetComponent<Animator>();
     }
@@ -30,6 +40,7 @@ public class Chest : GameAction
         instantiatedCollectible.GetComponent<BoxCollider>().enabled = false;
         yield return new WaitForSeconds(4);
         instantiatedCollectible.OnCollection();
+        ActivateItems();
     }
     public override void Deactivate()
     {

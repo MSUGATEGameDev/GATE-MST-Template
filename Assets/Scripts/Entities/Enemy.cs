@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Diagnostics;
+using UnityEngine.UI;
 
 public class Enemy : Entity
 {
-    #region Enemy Parts
     [Header("Enemy Parts")]
-    #endregion
 
+    public GameObject healthBarHolder;
+    public Transform healthBar;
+    public Image healthBarImage;
     public float searchRate = 2f;
     public float randomRate = 2f;
     private float nextSearchTime = 0f;
@@ -39,7 +41,26 @@ public class Enemy : Entity
         base.Start();
         vision = GetComponent<Vision>();
     }
-
+    public void DisplayHealth(float percentage)
+    {
+        if(percentage > 0)
+        {
+            healthBarHolder.SetActive(true);
+            healthBar.localScale = new Vector3(percentage / 100, 1, 1);
+            if (percentage > 50)
+            {
+                healthBarImage.color = new Color((50 - (percentage - 50)) / 50, 1, 0);
+            }
+            else
+            {
+                healthBarImage.color = new Color(1, percentage / 50, 0);
+            }
+        }
+        else
+        {
+            healthBarHolder.SetActive(false);
+        }
+    }
     protected override void Update()
     {
         if (curState != EStates.dead)
@@ -173,6 +194,7 @@ public class Enemy : Entity
         if(curState != EStates.dead)
         {
             base.Die();
+            healthBarHolder.SetActive(false);
             if (spawner != null)
             {
                 spawner.ReportDeath();

@@ -37,6 +37,7 @@ public class HUD : MonoBehaviour
     [Tooltip("Big bold text in center of screen.")][SerializeField] TextMeshProUGUI announcementText;
     [Tooltip("Smaller text below announcement.")][SerializeField] TextMeshProUGUI subtitleText;
     [Tooltip("Small text at the bottom of the screen.")][SerializeField] TextMeshProUGUI noticeText;
+    [Tooltip("Contains Health Bar")][SerializeField] GameObject healthBarHolder;
     [Tooltip("Adjustable bar at the top of the screen indicating player's health.")][SerializeField] Transform healthBar;
     [Tooltip("Image representing the health bar, so we can adjust the color.")][SerializeField] Image healthBarImage;
     [Tooltip("Text in the top left for displaying objective completion status.")][SerializeField]                       TextMeshProUGUI objectivesField;
@@ -246,6 +247,14 @@ public class HUD : MonoBehaviour
     /// <param name="percentage">Percentage (0-100) of health the player has remaining.</param>
     public static void DisplayHealth(float percentage)
     {
+        if(percentage >= 100)
+        {
+            singleton.healthBarHolder.SetActive(false);
+        }
+        else
+        {
+            singleton.healthBarHolder.SetActive(true);
+        }
         singleton.healthBar.localScale = new Vector3(percentage / 100,1,1);
         if(percentage > 50)
         {
@@ -255,6 +264,10 @@ public class HUD : MonoBehaviour
         {
             singleton.healthBarImage.color = new Color(1, percentage / 50, 0);
         }
+    }
+    public static void ShowHealthBar()
+    {
+        singleton.healthBarHolder.SetActive(true);
     }
     /// <summary>
     /// Display a collected key on the screen.

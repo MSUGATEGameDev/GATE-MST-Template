@@ -41,6 +41,7 @@ public class ObjectivesManager : MonoBehaviour
     public static List<int> counterCounts = new();          // Current count.
     public static List<int> counterGoals = new();           // e.g. 10
     public static List<string> counterDescriptions = new(); // e.g. enemies killed.
+    public static List<string> endMessages = new();
     public static List<List<GameAction>> counterActions = new();  // What happens when objective is complete?
 
     /// <summary>
@@ -50,7 +51,7 @@ public class ObjectivesManager : MonoBehaviour
     /// <param name="goal">Number of successful tasks completed to complete this objective. (e.g. 10)</param>
     /// <param name="description">Description of each individal task. (e.g. enemies killed.) </param>
     /// <param name="onCompletion">An action that happens when the objective is completed.</param>
-    public static void CreateObjective(string instructions, int goal, string description, List<GameAction> onCompletion)
+    public static void CreateObjective(string instructions, int goal, string description, string startMessage, string endMessage, List<GameAction> onCompletion)
     {
         if (!counterDescriptions.Contains(description))
         {
@@ -59,7 +60,13 @@ public class ObjectivesManager : MonoBehaviour
             counterGoals.Add(goal);
             counterDescriptions.Add(description);
             counterActions.Add(onCompletion);
-            HUD.DisplayAnnouncement(instructions, "New Objective!");
+            endMessages.Add(endMessage);
+            HUD.DisplayAnnouncement(instructions, "New Objective!",true);
+            if(startMessage != "")
+            {
+                HUD.DisplayNotice(startMessage, true);
+            }
+            
             HUD.DisplayObjectives();
         }
 
@@ -74,11 +81,13 @@ public class ObjectivesManager : MonoBehaviour
         if (counterDescriptions.Contains(description))
         {
             int indx = counterDescriptions.IndexOf(description);
-            HUD.DisplayAnnouncement(counterInstructions[indx], "Objective Cancelled");
+            HUD.DisplayAnnouncement("Objective Cancelled", counterInstructions[indx]);
             counterInstructions.RemoveAt(indx);
             counterGoals.RemoveAt(indx);
             counterCounts.RemoveAt(indx);
             counterDescriptions.RemoveAt(indx);
+            counterActions.RemoveAt(indx);
+            endMessages.RemoveAt(indx);
         }
     }
     /// <summary>
@@ -93,7 +102,11 @@ public class ObjectivesManager : MonoBehaviour
             counterCounts[indx]++;
             if (counterCounts[indx] >= counterGoals[indx])
             {
-                HUD.DisplayAnnouncement(counterInstructions[indx], "Objective Complete!");
+                HUD.DisplayAnnouncement("Objective Complete!", counterInstructions[indx],true);
+                if (endMessages[indx] != "")
+                {
+                    HUD.DisplayNotice(endMessages[indx], true);
+                }
                 foreach(GameAction actn in counterActions[indx])
                 {
                     actn.Activate();
@@ -103,6 +116,7 @@ public class ObjectivesManager : MonoBehaviour
                 counterCounts.RemoveAt(indx);
                 counterDescriptions.RemoveAt(indx);
                 counterActions.RemoveAt(indx);
+                endMessages.RemoveAt(indx);
             }
             HUD.DisplayObjectives();
         }

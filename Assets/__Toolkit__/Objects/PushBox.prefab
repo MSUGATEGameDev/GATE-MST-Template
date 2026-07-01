@@ -170,7 +170,7 @@ PrefabInstance:
       addedObject: {fileID: 7505215811407231629}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 392c295a971e2af4b96c1949f2744065, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 266539820155095992}
+      addedObject: {fileID: 3785753851032874216}
   m_SourcePrefab: {fileID: 100100000, guid: 392c295a971e2af4b96c1949f2744065, type: 3}
 --- !u!4 &3620079746688763686 stripped
 Transform:
@@ -203,7 +203,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.9, y: 0.90000004, z: 0.8999999}
   m_Center: {x: 0, y: 0.50593746, z: -0.000000029802322}
---- !u!54 &266539820155095992
+--- !u!54 &3785753851032874216
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -228,5 +228,5 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 126
   m_CollisionDetection: 0
