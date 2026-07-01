@@ -29,6 +29,7 @@ public class Enemy : Entity
     {
         idle,
         wander,
+        roomba,
         searching,
         pursue,
     }
@@ -82,6 +83,11 @@ public class Enemy : Entity
                     Move(Vector2.zero);
                     Search();
                     break;
+                case AIStates.roomba:
+                    setEntityLights(Color.white);
+                    Move(Vector2.zero);
+                    Search();
+                    break;
                 case AIStates.pursue:
                     setEntityLights(Color.red);
                     Move(Vector2.zero);
@@ -119,6 +125,26 @@ public class Enemy : Entity
             running = false;
             Move(Vector2.zero);
             Attack();
+        }
+    }
+
+    public void Roomba()
+    {
+        running = false;
+        Move(EntityUtils.HeadingToVec2((Headings)searchIndex));
+
+        if (Time.time >= nextSearchTime)
+        {
+            if (searchIndex < 8)
+            {
+                searchIndex++;
+            }
+            else
+            {
+                searchIndex = 0;
+                curAIState = AIStates.wander;
+            }
+            nextSearchTime = Time.time + searchRate;
         }
     }
 
@@ -172,5 +198,18 @@ public class Enemy : Entity
     {
         yield return new WaitForSeconds(5);
         Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (curAIState == AIStates.idle || curAIState == AIStates.wander)
+        {
+            curAIState = AIStates.roomba;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        curAIState = AIStates.idle;
     }
 }
