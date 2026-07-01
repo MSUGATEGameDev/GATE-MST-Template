@@ -1,7 +1,4 @@
 using UnityEngine;
-using UnityEngine.Splines;
-using UnityEngine.UIElements;
-using static UnityEngine.EventSystems.EventTrigger;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Health))]
@@ -15,6 +12,9 @@ public class Entity : MonoBehaviour
 
     public LayerMask pushableLayers;
     private GameObject curPushable;
+
+    [SerializeField] private GameObject[] entityLights;
+    [SerializeField] private GameObject[] entityDamageLights;
 
     public float moveSpeed = 2.0f;
     public float runSpeed = 5.0f;
@@ -34,6 +34,10 @@ public class Entity : MonoBehaviour
 
     public EStates curState = EStates.idle;
     public bool disabled = false;
+
+    //Damage Indcator Timers
+    private bool damageLightActive = false;
+    private float nextdamageLightTime = 0f;
 
     public enum EStates
     {
@@ -58,6 +62,19 @@ public class Entity : MonoBehaviour
     protected virtual void Update()
     {
         DetermineState();
+        if (damageLightActive)
+        {
+            if (Time.time >= nextdamageLightTime)
+            {
+                damageLightActive = false;
+                foreach (GameObject light in entityDamageLights)
+                {
+                    Renderer lightRenderer = light.GetComponent<Renderer>();
+                    lightRenderer.material.DisableKeyword("_EMISSION");
+                    lightRenderer.material.SetColor("_EmissionColor", Color.black);
+                }
+            }
+        }
     }
 
     protected virtual void FixedUpdate()
@@ -142,6 +159,16 @@ public class Entity : MonoBehaviour
         anim.SetBool("pushing", false);
     }
 
+    public void setEntityLights(Color color)
+    {
+        foreach (GameObject light in entityLights)
+        {
+            Renderer lightRenderer = light.GetComponent<Renderer>();
+            lightRenderer.material.SetColor("_BaseColor", color);
+            lightRenderer.material.SetColor("_EmissionColor", color);
+        }
+    }
+
     private void HandlePush(Vector3 fVector, float tAngle)
     {
         if (curPushable == null && pushing)
@@ -196,7 +223,7 @@ public class Entity : MonoBehaviour
                 Health eHealth = hitEntity.GetComponent<Health>();
                 if (eHealth != null)
                 {
-                    print(health.TeamID);
+                    //print(health.TeamID);
                     if (health == null || eHealth.TeamID != health.TeamID)
                     {
                         Debug.Log($"{hitEntity.name} got hit by {this.name}, dealed {attackDamage} Damage");
@@ -212,7 +239,14 @@ public class Entity : MonoBehaviour
 
     public void Damaged()
     {
-        //Something happens when Entity is Damaged maybe an animation?
+        nextdamageLightTime = Time.time + 0.5f;
+        damageLightActive = true;
+        foreach (GameObject light in entityDamageLights)
+        {
+            Renderer lightRenderer = light.GetComponent<Renderer>();
+            lightRenderer.material.EnableKeyword("_EMISSION");
+            lightRenderer.material.SetColor("_EmissionColor", Color.red * 2);
+        }
     }
 
     public virtual void Die()

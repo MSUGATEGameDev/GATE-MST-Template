@@ -62,8 +62,6 @@ public class Health : MonoBehaviour
         if (!invincible)
         {
             CurHealth -= amount;
-            if(this.CompareTag("Player"))
-                HUD.DisplayHealth((float)CurHealth / (float)maxHealth * 100f);
             if (CurHealth < 0)
             {
                 CurHealth = 0;
@@ -71,6 +69,11 @@ public class Health : MonoBehaviour
             if (entity != null)
             {
                 entity.Damaged();
+            }
+
+            if (this.CompareTag("Player"))
+            {
+                HUD.DisplayHealth((float)CurHealth / (float)maxHealth * 100f);
             }
         }
     }

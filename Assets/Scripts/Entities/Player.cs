@@ -49,6 +49,10 @@ public class Player : Entity
     private bool cinemaCamActive = false;
     private FocusCamera cinemaCamtarget;
     private float nextReleaseTime = 0f;
+
+    //Player Light Timers
+    private bool lightTimerActive = false;
+    private float nextLightTime = 0f;
     #endregion
 
     protected override void Start()
@@ -66,6 +70,14 @@ public class Player : Entity
     {
         base.Update();
         InfluenceMove(playerCamera.transform.eulerAngles.y);
+        if (lightTimerActive)
+        {
+            if (Time.time >= nextLightTime)
+            {
+                lightTimerActive = false;
+                setEntityLights(Color.white);
+            }
+        }
         if (cinemaCamActive)
         {
             FlyCam();
@@ -103,10 +115,11 @@ public class Player : Entity
     }
     public void OnActionButton(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && curState != EStates.dead && curState != EStates.disabled)
         {
             if (triggerInRange != null)
             {
+                setPlayerLight(Color.green, 2.0f);
                 anim.Play("TutBotPushButton");
                 triggerInRange.Activate();
             }
@@ -122,6 +135,13 @@ public class Player : Entity
     }
     #endregion
     #region Events
+
+    public void setPlayerLight(Color color, float delay)
+    {
+        nextLightTime = Time.time + delay;
+        lightTimerActive = true;
+        setEntityLights(color);
+    }
 
     public void DeployCinemaCam(FocusCamera target)
     {

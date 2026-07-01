@@ -70,16 +70,20 @@ public class Enemy : Entity
             switch (curAIState)
             {
                 case AIStates.idle:
+                    setEntityLights(Color.white);
                     Move(Vector2.zero);
                     break;
                 case AIStates.wander:
+                    setEntityLights(Color.white);
                     Wander();
                     break;
                 case AIStates.searching:
+                    setEntityLights(Color.yellow);
                     Move(Vector2.zero);
                     Search();
                     break;
                 case AIStates.pursue:
+                    setEntityLights(Color.red);
                     Move(Vector2.zero);
                     Pursue();
                     break;
