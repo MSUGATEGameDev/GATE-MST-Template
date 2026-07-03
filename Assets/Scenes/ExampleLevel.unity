@@ -1879,7 +1879,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 7b800231eeb2fab449eae3b799d85d8c, type: 2}
     - target: {fileID: 1708576647234818529, guid: 6bcbd75a4bd4dba45802087238127d31, type: 3}
       propertyPath: npcName
-      value: Franklin
+      value: Lenny
       objectReference: {fileID: 0}
     - target: {fileID: 1708576647234818529, guid: 6bcbd75a4bd4dba45802087238127d31, type: 3}
       propertyPath: dialogBackButton
@@ -8518,7 +8518,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1708576647234818529, guid: 6bcbd75a4bd4dba45802087238127d31, type: 3}
       propertyPath: 'dialog.Array.data[0]'
-      value: 'Thank you for bringing back my Pizza!
+      value: 'Thank you for bringing back my pizza!
 
         I hope it wasn''t too
         much trouble for you.'
@@ -17866,18 +17866,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1708576647234818529, guid: 6bcbd75a4bd4dba45802087238127d31, type: 3}
       propertyPath: 'dialog.Array.data[0]'
-      value: Brave Adventurer, I am in depserate need of your help!
+      value: Brave Adventurer, I am in depsperate need of your help!
       objectReference: {fileID: 0}
     - target: {fileID: 1708576647234818529, guid: 6bcbd75a4bd4dba45802087238127d31, type: 3}
       propertyPath: 'dialog.Array.data[1]'
-      value: "My evil roomate Lenny has stolen my most prized posession: \na Pizza
+      value: "My evil roomate Lenny has stolen my most prized posession: \na pizza
         my mother gave to me when I was going through a rough time last year. \nWill
         you please help me get it back?"
       objectReference: {fileID: 0}
     - target: {fileID: 1708576647234818529, guid: 6bcbd75a4bd4dba45802087238127d31, type: 3}
       propertyPath: 'dialog.Array.data[2]'
-      value: "He has the location written in his lab notes, \nbut you'll need the
-        two keys to enter our \nhigh-security lab to get to the notes."
+      value: "He has the location written in his lab notes, \nbut you'll need two
+        keys to enter our \nhigh-security lab to get to the notes."
       objectReference: {fileID: 0}
     - target: {fileID: 1708576647234818529, guid: 6bcbd75a4bd4dba45802087238127d31, type: 3}
       propertyPath: 'dialog.Array.data[3]'
