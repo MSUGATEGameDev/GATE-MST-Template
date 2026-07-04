@@ -17,7 +17,7 @@ public class MenuNavButton : MonoBehaviour
     #endregion
 
     #region Inspector-Editable Variables
-    public enum MenuButtonType { Page, Scene, Submenu};
+    public enum MenuButtonType { Page, Scene, Submenu, Quit};
     
     public MenuButtonType buttonType;
     [Header("For Page Buttons")]
@@ -54,6 +54,12 @@ public class MenuNavButton : MonoBehaviour
                 {
                     go.SetActive(false);
                 }
+                break;
+            case MenuButtonType.Quit:
+                Application.Quit();
+                #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+                #endif
                 break;
         }
         
