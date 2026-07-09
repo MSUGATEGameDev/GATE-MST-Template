@@ -165,11 +165,18 @@ public class Entity : MonoBehaviour
 
     public void setEntityLights(Color color)
     {
-        foreach (GameObject light in entityLights)
+        try
         {
-            Renderer lightRenderer = light.GetComponent<Renderer>();
-            lightRenderer.material.SetColor("_BaseColor", color);
-            lightRenderer.material.SetColor("_EmissionColor", color);
+            foreach (GameObject light in entityLights)
+            {
+                Renderer lightRenderer = light.GetComponent<Renderer>();
+                lightRenderer.material.SetColor("_BaseColor", color);
+                lightRenderer.material.SetColor("_EmissionColor", color);
+            }
+        }
+        catch
+        {
+            print("No entity lights set!");
         }
     }
 
@@ -240,13 +247,20 @@ public class Entity : MonoBehaviour
 
     public void Damaged()
     {
-        nextdamageLightTime = Time.time + 0.5f;
-        damageLightActive = true;
-        foreach (GameObject light in entityDamageLights)
+        try
         {
-            Renderer lightRenderer = light.GetComponent<Renderer>();
-            lightRenderer.material.EnableKeyword("_EMISSION");
-            lightRenderer.material.SetColor("_EmissionColor", Color.red * 2);
+            nextdamageLightTime = Time.time + 0.5f;
+            damageLightActive = true;
+            foreach (GameObject light in entityDamageLights)
+            {
+                Renderer lightRenderer = light.GetComponent<Renderer>();
+                lightRenderer.material.EnableKeyword("_EMISSION");
+                lightRenderer.material.SetColor("_EmissionColor", Color.red * 2);
+            }
+        }
+        catch
+        {
+            print("No Damage lights set!");
         }
     }
 
