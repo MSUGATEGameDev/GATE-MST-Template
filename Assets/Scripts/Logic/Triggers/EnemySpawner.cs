@@ -15,6 +15,7 @@ public class EnemySpawner : GameAction
     [Tooltip("The max amount of enemies that will be spawned in total.")]public int maxConcurrentSpawn = 5;
     [Tooltip("The enemy that will be spawned when spawned.")]public Enemy enemyPrefab;
     [Tooltip("Actions that will be assigned to the enemy when spawned.")]public List<GameAction> actionsForEnemies;
+    [Tooltip("All enemies will be added to the KillSomething as they are spawned.")] public KillSomething killer;
     Transform placer;
     int concurrentEnemies;
     Coroutine spawnRun;
@@ -39,6 +40,10 @@ public class EnemySpawner : GameAction
         foreach(GameAction action in actionsForEnemies)
         {
             thisEnemy.actions.Add(action);
+        }
+        if(killer != null)
+        {
+            killer.AddVictim(thisEnemy);
         }
         HUD.ShowHealthBar();
     }

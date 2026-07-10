@@ -1486,7 +1486,7 @@ MonoBehaviour:
     a menu page.'
   buttonType: 1
   pageToOpen: {fileID: 0}
-  sceneToOpen: ExampleLevel
+  sceneToOpen: Template Level
   objectsToShow: []
   objectsToHide: []
 --- !u!1 &539540605

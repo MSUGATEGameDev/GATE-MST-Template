@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// -- Menus -- Opens a scene, takes you to a menu page, or opens menus on a menu page.
+/// -- Menus -- Opens a scene, takes you to a menu page, opens menus on a menu page, or quits the game.
 /// </summary>
 public class MenuNavButton : MonoBehaviour
 {
@@ -13,7 +13,7 @@ public class MenuNavButton : MonoBehaviour
     [ReadOnly]
     [TextArea(1, 10)]
     public string _ = "-- Menus --\n" +
-        "Opens a scene, takes you to a menu page, or opens menus on a menu page.";
+        "Opens a scene, takes you to a menu page, opens menus on a menu page, or quits the game.";
     #endregion
 
     #region Inspector-Editable Variables
