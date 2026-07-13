@@ -201,7 +201,8 @@ public class Enemy : Entity
             }
             foreach (GameAction action in actions)
             {
-                action.Activate();
+                if(action != null)
+                    action.Activate();
             }
             foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
             {
@@ -214,11 +215,18 @@ public class Enemy : Entity
             }
             
             StartCoroutine(Despawn());
+
         }
     }
     IEnumerator Despawn()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(1);
+        try
+        {
+            GetComponent<CapsuleCollider>().enabled = false;
+        }
+        catch { }
+        yield return new WaitForSeconds(4);
         Destroy(gameObject);
     }
 

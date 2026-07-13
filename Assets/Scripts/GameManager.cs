@@ -16,10 +16,12 @@ public class GameManager : MonoBehaviour
     [Tooltip("The in-game ceiling. Hidden in editor to allow editing.")]public GameObject ceiling;
     [Tooltip("If enabled, the in-game ceiling will appear at the start.")]public bool indoors = true;
     [Tooltip("GameActions you would like to activate when the game starts.")] public List<GameAction> actions = new();
+    [Tooltip("Checking this box will clear the objectives when this scene loads.")] public bool clearObjectives = true;
     private void Awake()
     {
-        if(indoors)
+        if(indoors && ceiling != null)
             ceiling.SetActive(true);
+        if (clearObjectives) ClearObjectives();
     }
     private void Start()
     {
@@ -30,5 +32,15 @@ public class GameManager : MonoBehaviour
                 action.Activate();
             }
         }
+        
     }
+    private void ClearObjectives()
+    {
+        ObjectivesManager.counterInstructions = new(); 
+        ObjectivesManager.counterCounts = new();         
+        ObjectivesManager.counterGoals = new();           
+        ObjectivesManager.counterDescriptions = new(); 
+        ObjectivesManager.endMessages = new();
+        ObjectivesManager.counterActions = new();  
+}
 }

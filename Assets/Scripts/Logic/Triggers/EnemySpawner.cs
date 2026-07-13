@@ -34,7 +34,7 @@ public class EnemySpawner : GameAction
         {
             enemyCount--;
         }
-            placer.localPosition = new Vector3(Random.Range(0, 1), .824561f, Random.Range(0, 1));
+            placer.localPosition = new Vector3(Random.Range(-.5f, .5f), .824561f, Random.Range(-.5f, .5f));
         Enemy thisEnemy = Instantiate(enemyPrefab,placer.position,Quaternion.Euler(0,Random.Range(0,360),0));
         thisEnemy.spawner = this;
         foreach(GameAction action in actionsForEnemies)

@@ -80,6 +80,8 @@ public class Timer : GameTrigger
     /// </summary>
     IEnumerator VisualCountdown() 
     {
+        WaitForSeconds wfs = new(1);
+        
         int runTime = timeToStart;
         while (runTime > 0)
         {
@@ -87,11 +89,12 @@ public class Timer : GameTrigger
                 timerDisplay.text = "" + runTime;
             else
             {
-                HUD.DisplayNotice("" + runTime);
+                HUD.DisplayNotice("" + runTime,true);
             }
             runTime--;
-            yield return new WaitForSeconds(1);
+            yield return wfs ;
         }
+        HUD.DisplayNotice("",true);
         ActivateItems();
         if (repeats && resetOnActivate)
         {
@@ -104,11 +107,12 @@ public class Timer : GameTrigger
                         timerDisplay.text = "" + runTime;
                     else
                     {
-                        HUD.DisplayNotice("" + runTime);
+                        HUD.DisplayNotice("" + runTime,true);
                     }
                     runTime--;
                     yield return new WaitForSeconds(1);
                 }
+                HUD.DisplayNotice("",true);
                 ActivateItems();
             }
         }

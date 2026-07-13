@@ -219,6 +219,7 @@ public class Player : Entity
         if(curState != EStates.dead)
         {
             base.Die();
+            
             if (meshesForReassembly.Count == 0)
             {
                 foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
@@ -320,6 +321,7 @@ public class Player : Entity
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
         anim.enabled = true;
         curState = EStates.idle;
+        anim.Play("TutBotIdle");
     }
     /// <summary>
     /// Puts the player in the spawn point.

@@ -1209,6 +1209,7 @@ GameObject:
   - component: {fileID: 105302128530794667}
   - component: {fileID: 4987788753349005586}
   - component: {fileID: 5508241371933008898}
+  - component: {fileID: 8048493969211674089}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -1553,6 +1554,27 @@ MonoBehaviour:
   hasLives: 0
   maxLives: 3
   startLives: 3
+--- !u!65 &8048493969211674089
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7460507922178101452}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.9, y: 0.9, z: 0.9}
+  m_Center: {x: 0, y: 0, z: 0.85}
 --- !u!1 &7698467572368454262
 GameObject:
   m_ObjectHideFlags: 0
@@ -1714,8 +1736,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8747043521892723213}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.17925324, y: -0.2138354, z: 0.03995063, w: 0.95945126}
-  m_LocalPosition: {x: 0.1587987, y: 0.5147831, z: -0.33855855}
+  m_LocalRotation: {x: 0.17932592, y: -0.21393986, z: 0.03998796, w: 0.9594128}
+  m_LocalPosition: {x: -1.0270393, y: 1.9279733, z: -1.6976396}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

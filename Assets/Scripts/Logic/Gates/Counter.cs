@@ -32,6 +32,7 @@ public class Counter : GameTrigger
             if (currentCount == activateAt)
                 foreach (GameAction gameAction in objectsToActivate)
                 {
+                    if(gameAction != null)
                     gameAction.Activate();
                     if (singleActivation) flipped = true;
                     if (resets) currentCount = 0;

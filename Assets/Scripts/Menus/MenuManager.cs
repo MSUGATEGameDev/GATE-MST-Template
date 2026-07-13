@@ -38,29 +38,16 @@ public class MenuManager : MonoBehaviour
         backBtn = backButton;
         backBtn.SetActive(false);
 
-        List<int> oldPages = new();
-        for (int i = 0; i < menuPages.Count; i++) 
+        menuPages.Clear();
+        prevPages.Clear();
+        foreach(MenuPage mp in FindObjectsByType<MenuPage>(FindObjectsInactive.Include, FindObjectsSortMode.None))
         {
-            if (menuPages[i] == null) { 
-                oldPages.Add(i);
-            }
+            menuPages.Add(mp.gameObject);
         }
-        foreach (int i in oldPages) 
-        {
-            menuPages.RemoveAt(i);
-        }
-        oldPages.Clear();
-        for (int i = 0; i < prevPages.Count; i++)
-        {
-            if (prevPages[i] == null)
-            {
-                oldPages.Add(i);
-            }
-        }
-        foreach(int i in oldPages)
-        {
-            prevPages.RemoveAt(i);
-        }
+
+    }
+    private void Start()
+    {
         OpenPage(title_Page);
         if (openCreditsPage)
         {

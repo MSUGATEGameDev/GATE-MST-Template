@@ -131,9 +131,10 @@ public class HUD : MonoBehaviour
         while (upcomingNotices.Count > 0)
         {
             noticeText.text = upcomingNotices[0];
-            yield return new WaitForSeconds(upcomingNoticeDurations[0]);
             upcomingNotices.RemoveAt(0);
+            int noticeTime = upcomingNoticeDurations[0];
             upcomingNoticeDurations.RemoveAt(0);
+            yield return new WaitForSeconds(noticeTime);
         }
         noticeText.text = "";
         presentingNotice = false;

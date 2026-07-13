@@ -16,10 +16,12 @@ public class ShowOrHide : GameAction
     {
         foreach (GameObject go in objectsToShow)
         {
+            if(go != null)
             go.SetActive(true);
         }
         foreach (GameObject go in objectsToHide)
         {
+            if(go!=null)
             go.SetActive(false);
         }
     }
