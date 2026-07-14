@@ -95,7 +95,7 @@ public class Entity : MonoBehaviour
     {
         dirInfluence = influence;
     }
-
+    [HideInInspector]public float affectedRotation = 1;
     private void HandleMove()
     {
         if (curState != EStates.dead && curState != EStates.disabled) {
@@ -104,9 +104,8 @@ public class Entity : MonoBehaviour
             if (normalDir.magnitude >= 0.1f)
             {
                 float targetAngle = Mathf.Atan2(normalDir.x, normalDir.z) * Mathf.Rad2Deg + dirInfluence;
-                float angle = Mathf.SmoothDampAngle(transform.localEulerAngles.y, targetAngle, ref turnVel, turnTime);
+                float angle = Mathf.SmoothDampAngle(transform.localEulerAngles.y, targetAngle, ref turnVel, turnTime/affectedRotation);
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
-
                 Vector3 vel = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
                 HandlePush(vel, targetAngle);
@@ -179,7 +178,7 @@ public class Entity : MonoBehaviour
             print("No entity lights set!");
         }
     }
-
+    public Transform pushPoint;
     private void HandlePush(Vector3 fVector, float tAngle)
     {
         if (curPushable == null && pushing)
@@ -197,13 +196,22 @@ public class Entity : MonoBehaviour
         }
         else if (pushing)
         {
-            Vector3 newPos = transform.position + fVector;
+            Vector3 newPos = pushPoint.position;
             newPos.y = curPushable.transform.position.y;
-            curPushable.transform.rotation = Quaternion.Euler(0f, tAngle, 0f);
+            curPushable.transform.rotation = pushPoint.rotation;
             curPushable.transform.position = newPos;
+            curPushable.layer = 11;
+            GetComponent<BoxCollider>().enabled = true;
+            affectedRotation = .1f;
         }
         else
         {
+            if(curPushable != null)
+            {
+                curPushable.layer = 7;
+                GetComponent<BoxCollider>().enabled = false;
+                affectedRotation = 1f;
+            }
             curPushable = null;
         }
     }

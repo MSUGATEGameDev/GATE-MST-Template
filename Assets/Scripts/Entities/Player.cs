@@ -98,6 +98,7 @@ public class Player : Entity
     }
     public void OnAttackButton(InputAction.CallbackContext context)
     {
+        pushing = context.ReadValueAsButton();
         if (context.performed)
         {
             Attack();
@@ -120,6 +121,7 @@ public class Player : Entity
                 setPlayerLight(Color.green, 2.0f);
                 anim.Play("TutBotPushButton");
                 triggerInRange.Activate();
+
             }
         }
 
@@ -210,7 +212,7 @@ public class Player : Entity
         Time.timeScale = 1.0f;
         SceneManager.LoadScene("Menu");
     }
-
+    
     List<GameObject> meshesForReassembly = new();
     List<Transform> reassemblyPoints = new();
 

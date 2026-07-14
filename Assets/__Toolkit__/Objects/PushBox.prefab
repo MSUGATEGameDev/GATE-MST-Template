@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3620079746688763686}
     m_Modifications:
+    - target: {fileID: 796262195339700921, guid: 7800d3c759dd8e345975011d3390cd49, type: 3}
+      propertyPath: m_text
+      value: CLick and Hold to grab.
+      objectReference: {fileID: 0}
     - target: {fileID: 1000626131820649636, guid: 7800d3c759dd8e345975011d3390cd49, type: 3}
       propertyPath: sharedMax
       value: 1
@@ -211,7 +215,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4140721164387884444}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 6
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
