@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 796262195339700921, guid: 7800d3c759dd8e345975011d3390cd49, type: 3}
       propertyPath: m_text
-      value: CLick and Hold to grab.
+      value: Right Click and Hold To Grab
       objectReference: {fileID: 0}
     - target: {fileID: 1000626131820649636, guid: 7800d3c759dd8e345975011d3390cd49, type: 3}
       propertyPath: sharedMax

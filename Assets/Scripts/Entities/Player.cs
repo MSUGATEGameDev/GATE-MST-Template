@@ -98,7 +98,6 @@ public class Player : Entity
     }
     public void OnAttackButton(InputAction.CallbackContext context)
     {
-        pushing = context.ReadValueAsButton();
         if (context.performed)
         {
             Attack();
