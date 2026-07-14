@@ -139,6 +139,11 @@ MonoBehaviour:
   objectsToActivate:
   - {fileID: 8920529980654186750}
   singleActivation: 0
+  deactivates: 1
+  _: '-- GameTrigger --
+
+    Allows a door to auto-open when the player is present
+    or be locked to color-coded keys.'
   lockedWithKey: 0
   keyColor: 0
   lockIcons: {fileID: 8560864679202752654}
@@ -631,6 +636,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fa271b02e55bd340a2713cc08e5ce16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
+  _: '--GameAction--
+
+    Opened on Activate, Closed on Deactivate.
+
+    Enable ''Door
+    Controller'' object for auto-open and key-locks.'
+  hingeType: 1
+  opensBothWays: 1
 --- !u!95 &5304873376367855678
 Animator:
   serializedVersion: 7

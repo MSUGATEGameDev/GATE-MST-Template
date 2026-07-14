@@ -104,12 +104,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0700a0c113d49b42a320f14921d16cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LogicConverter
-  objectsToActivate: []
-  singleActivation: 0
   _: '-- GameAction --
 
     Converts any activation or deactivation to a deactivation
     or activation of any other object.'
-  objectsToDeactivate: []
-  actionOnActivate: 0
-  actionOnDeactivate: 1
+  whenThisIsActivated: []
+  whenThisIsDeactivated: []

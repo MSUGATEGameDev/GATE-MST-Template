@@ -1,56 +1,57 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
-public class LogicConverter : GameTrigger
+public class LogicConverter : GameAction
 {
     [ReadOnly]
     [TextArea(1, 10)]
     public string _ = "-- GameAction --\n" +
     "Converts any activation or deactivation to a deactivation or activation of any other object.";
-
-    [Tooltip("These objects will be triggered when this trigger is deactivated.")] public List<GameAction> objectsToDeactivate;
     public enum ActionOnActivate { Activate, Deactivate, Nothing }
-    [Tooltip("What do you want to happen to the listed items when this gate is activated?")]
-    public ActionOnActivate actionOnActivate = ActionOnActivate.Activate;
-    [Tooltip("What do you want to happen to the listed items when this gate is deactivated?")]
-    public ActionOnActivate actionOnDeactivate = ActionOnActivate.Deactivate;
+
+    public List<ActionActivationPair> whenThisIsActivated;
+    public List<ActionActivationPair> whenThisIsDeactivated;
 
     public override void Activate()
     {
-        switch (actionOnActivate)
+        foreach (ActionActivationPair actPair in whenThisIsActivated)
         {
-            case ActionOnActivate.Activate:
-                foreach (GameAction gameAction in objectsToActivate)
-                {
-                    gameAction.Activate();
-                }
-                break;
-                case ActionOnActivate.Deactivate:
-                foreach (GameAction gameAction in objectsToActivate)
-                {
-                    gameAction.Deactivate();
-                }
-                break;
+            if (actPair.activateOrDe == ActionOnActivate.Activate)
+            {
+                if(actPair.gameAction != null)
+                actPair.gameAction.Activate();
+            }
+            else if (actPair.activateOrDe == ActionOnActivate.Deactivate)
+            {
+                if (actPair.gameAction != null)
+                    actPair.gameAction.Deactivate();
+            }
         }
-
     }
     public override void Deactivate()
     {
-        switch (actionOnDeactivate)
+        foreach (ActionActivationPair actPair in whenThisIsDeactivated)
         {
-            case ActionOnActivate.Activate:
-                foreach (GameAction gameAction in objectsToDeactivate)
-                {
-                    gameAction.Activate();
-                }
-                break;
-            case ActionOnActivate.Deactivate:
-                foreach (GameAction gameAction in objectsToDeactivate)
-                {
-                    gameAction.Deactivate();
-                }
-                break;
+            if (actPair.activateOrDe == ActionOnActivate.Activate)
+            {
+                if (actPair.gameAction != null)
+                    actPair.gameAction.Activate();
+            }
+            else if(actPair.activateOrDe == ActionOnActivate.Deactivate)
+            {
+                if (actPair.gameAction != null)
+                    actPair.gameAction.Deactivate();
+            }
         }
-
     }
+}
+
+
+// 1. Make the container structure serializable
+[System.Serializable]
+public struct ActionActivationPair
+{
+    public GameAction gameAction;
+    public LogicConverter.ActionOnActivate activateOrDe;
 }
