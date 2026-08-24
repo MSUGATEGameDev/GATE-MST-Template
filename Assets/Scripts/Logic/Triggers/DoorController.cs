@@ -14,9 +14,8 @@ public class DoorController : GameTrigger
     #endregion
 
     #region Insepctor-Editable Variables
-    [Header("Door Settings")]
-    [Tooltip("If true, the door will automatically open when the player enters the vecinity with the correct key selected.")] public bool lockedWithKey = false;
-    [Tooltip("The key color which unlocks the door.")]public ColorManager.StandardColor keyColor;
+    [HideInInspector] public bool lockedWithKey = false;
+    [HideInInspector]public ColorManager.StandardColor keyColor;
     
     [Header("Components")]
     public GameObject lockIcons;

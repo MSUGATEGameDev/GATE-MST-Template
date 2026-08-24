@@ -2,14 +2,12 @@ using UnityEngine;
 
 public class Door : GameAction
 {
-    [ReadOnly]
-    [TextArea(1, 10)]
-    public string _ = "--GameAction--\n" +
-        "Opened on Activate, Closed on Deactivate.\n" +
-        "Enable 'Door Controller' object for auto-open and key-locks.";
     public enum HingeType { Swing, Slide}
     public HingeType hingeType = HingeType.Swing;
     public bool opensBothWays = true;
+    public enum OpenType {OnlyWhenTriggered, Automatic, WithColoredKey}
+    public OpenType opens = OpenType.OnlyWhenTriggered;
+    [Tooltip("The key color which unlocks the door.")] public ColorManager.StandardColor colorIfKey = ColorManager.StandardColor.Red;
     Transform backSideChecker;
     Transform frontSideChecker;
 
@@ -28,6 +26,19 @@ public class Door : GameAction
             animator = GetComponent<Animator>();
         }
         catch { }
+        DoorController dc = GetComponentInChildren<DoorController>();
+        switch (opens)
+        {
+            case OpenType.Automatic:
+                dc.lockedWithKey = false;
+                dc.gameObject.SetActive(true);
+                break;
+            case OpenType.WithColoredKey:
+                dc.lockedWithKey = true;
+                dc.keyColor = colorIfKey;
+                dc.gameObject.SetActive(true);
+                break;
+        }
     }
     bool openFront = true;
     public override void Activate()

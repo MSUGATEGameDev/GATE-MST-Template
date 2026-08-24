@@ -2880,6 +2880,33 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9029731462182675845, guid: b9949ae1547143b49bf553a997621aa2, type: 3}
   m_PrefabInstance: {fileID: 301563918}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &306000225 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7098719416103905727, guid: 9311427d7afaf46489b9d45dfa32ef25, type: 3}
+  m_PrefabInstance: {fileID: 1449748931}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &306000228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306000225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 003167429d06ff9498be62e6d2ed4861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorController
+  objectsToActivate: []
+  singleActivation: 0
+  deactivates: 1
+  _: '-- GameTrigger --
+
+    Allows a door to auto-open when the player is present
+    or be locked to color-coded keys.'
+  lockedWithKey: 0
+  keyColor: 0
+  lockIcons: {fileID: 0}
 --- !u!1001 &314719194
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14000,6 +14027,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 812948934}
     m_Modifications:
+    - target: {fileID: 65629476800579779, guid: 9311427d7afaf46489b9d45dfa32ef25, type: 3}
+      propertyPath: opens
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 65629476800579779, guid: 9311427d7afaf46489b9d45dfa32ef25, type: 3}
+      propertyPath: colorIfKey
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1555961001747261666, guid: 9311427d7afaf46489b9d45dfa32ef25, type: 3}
       propertyPath: m_Name
       value: Glass Door
@@ -14060,13 +14095,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1843677001873951659, guid: 9311427d7afaf46489b9d45dfa32ef25, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2223708275465122392, guid: 9311427d7afaf46489b9d45dfa32ef25, type: 3}
       insertIndex: -1
       addedObject: {fileID: 867639410}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7098719416103905727, guid: 9311427d7afaf46489b9d45dfa32ef25, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 306000228}
   m_SourcePrefab: {fileID: 100100000, guid: 9311427d7afaf46489b9d45dfa32ef25, type: 3}
 --- !u!1001 &1459728101
 PrefabInstance:
@@ -18405,6 +18444,14 @@ PrefabInstance:
     - target: {fileID: 8510638091606785855, guid: b9949ae1547143b49bf553a997621aa2, type: 3}
       propertyPath: m_Name
       value: Glass Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920529980654186750, guid: b9949ae1547143b49bf553a997621aa2, type: 3}
+      propertyPath: opens
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920529980654186750, guid: b9949ae1547143b49bf553a997621aa2, type: 3}
+      propertyPath: colorIfKey
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9029731462182675845, guid: b9949ae1547143b49bf553a997621aa2, type: 3}
       propertyPath: m_LocalPosition.x
