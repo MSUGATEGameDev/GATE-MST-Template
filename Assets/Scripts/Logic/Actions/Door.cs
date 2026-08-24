@@ -26,7 +26,7 @@ public class Door : GameAction
             animator = GetComponent<Animator>();
         }
         catch { }
-        DoorController dc = GetComponentInChildren<DoorController>();
+        DoorController dc = GetComponentInChildren<DoorController>(true);
         switch (opens)
         {
             case OpenType.Automatic:

@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using UnityEngine;
+using System.Collections.Generic;
 
 public abstract class GameAction : MonoBehaviour
 {
@@ -11,4 +13,23 @@ public abstract class GameAction : MonoBehaviour
     
     // This command can be called from a trigger to deactivate the object.
     public abstract void Deactivate();
+
+    // Activates every item in a list.
+    public static void ActivateList(List<GameAction> listOfActions)
+    {
+        ActivateList(listOfActions, false);
+    }
+    public static void ActivateList(List<GameAction> listOfActions, bool deactivate)
+    {
+        foreach (GameAction action in listOfActions)
+        {
+            if (action != null)
+            {
+                if (deactivate)
+                    action.Deactivate();
+                else
+                    action.Activate();
+            }
+        }
+    }
 }
