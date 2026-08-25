@@ -108,5 +108,7 @@ MonoBehaviour:
 
     Converts any activation or deactivation to a deactivation
     or activation of any other object.'
-  whenThisIsActivated: []
+  whenThisIsActivated:
+  - gameAction: {fileID: 0}
+    activateOrDe: 0
   whenThisIsDeactivated: []

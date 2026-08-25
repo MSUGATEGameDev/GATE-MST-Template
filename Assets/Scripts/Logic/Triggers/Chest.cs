@@ -4,21 +4,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chest : GameTrigger
+public class Chest : GameAction
 {
-    #region Desription For Inspector
-    [ReadOnly]
-    [TextArea(1, 10)]
-    public string _ = "-- GameAction --\n" +
-        "Contains a reward. Openable by key or action.";
-    #endregion
-
     #region Variables
     [Tooltip("This will be given to the player when they open the chest.")] public Collectible collectibleToPresent;
     Collectible instantiatedCollectible;
 
     [Header("Components")]
     [Tooltip("Helps animate the collectible that will be given to the player.")] public Transform thingHolder;
+    public List<GameAction> activatesOnOpen = new();
     Animator animator;
     #endregion
 
@@ -40,7 +34,10 @@ public class Chest : GameTrigger
         instantiatedCollectible.GetComponent<BoxCollider>().enabled = false;
         yield return new WaitForSeconds(4);
         instantiatedCollectible.OnCollection();
-        ActivateItems();
+        foreach(GameAction action in activatesOnOpen)
+        {
+            action.Activate();
+        }
     }
     public override void Deactivate()
     {
