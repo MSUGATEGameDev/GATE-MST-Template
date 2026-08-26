@@ -17,6 +17,7 @@ public class AreaTrigger : GameTrigger
     public bool player = true;
     public bool enemies = false;
     public bool objects = true;
+
     #endregion
 
     #region Presence
